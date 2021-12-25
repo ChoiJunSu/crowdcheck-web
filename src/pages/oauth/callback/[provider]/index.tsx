@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import OauthApi from "@api/OauthApi";
 import { oauthLoginRequestDto } from "@api/OauthApi/type";
 
@@ -17,11 +17,15 @@ const OauthCallbackPage = () => {
             redirectUri,
           } as oauthLoginRequestDto);
           console.log(oauthLoginResponse);
+          if (!oauthLoginResponse.ok) {
+            alert("로그인 오류입니다.");
+          }
+          await router.push("/");
         }
       })();
     }
   });
-  return <div>{code}</div>;
+  return <div>로그인중...</div>;
 };
 
 export default OauthCallbackPage;
