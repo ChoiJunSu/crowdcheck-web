@@ -8,5 +8,4 @@ export interface IOauthLoginRequest extends IApiRequest {
 
 export interface IOauthLoginResponse extends IApiResponse {
   authToken: string;
-  email: string;
 }

@@ -1,3 +1,4 @@
+import React from "react";
 import OauthLoginButton from "@components/login/OauthLoginButton";
 
 const LoginPage = () => {
