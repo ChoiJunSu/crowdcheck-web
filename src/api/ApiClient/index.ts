@@ -5,8 +5,7 @@ import {
   postRequestDto,
   postResponseDto,
 } from "@api/ApiClient/type";
-
-const API_URI = "http://localhost:4000";
+import { API_URL } from "@constants/url";
 
 class ApiClient {
   static get = async ({
@@ -17,7 +16,7 @@ class ApiClient {
       ok: false,
       error: "",
     };
-    const axiosGetResponse = await axios.get(API_URI + url, {
+    const axiosGetResponse = await axios.get(API_URL + url, {
       params,
     });
     if (axiosGetResponse.status !== 200) {
@@ -36,7 +35,7 @@ class ApiClient {
       ok: false,
       error: "",
     };
-    const axiosPostResponse = await axios.post(API_URI + url, {
+    const axiosPostResponse = await axios.post(API_URL + url, {
       data,
     });
     if (axiosPostResponse.status !== 200) {

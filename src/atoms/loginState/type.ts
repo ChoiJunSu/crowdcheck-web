@@ -1,5 +1,5 @@
 export interface ILoginState {
   isLoggedIn: boolean;
-  token: string;
+  authToken: string;
   email: string;
 }
