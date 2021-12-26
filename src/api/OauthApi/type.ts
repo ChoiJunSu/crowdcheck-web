@@ -1,9 +1,12 @@
-import { apiRequestDto, apiResponseDto } from "@api/BaseApi/type";
+import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 
-export interface oauthLoginRequestDto extends apiRequestDto {
+export interface IOauthLoginRequest extends IApiRequest {
   provider: string;
   code: string;
   redirectUri: string;
 }
 
-export interface oauthLoginResponseDto extends apiResponseDto {}
+export interface IOauthLoginResponse extends IApiResponse {
+  token: string;
+  email: string;
+}

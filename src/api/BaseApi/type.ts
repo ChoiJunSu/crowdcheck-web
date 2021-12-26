@@ -1,5 +1,5 @@
-export interface apiRequestDto {}
-export interface apiResponseDto {
-    ok: boolean;
-    error: string;
+export interface IApiRequest {}
+export interface IApiResponse {
+  ok: boolean;
+  error: string;
 }
