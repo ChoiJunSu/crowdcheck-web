@@ -1,15 +1,17 @@
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 
-export interface getRequestDto extends IApiRequest {
+export interface IGetRequest extends IApiRequest {
   url: string;
-  params: any;
+  params?: any;
+  headers?: any;
 }
 
-export interface getResponseDto extends IApiResponse {}
+export interface IGetResponse extends IApiResponse {}
 
-export interface postRequestDto extends IApiRequest {
+export interface IPostRequest extends IApiRequest {
   url: string;
-  data: any;
+  data?: any;
+  headers?: any;
 }
 
-export interface postResponseDto extends IApiResponse {}
+export interface IPostResponse extends IApiResponse {}

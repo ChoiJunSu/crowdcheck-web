@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
-import OauthApi from "@api/OauthApi";
-import { IOauthLoginRequest } from "@api/OauthApi/type";
+import AuthApi from "@api/AuthApi";
 import { WEB_URL } from "@constants/url";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { IOauthCallbackPageProps } from "@pages/oauth/callback/type";
 import useLogin from "@hooks/useLogin";
+import { IOauthLoginRequest } from "@api/AuthApi/type";
 
 const OauthCallbackPage = ({ provider }: IOauthCallbackPageProps) => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const OauthCallbackPage = ({ provider }: IOauthCallbackPageProps) => {
   useEffect(() => {
     (async () => {
       if (provider && code) {
-        const oauthLoginResponse = await OauthApi.oauthLogin({
+        const oauthLoginResponse = await AuthApi.oauthLogin({
           provider,
           code,
           redirectUri,

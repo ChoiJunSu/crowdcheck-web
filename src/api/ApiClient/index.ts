@@ -1,9 +1,9 @@
 import axios from "axios";
 import {
-  getRequestDto,
-  getResponseDto,
-  postRequestDto,
-  postResponseDto,
+  IGetRequest,
+  IGetResponse,
+  IPostRequest,
+  IPostResponse,
 } from "@api/ApiClient/type";
 import { API_URL } from "@constants/url";
 
@@ -11,13 +11,15 @@ class ApiClient {
   static get = async ({
     url,
     params = {},
-  }: getRequestDto): Promise<getResponseDto> => {
-    const response: getResponseDto = {
+    headers = {},
+  }: IGetRequest): Promise<IGetResponse> => {
+    const response: IGetResponse = {
       ok: false,
       error: "",
     };
     const axiosGetResponse = await axios.get(API_URL + url, {
       params,
+      headers,
     });
     if (axiosGetResponse.status !== 200) {
       response.error = axiosGetResponse.statusText;
@@ -30,13 +32,15 @@ class ApiClient {
   static post = async ({
     url,
     data = {},
-  }: postRequestDto): Promise<postResponseDto> => {
-    const response: postResponseDto = {
+    headers = {},
+  }: IPostRequest): Promise<IPostResponse> => {
+    const response: IPostResponse = {
       ok: false,
       error: "",
     };
     const axiosPostResponse = await axios.post(API_URL + url, {
       data,
+      headers,
     });
     if (axiosPostResponse.status !== 200) {
       response.error = axiosPostResponse.statusText;
