@@ -1,10 +1,10 @@
 import ApiClient from "@api/ApiClient";
-import useLogin from "@hooks/useLogin";
 import {
   IOauthLoginRequest,
   IOauthLoginResponse,
   IRenewAuthTokenResponse,
 } from "@api/AuthApi/type";
+import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 class AuthApi {
   static oauthLogin = async ({
@@ -23,12 +23,12 @@ class AuthApi {
   };
 
   static renewAuthToken = async (): Promise<IRenewAuthTokenResponse> => {
-    const { authToken } = useLogin();
-    console.log("renew", authToken);
-    return await ApiClient.get({
+    const authToken = localStorage.getItem(LOCAL_AUTH_TOKEN);
+
+    return (await ApiClient.get({
       url: "/auth/renewAuthToken",
       headers: { Authorization: `Bearer ${authToken}` },
-    });
+    })) as IRenewAuthTokenResponse;
   };
 }
 

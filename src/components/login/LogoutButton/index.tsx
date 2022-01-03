@@ -1,12 +1,23 @@
-import React from "react";
-import useLogin from "@hooks/useLogin";
+import React, { useCallback } from "react";
+import { useSetRecoilState } from "recoil";
+import loginAtom from "@atoms/loginAtom";
+import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 const LogoutButton = () => {
-  const { onLogout } = useLogin();
+  const setLoginState = useSetRecoilState(loginAtom);
+
+  const handleLogout = useCallback(() => {
+    setLoginState({
+      isLoggedIn: false,
+      authToken: "",
+      email: "",
+    });
+    localStorage.removeItem(LOCAL_AUTH_TOKEN);
+  }, []);
 
   return (
     <div>
-      <button onClick={onLogout}>로그아웃</button>
+      <button onClick={handleLogout}>로그아웃</button>
     </div>
   );
 };

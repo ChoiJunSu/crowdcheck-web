@@ -13,4 +13,6 @@ export interface IOauthLoginResponse extends IApiResponse {
 
 export interface IRenewAuthTokenRequest extends IGetRequest {}
 
-export interface IRenewAuthTokenResponse extends IGetResponse {}
+export interface IRenewAuthTokenResponse extends IGetResponse {
+  authToken: string;
+}
