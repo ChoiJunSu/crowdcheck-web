@@ -36,7 +36,6 @@ const IndexPage = () => {
                   LOCAL_AUTH_TOKEN,
                   renewAuthTokenResponse.authToken
                 );
-                console.log("new token", renewAuthTokenResponse.authToken);
               }
             }
           }

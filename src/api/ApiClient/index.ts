@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import {
   IGetRequest,
   IGetResponse,
@@ -17,16 +17,24 @@ class ApiClient {
       ok: false,
       error: "",
     };
-    const axiosGetResponse = await axios.get(API_URL + url, {
-      params,
-      headers,
-    });
-    if (axiosGetResponse.status !== 200) {
-      response.error = axiosGetResponse.statusText;
+    try {
+      const axiosGetResponse = await axios.get(API_URL + url, {
+        params,
+        headers,
+      });
+
+      return axiosGetResponse.data;
+    } catch (e: any) {
+      const { status, data } = e.response;
+      if (status === 401) {
+        alert("로그인이 필요합니다.");
+        location.href = "/login";
+      } else {
+        response.error = data.error || "";
+      }
+
       return response;
     }
-
-    return axiosGetResponse.data;
   };
 
   static post = async ({
