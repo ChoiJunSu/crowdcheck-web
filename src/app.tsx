@@ -1,6 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import OauthCallbackPage from "@pages/oauth/callback";
+import Header from "@components/base/Header";
+import Footer from "@components/base/Footer";
+import Loading from "@components/base/Loading";
 
 const App = () => {
   const { pathname } = useLocation();
@@ -16,8 +18,10 @@ const App = () => {
       <Route
         path="/*"
         element={
-          <Suspense fallback={<div>로딩중..</div>}>
+          <Suspense fallback={<Loading />}>
+            <Header />
             <Page />
+            <Footer />
           </Suspense>
         }
       />

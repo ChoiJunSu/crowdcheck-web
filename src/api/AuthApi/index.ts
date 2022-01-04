@@ -1,34 +1,46 @@
 import ApiClient from "@api/ApiClient";
 import {
+  ICorporateLoginRequest,
+  ICorporateLoginResponse,
+  ICorporateRegisterRequest,
+  ICorporateRegisterResponse,
   IOauthLoginRequest,
   IOauthLoginResponse,
   IRenewAuthTokenResponse,
 } from "@api/AuthApi/type";
-import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 class AuthApi {
-  static oauthLogin = async ({
-    provider,
-    code,
-    redirectUri,
-  }: IOauthLoginRequest): Promise<IOauthLoginResponse> => {
+  static oauthLogin = async (
+    params: IOauthLoginRequest
+  ): Promise<IOauthLoginResponse> => {
     return (await ApiClient.get({
       url: "/auth/oauthLogin",
-      params: {
-        provider,
-        code,
-        redirectUri,
-      },
+      params,
     })) as IOauthLoginResponse;
   };
 
   static renewAuthToken = async (): Promise<IRenewAuthTokenResponse> => {
-    const authToken = localStorage.getItem(LOCAL_AUTH_TOKEN);
-
     return (await ApiClient.get({
       url: "/auth/renewAuthToken",
-      headers: { Authorization: `Bearer ${authToken}` },
     })) as IRenewAuthTokenResponse;
+  };
+
+  static corporateLogin = async (
+    data: ICorporateLoginRequest
+  ): Promise<ICorporateLoginResponse> => {
+    return (await ApiClient.post({
+      url: "/auth/corporateLogin",
+      data,
+    })) as ICorporateLoginResponse;
+  };
+
+  static corporateRegister = async (
+    data: ICorporateRegisterRequest
+  ): Promise<ICorporateRegisterResponse> => {
+    return (await ApiClient.post({
+      url: "/auth/corporateRegister",
+      data,
+    })) as ICorporateRegisterResponse;
   };
 }
 

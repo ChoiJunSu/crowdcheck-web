@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import LogoutButton from "@components/login/LogoutButton";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import jwtDecode from "jwt-decode";
@@ -49,12 +47,10 @@ const IndexPage = () => {
   return isLoggedIn ? (
     <div>
       <h1>어서오세요 {email}님</h1>
-      <LogoutButton />
     </div>
   ) : (
     <div>
       <h1>로그인이 필요합니다</h1>
-      <Link to="/login">로그인 하러가기</Link>
     </div>
   );
 };

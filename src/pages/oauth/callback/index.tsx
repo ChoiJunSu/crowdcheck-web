@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import AuthApi from "@api/AuthApi";
 import { WEB_URL } from "@constants/url";
@@ -29,7 +28,7 @@ const OauthCallbackPage = ({ provider }: IOauthCallbackPageProps) => {
         if (!oauthLoginResponse.ok) {
           alert("로그인 오류입니다.");
         } else {
-          const { authToken } = oauthLoginResponse;
+          const { authToken } = oauthLoginResponse.data;
           try {
             const { email } = jwtDecode(authToken) as IAuthTokenPayload;
             setLoginState({
