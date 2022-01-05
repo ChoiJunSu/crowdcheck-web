@@ -3,7 +3,7 @@ import CorporateRegisterForm from "@components/register/corporate/CorporateRegis
 const CorporateRegisterPage = () => {
   return (
     <div>
-      <h1>기업회원 가입</h1>
+      <h1>기업회원 가입 페이지</h1>
       <CorporateRegisterForm />
     </div>
   );

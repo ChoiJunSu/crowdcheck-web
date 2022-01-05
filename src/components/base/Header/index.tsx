@@ -8,7 +8,9 @@ const Header = () => {
 
   return (
     <div>
-      <h1>CrowdCheck</h1>
+      <Link to="/">
+        <h1>CrowdCheck</h1>
+      </Link>
       {isLoggedIn ? <LogoutButton /> : <Link to="/login">로그인</Link>}
     </div>
   );

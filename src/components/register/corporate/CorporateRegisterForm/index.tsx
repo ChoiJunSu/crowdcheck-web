@@ -57,7 +57,7 @@ const CorporateRegisterForm = () => {
         {errors.password && <span>비밀번호를 입력해주세요.</span>}
         <br />
         <br />
-        <button type="submit">로그인</button>
+        <button type="submit">회원가입</button>
       </form>
     </div>
   );

@@ -3,6 +3,7 @@ import ReactDom from "react-dom";
 import { RecoilRoot } from "recoil";
 import App from "./app";
 import { BrowserRouter } from "react-router-dom";
+import "./index.css";
 
 ReactDom.render(
   <React.StrictMode>
