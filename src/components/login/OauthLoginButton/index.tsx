@@ -17,9 +17,9 @@ const OauthLoginButton = ({ provider }: IOauthLoginButtonProps) => {
 
   return (
     <div>
-      <Link to={oauthLoginButtonProps[provider].link}>
+      <a href={oauthLoginButtonProps[provider].link}>
         {oauthLoginButtonProps[provider].text}
-      </Link>
+      </a>
     </div>
   );
 };

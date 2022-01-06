@@ -18,11 +18,13 @@ const App = () => {
       <Route
         path="/*"
         element={
-          <Suspense fallback={<Loading />}>
+          <div>
             <Header />
-            <Page />
+            <Suspense fallback={<Loading />}>
+              <Page />
+            </Suspense>
             <Footer />
-          </Suspense>
+          </div>
         }
       />
     </Routes>
