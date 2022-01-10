@@ -5,29 +5,35 @@ import {
   IPostResponse,
 } from "@api/ApiClient/type";
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
+import { TUserType } from "@api/UserApi/type";
 
-export interface IOauthLoginRequest extends IApiRequest {
-  provider: "google" | "kakao";
+export type TOauthProvider = "google" | "kakao";
+
+export interface ILoginRequest extends IPostRequest {
+  email: string;
+  password: string;
+  type: TUserType;
+}
+
+export interface ILoginResponse extends IPostResponse {
+  authToken: string;
+}
+
+export interface ILoginOauthRequest extends IApiRequest {
+  provider: TOauthProvider;
   code: string;
   redirectUri: string;
 }
 
-export interface IOauthLoginResponse extends IApiResponse {
+export interface ILoginOauthResponse extends IApiResponse {
   authToken: string;
 }
 
-export interface IRenewAuthTokenRequest extends IGetRequest {}
+export interface ITokenRenewRequest extends IGetRequest {}
 
-export interface IRenewAuthTokenResponse extends IGetResponse {
+export interface ITokenRenewResponse extends IGetResponse {
   authToken: string;
 }
-
-export interface ICorporateLoginRequest extends IPostRequest {
-  email: string;
-  password: string;
-}
-
-export interface ICorporateLoginResponse extends IPostResponse {}
 
 export interface ICorporateRegisterRequest extends IPostRequest {
   name: string;

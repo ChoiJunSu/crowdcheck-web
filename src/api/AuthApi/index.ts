@@ -1,37 +1,35 @@
 import ApiClient from "@api/ApiClient";
 import {
-  ICorporateLoginRequest,
-  ICorporateLoginResponse,
   ICorporateRegisterRequest,
   ICorporateRegisterResponse,
-  IOauthLoginRequest,
-  IOauthLoginResponse,
-  IRenewAuthTokenResponse,
+  ILoginOauthRequest,
+  ILoginOauthResponse,
+  ILoginRequest,
+  ILoginResponse,
+  ITokenRenewResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
-  static oauthLogin = async (
-    params: IOauthLoginRequest
-  ): Promise<IOauthLoginResponse> => {
-    return (await ApiClient.get({
-      url: "/auth/oauthLogin",
-      params,
-    })) as IOauthLoginResponse;
-  };
-
-  static renewAuthToken = async (): Promise<IRenewAuthTokenResponse> => {
-    return (await ApiClient.get({
-      url: "/auth/renewAuthToken",
-    })) as IRenewAuthTokenResponse;
-  };
-
-  static corporateLogin = async (
-    data: ICorporateLoginRequest
-  ): Promise<ICorporateLoginResponse> => {
+  static login = async (data: ILoginRequest): Promise<ILoginResponse> => {
     return (await ApiClient.post({
-      url: "/auth/corporateLogin",
+      url: "/auth/login",
       data,
-    })) as ICorporateLoginResponse;
+    })) as ILoginResponse;
+  };
+
+  static loginOauth = async (
+    params: ILoginOauthRequest
+  ): Promise<ILoginOauthResponse> => {
+    return (await ApiClient.get({
+      url: "/auth/login/oauth",
+      params,
+    })) as ILoginOauthResponse;
+  };
+
+  static tokenRenew = async (): Promise<ITokenRenewResponse> => {
+    return (await ApiClient.get({
+      url: "/auth/token/renew",
+    })) as ITokenRenewResponse;
   };
 
   static corporateRegister = async (

@@ -45,7 +45,7 @@ const Menu = () => {
         {
           text: "로그인",
           onClick: () => {
-            navigate("/login");
+            navigate("/auth/login");
           },
         },
       ]);

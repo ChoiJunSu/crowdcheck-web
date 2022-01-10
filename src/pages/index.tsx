@@ -23,16 +23,16 @@ const IndexPage = () => {
               name,
             });
             if (exp * 1000 - Date.now() < 10 * 60 * 1000) {
-              const renewAuthTokenResponse = await AuthApi.renewAuthToken();
-              if (renewAuthTokenResponse.ok) {
+              const tokenRenewResponse = await AuthApi.tokenRenew();
+              if (tokenRenewResponse.ok) {
                 setLoginState({
                   isLoggedIn: true,
-                  authToken: renewAuthTokenResponse.authToken,
+                  authToken: tokenRenewResponse.authToken,
                   name,
                 });
                 localStorage.setItem(
                   LOCAL_AUTH_TOKEN,
-                  renewAuthTokenResponse.authToken
+                  tokenRenewResponse.authToken
                 );
               }
             }

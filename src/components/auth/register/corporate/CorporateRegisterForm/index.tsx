@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
 import { ICorporateRegisterRequest } from "@api/AuthApi/type";
-import { ICorporateRegisterFormData } from "@components/register/corporate/CorporateRegisterForm/type";
+import { ICorporateRegisterFormData } from "@components/auth/register/corporate/CorporateRegisterForm/type";
 import { useState } from "react";
 import Loading from "@components/base/Loading";
 

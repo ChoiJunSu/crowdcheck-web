@@ -1,31 +1,33 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ICorporateLoginFormData } from "@components/login/corporate/CorporateLoginForm/type";
 import AuthApi from "@api/AuthApi";
-import { ICorporateLoginRequest } from "@api/AuthApi/type";
+import { ILoginRequest } from "@api/AuthApi/type";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import jwtDecode from "jwt-decode";
 import { IAuthTokenPayload } from "@atoms/loginAtom/type";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
+import {
+  ILoginFormData,
+  ILoginFormProps,
+} from "@components/auth/login/LoginForm/type";
 
-const CorporateLoginForm = () => {
+const LoginForm = ({ type }: ILoginFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ICorporateLoginFormData>();
+  } = useForm<ILoginFormData>();
   const setLoginState = useSetRecoilState(loginAtom);
   const navigate = useNavigate();
 
-  const handleCorporateLogin: SubmitHandler<ICorporateLoginFormData> = async (
-    data
-  ) => {
-    const corporateLoginResponse = await AuthApi.corporateLogin(
-      data as ICorporateLoginRequest
-    );
-    if (corporateLoginResponse.ok) {
-      const { authToken } = corporateLoginResponse.data;
+  const handleLogin: SubmitHandler<ILoginFormData> = async (data) => {
+    const loginResponse = await AuthApi.login({
+      ...data,
+      type,
+    } as ILoginRequest);
+    if (loginResponse.ok) {
+      const { authToken } = loginResponse.data;
       try {
         const { name } = jwtDecode(authToken) as IAuthTokenPayload;
         setLoginState({
@@ -39,13 +41,13 @@ const CorporateLoginForm = () => {
         alert("로그인 오류입니다.");
       }
     } else {
-      alert(corporateLoginResponse.error);
+      alert(loginResponse.error);
     }
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(handleCorporateLogin)}>
+      <form onSubmit={handleSubmit(handleLogin)}>
         <label>이메일</label>
         <input type="email" {...register("email", { required: true })} />
         <br />
@@ -65,4 +67,4 @@ const CorporateLoginForm = () => {
   );
 };
 
-export default CorporateLoginForm;
+export default LoginForm;

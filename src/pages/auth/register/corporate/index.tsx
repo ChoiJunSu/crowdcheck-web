@@ -1,4 +1,4 @@
-import CorporateRegisterForm from "@components/register/corporate/CorporateRegisterForm";
+import CorporateRegisterForm from "@components/auth/register/corporate/CorporateRegisterForm";
 
 const CorporateRegisterPage = () => {
   return (
