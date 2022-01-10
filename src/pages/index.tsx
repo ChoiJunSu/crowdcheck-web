@@ -8,19 +8,19 @@ import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 const IndexPage = () => {
   const [loginState, setLoginState] = useRecoilState(loginAtom);
-  const { isLoggedIn, email } = loginState;
+  const { isLoggedIn, name } = loginState;
   const authToken = localStorage.getItem(LOCAL_AUTH_TOKEN);
 
   useEffect(() => {
     if (!isLoggedIn && authToken !== null) {
       try {
         (async () => {
-          const { email, exp } = await jwtDecode<IAuthTokenPayload>(authToken);
+          const { name, exp } = await jwtDecode<IAuthTokenPayload>(authToken);
           if (exp && Date.now() <= exp * 1000) {
             setLoginState({
               isLoggedIn: true,
               authToken,
-              email,
+              name,
             });
             if (exp * 1000 - Date.now() < 10 * 60 * 1000) {
               const renewAuthTokenResponse = await AuthApi.renewAuthToken();
@@ -28,7 +28,7 @@ const IndexPage = () => {
                 setLoginState({
                   isLoggedIn: true,
                   authToken: renewAuthTokenResponse.authToken,
-                  email,
+                  name,
                 });
                 localStorage.setItem(
                   LOCAL_AUTH_TOKEN,
@@ -46,7 +46,7 @@ const IndexPage = () => {
 
   return isLoggedIn ? (
     <div>
-      <h1>어서오세요 {email}님</h1>
+      <h1>어서오세요 {name}님</h1>
     </div>
   ) : (
     <div>

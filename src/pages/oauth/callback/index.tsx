@@ -26,15 +26,15 @@ const OauthCallbackPage = ({ provider }: IOauthCallbackPageProps) => {
           redirectUri,
         } as IOauthLoginRequest);
         if (!oauthLoginResponse.ok) {
-          alert("로그인 오류입니다.");
+          alert(oauthLoginResponse.error || "로그인 오류입니다.");
         } else {
           const { authToken } = oauthLoginResponse.data;
           try {
-            const { email } = jwtDecode(authToken) as IAuthTokenPayload;
+            const { name } = jwtDecode(authToken) as IAuthTokenPayload;
             setLoginState({
               isLoggedIn: true,
               authToken,
-              email,
+              name,
             });
             localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
           } catch (e) {

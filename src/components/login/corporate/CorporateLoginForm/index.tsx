@@ -27,10 +27,10 @@ const CorporateLoginForm = () => {
     if (corporateLoginResponse.ok) {
       const { authToken } = corporateLoginResponse.data;
       try {
-        const { email } = jwtDecode(authToken) as IAuthTokenPayload;
+        const { name } = jwtDecode(authToken) as IAuthTokenPayload;
         setLoginState({
           isLoggedIn: true,
-          email,
+          name,
           authToken,
         });
         localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);

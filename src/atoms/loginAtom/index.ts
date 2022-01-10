@@ -6,7 +6,7 @@ const loginAtom = atom<ILoginState>({
   default: {
     isLoggedIn: false,
     authToken: "",
-    email: "",
+    name: "",
   },
 });
 

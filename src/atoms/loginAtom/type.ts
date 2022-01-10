@@ -3,9 +3,9 @@ import { JwtPayload } from "jwt-decode";
 export interface ILoginState {
   isLoggedIn: boolean;
   authToken: string;
-  email: string;
+  name: string;
 }
 
 export interface IAuthTokenPayload extends JwtPayload {
-  email: string;
+  name: string;
 }
