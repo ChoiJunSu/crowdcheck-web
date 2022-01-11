@@ -27,7 +27,7 @@ const LoginForm = ({ type }: ILoginFormProps) => {
       type,
     } as ILoginRequest);
     if (loginResponse.ok) {
-      const { authToken } = loginResponse.data;
+      const { authToken } = loginResponse;
       try {
         const { name } = jwtDecode(authToken) as IAuthTokenPayload;
         setLoginState({

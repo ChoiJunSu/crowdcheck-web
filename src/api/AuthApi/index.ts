@@ -1,12 +1,14 @@
 import ApiClient from "@api/ApiClient";
 import {
-  ICorporateRegisterRequest,
-  ICorporateRegisterResponse,
+  IRegisterCorporateRequest,
+  IRegisterCorporateResponse,
   ILoginOauthRequest,
   ILoginOauthResponse,
   ILoginRequest,
   ILoginResponse,
   ITokenRenewResponse,
+  IRegisterPersonalRequest,
+  IRegisterPersonalResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
@@ -32,13 +34,22 @@ class AuthApi {
     })) as ITokenRenewResponse;
   };
 
-  static corporateRegister = async (
-    data: ICorporateRegisterRequest
-  ): Promise<ICorporateRegisterResponse> => {
+  static registerPersonal = async (
+    data: IRegisterPersonalRequest
+  ): Promise<IRegisterPersonalResponse> => {
     return (await ApiClient.post({
-      url: "/auth/corporateRegister",
+      url: "/auth/register/personal",
       data,
-    })) as ICorporateRegisterResponse;
+    })) as IRegisterPersonalResponse;
+  };
+
+  static registerCorporate = async (
+    data: IRegisterCorporateRequest
+  ): Promise<IRegisterCorporateResponse> => {
+    return (await ApiClient.post({
+      url: "/auth/register/corporate",
+      data,
+    })) as IRegisterCorporateResponse;
   };
 }
 

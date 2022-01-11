@@ -1,12 +1,12 @@
-import CorporateRegisterForm from "@components/auth/register/corporate/CorporateRegisterForm";
+import RegisterCorporateForm from "@components/auth/register/corporate/RegisterCorporateForm";
 
-const CorporateRegisterPage = () => {
+const RegisterCorporatePage = () => {
   return (
     <div>
       <h1>기업회원 가입 페이지</h1>
-      <CorporateRegisterForm />
+      <RegisterCorporateForm />
     </div>
   );
 };
 
-export default CorporateRegisterPage;
+export default RegisterCorporatePage;

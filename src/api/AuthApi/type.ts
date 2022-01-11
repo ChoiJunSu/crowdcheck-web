@@ -35,11 +35,28 @@ export interface ITokenRenewResponse extends IGetResponse {
   authToken: string;
 }
 
-export interface ICorporateRegisterRequest extends IPostRequest {
+export interface ICareer {
+  name: string;
+  department?: string;
+  startAt: Date;
+  endAt?: Date | null;
+}
+
+export interface IRegisterPersonalRequest extends IPostRequest {
+  name: string;
+  phone: string;
+  email: string;
+  password: string;
+  career: Array<ICareer>;
+}
+
+export interface IRegisterPersonalResponse extends IPostResponse {}
+
+export interface IRegisterCorporateRequest extends IPostRequest {
   name: string;
   phone: string;
   email: string;
   password: string;
 }
 
-export interface ICorporateRegisterResponse extends IPostResponse {}
+export interface IRegisterCorporateResponse extends IPostResponse {}

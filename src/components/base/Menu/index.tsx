@@ -17,15 +17,11 @@ const Menu = () => {
       setItems([
         {
           text: "의뢰 목록",
-          onClick: () => {
-            navigate("/request/list");
-          },
+          onClick: () => navigate("/request/list"),
         },
         {
           text: "의뢰 등록",
-          onClick: () => {
-            navigate("/request/register");
-          },
+          onClick: () => navigate("/request/register"),
         },
         {
           text: "로그아웃",
@@ -44,9 +40,7 @@ const Menu = () => {
       setItems([
         {
           text: "로그인",
-          onClick: () => {
-            navigate("/auth/login");
-          },
+          onClick: () => navigate("/auth/login"),
         },
       ]);
     }

@@ -12,35 +12,31 @@ const IndexPage = () => {
   const authToken = localStorage.getItem(LOCAL_AUTH_TOKEN);
 
   useEffect(() => {
-    if (!isLoggedIn && authToken !== null) {
-      try {
-        (async () => {
-          const { name, exp } = await jwtDecode<IAuthTokenPayload>(authToken);
-          if (exp && Date.now() <= exp * 1000) {
+    if (isLoggedIn || authToken === null || authToken === "undefined") return;
+    try {
+      (async () => {
+        const { name, exp } = await jwtDecode<IAuthTokenPayload>(authToken);
+        if (exp && Date.now() <= exp * 1000) {
+          setLoginState({
+            isLoggedIn: true,
+            authToken,
+            name,
+          });
+          if (exp * 1000 - Date.now() < 100000 * 60 * 1000) {
+            const tokenRenewResponse = await AuthApi.tokenRenew();
+            if (!tokenRenewResponse.ok) return;
+            const { authToken } = tokenRenewResponse;
             setLoginState({
               isLoggedIn: true,
               authToken,
               name,
             });
-            if (exp * 1000 - Date.now() < 10 * 60 * 1000) {
-              const tokenRenewResponse = await AuthApi.tokenRenew();
-              if (tokenRenewResponse.ok) {
-                setLoginState({
-                  isLoggedIn: true,
-                  authToken: tokenRenewResponse.authToken,
-                  name,
-                });
-                localStorage.setItem(
-                  LOCAL_AUTH_TOKEN,
-                  tokenRenewResponse.authToken
-                );
-              }
-            }
+            localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
           }
-        })();
-      } catch (e) {
-        console.error(e);
-      }
+        }
+      })();
+    } catch (e) {
+      console.error(e);
     }
   }, []);
 

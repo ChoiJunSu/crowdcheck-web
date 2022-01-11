@@ -28,7 +28,7 @@ const LoginOauthCallbackPage = ({ provider }: ILoginOauthCallbackPageProps) => {
         if (!loginOauthResponse.ok) {
           alert(loginOauthResponse.error || "로그인 오류입니다.");
         } else {
-          const { authToken } = loginOauthResponse.data;
+          const { authToken } = loginOauthResponse;
           try {
             const { name } = jwtDecode(authToken) as IAuthTokenPayload;
             setLoginState({

@@ -1,4 +1,4 @@
-export interface ICorporateRegisterFormData {
+export interface IRegisterCorporateFormData {
   name: string;
   phone: string;
   email: string;

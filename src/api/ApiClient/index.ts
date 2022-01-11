@@ -38,7 +38,7 @@ class ApiClient {
     params,
     headers,
   }: IGetRequest): Promise<IGetResponse> => {
-    const response: IGetResponse = {
+    let response: IGetResponse = {
       ok: false,
       error: "",
       data: null,
@@ -48,10 +48,7 @@ class ApiClient {
         params: params || {},
         headers: ApiClient.getHeaders(headers || {}),
       });
-      const { ok, error } = axiosGetResponse.data;
-      response.ok = ok;
-      response.error = error;
-      response.data = axiosGetResponse.data;
+      response = axiosGetResponse.data;
     } catch (e: any) {
       response.error = ApiClient.handleAxiosError(e);
     }
@@ -64,7 +61,7 @@ class ApiClient {
     data,
     headers,
   }: IPostRequest): Promise<IPostResponse> => {
-    const response: IPostResponse = {
+    let response: IPostResponse = {
       ok: false,
       error: "",
       data: null,
@@ -75,10 +72,7 @@ class ApiClient {
         data || {},
         ApiClient.getHeaders(headers || {})
       );
-      const { ok, error } = axiosPostResponse.data;
-      response.ok = ok;
-      response.error = error;
-      response.data = axiosPostResponse.data;
+      response = axiosPostResponse.data;
     } catch (e: any) {
       response.error = ApiClient.handleAxiosError(e);
     }

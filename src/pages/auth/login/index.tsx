@@ -14,20 +14,8 @@ const LoginPage = () => {
   return (
     <div>
       <h1>로그인 페이지</h1>
-      <button
-        onClick={() => {
-          handleChangeType("personal");
-        }}
-      >
-        개인회원
-      </button>
-      <button
-        onClick={() => {
-          handleChangeType("corporate");
-        }}
-      >
-        기업회원
-      </button>
+      <button onClick={() => handleChangeType("personal")}>개인회원</button>
+      <button onClick={() => handleChangeType("corporate")}>기업회원</button>
       {type === "personal" && (
         <div>
           <LoginForm type={"personal"} />
@@ -35,10 +23,15 @@ const LoginPage = () => {
           <LoginOauthButton provider={"kakao"} />
         </div>
       )}
+      {type === "personal" && (
+        <div>
+          <Link to="/auth/register/personal">이메일로 가입하기</Link>
+        </div>
+      )}
       {type === "corporate" && (
         <div>
           <LoginForm type={"corporate"} />
-          <Link to="/register/corporate">기업회원으로 가입하기</Link>
+          <Link to="/auth/register/corporate">기업회원으로 가입하기</Link>
         </div>
       )}
     </div>
