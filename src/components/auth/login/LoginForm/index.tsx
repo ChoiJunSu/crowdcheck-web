@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import AuthApi from "@api/AuthApi";
-import { ILoginRequest } from "@api/AuthApi/type";
+import { IAuthLoginRequest } from "@api/AuthApi/type";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import loginAtom from "@atoms/loginAtom";
@@ -21,11 +21,11 @@ const LoginForm = ({ type }: ILoginFormProps) => {
   const setLoginState = useSetRecoilState(loginAtom);
   const navigate = useNavigate();
 
-  const handleLogin: SubmitHandler<ILoginFormData> = async (data) => {
+  const handleLogin: SubmitHandler<ILoginFormProps> = async (data) => {
     const loginResponse = await AuthApi.login({
       ...data,
       type,
-    } as ILoginRequest);
+    } as IAuthLoginRequest);
     if (loginResponse.ok) {
       const { authToken } = loginResponse;
       try {

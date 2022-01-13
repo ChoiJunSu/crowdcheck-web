@@ -67,11 +67,9 @@ class ApiClient {
       data: null,
     };
     try {
-      const axiosPostResponse = await axios.post(
-        API_URL + url,
-        data || {},
-        ApiClient.getHeaders(headers || {})
-      );
+      const axiosPostResponse = await axios.post(API_URL + url, data || {}, {
+        headers: ApiClient.getHeaders(headers || {}),
+      });
       response = axiosPostResponse.data;
     } catch (e: any) {
       response.error = ApiClient.handleAxiosError(e);

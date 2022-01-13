@@ -1,55 +1,57 @@
 import ApiClient from "@api/ApiClient";
 import {
-  IRegisterCorporateRequest,
-  IRegisterCorporateResponse,
-  ILoginOauthRequest,
-  ILoginOauthResponse,
-  ILoginRequest,
-  ILoginResponse,
-  ITokenRenewResponse,
-  IRegisterPersonalRequest,
-  IRegisterPersonalResponse,
+  IAuthRegisterCorporateRequest,
+  IAuthRegisterCorporateResponse,
+  IAuthLoginOauthRequest,
+  IAuthLoginOauthResponse,
+  IAuthLoginRequest,
+  IAuthLoginResponse,
+  IAuthTokenRenewResponse,
+  IAuthRegisterPersonalRequest,
+  IAuthRegisterPersonalResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
-  static login = async (data: ILoginRequest): Promise<ILoginResponse> => {
+  static login = async (
+    data: IAuthLoginRequest
+  ): Promise<IAuthLoginResponse> => {
     return (await ApiClient.post({
       url: "/auth/login",
       data,
-    })) as ILoginResponse;
+    })) as IAuthLoginResponse;
   };
 
   static loginOauth = async (
-    params: ILoginOauthRequest
-  ): Promise<ILoginOauthResponse> => {
+    params: IAuthLoginOauthRequest
+  ): Promise<IAuthLoginOauthResponse> => {
     return (await ApiClient.get({
       url: "/auth/login/oauth",
       params,
-    })) as ILoginOauthResponse;
+    })) as IAuthLoginOauthResponse;
   };
 
-  static tokenRenew = async (): Promise<ITokenRenewResponse> => {
+  static tokenRenew = async (): Promise<IAuthTokenRenewResponse> => {
     return (await ApiClient.get({
       url: "/auth/token/renew",
-    })) as ITokenRenewResponse;
+    })) as IAuthTokenRenewResponse;
   };
 
   static registerPersonal = async (
-    data: IRegisterPersonalRequest
-  ): Promise<IRegisterPersonalResponse> => {
+    data: IAuthRegisterPersonalRequest
+  ): Promise<IAuthRegisterPersonalResponse> => {
     return (await ApiClient.post({
       url: "/auth/register/personal",
       data,
-    })) as IRegisterPersonalResponse;
+    })) as IAuthRegisterPersonalResponse;
   };
 
   static registerCorporate = async (
-    data: IRegisterCorporateRequest
-  ): Promise<IRegisterCorporateResponse> => {
+    data: IAuthRegisterCorporateRequest
+  ): Promise<IAuthRegisterCorporateResponse> => {
     return (await ApiClient.post({
       url: "/auth/register/corporate",
       data,
-    })) as IRegisterCorporateResponse;
+    })) as IAuthRegisterCorporateResponse;
   };
 }
 

@@ -1,15 +1,15 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
-import { IRegisterCorporateRequest } from "@api/AuthApi/type";
+import { IAuthRegisterCorporateRequest } from "@api/AuthApi/type";
 import { IRegisterCorporateFormData } from "@components/auth/register/corporate/RegisterCorporateForm/type";
 import { useCallback, useEffect, useState } from "react";
 import Loading from "@components/base/Loading";
 import CorporateApi from "@api/CorporateApi";
 import {
   ICorporate,
-  ISearchRequest,
-  ISearchResponse,
+  ICorporateSearchRequest,
+  ICorporateSearchResponse,
 } from "@api/CorporateApi/type";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 
@@ -33,9 +33,9 @@ const RegisterCorporateForm = () => {
       return;
     }
     (async () => {
-      const searchResult: ISearchResponse = await CorporateApi.search({
+      const searchResult: ICorporateSearchResponse = await CorporateApi.search({
         word: watchName,
-      } as ISearchRequest);
+      } as ICorporateSearchRequest);
       if (!searchResult.ok) alert(searchResult.error);
       setCorporates(searchResult.corporates);
     })();
@@ -53,7 +53,7 @@ const RegisterCorporateForm = () => {
     useCallback(async (data) => {
       setIsLoading(true);
       const registerCorporateResponse = await AuthApi.registerCorporate(
-        data as IRegisterCorporateRequest
+        data as IAuthRegisterCorporateRequest
       );
       if (registerCorporateResponse.ok) {
         alert("회원가입이 완료되었습니다. 로그인 해주세요.");

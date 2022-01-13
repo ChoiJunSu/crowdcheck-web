@@ -16,11 +16,13 @@ import {
   ICorporateSearchResponse,
 } from "@api/CorporateApi/type";
 import ErrorMessage from "@components/base/form/ErrorMessage";
-import { IRegisterPersonalFormData } from "@components/auth/register/personal/RegisterPersonalForm/type";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { IRequestRegisterFormData } from "@components/request/register/RequestRegisterForm/type";
+import RequestApi from "@api/RequestApi";
+import { IRequestRegisterRequest } from "@api/RequestApi/type";
 
-const RegisterPersonalForm = () => {
+const RequestRegisterForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -29,7 +31,7 @@ const RegisterPersonalForm = () => {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRegisterPersonalFormData>({
+  } = useForm<IRequestRegisterFormData>({
     defaultValues: {
       career: [
         {
@@ -105,17 +107,17 @@ const RegisterPersonalForm = () => {
     [isCareerNameDisabled]
   );
 
-  const handleRegisterPersonal: SubmitHandler<IRegisterPersonalFormData> =
+  const handleRequestRegister: SubmitHandler<IRequestRegisterFormData> =
     useCallback(async (data) => {
       setIsLoading(true);
-      const registerPersonalResponse = await AuthApi.registerPersonal(
-        data as IAuthRegisterPersonalRequest
+      const requestRegisterResponse = await RequestApi.register(
+        data as IRequestRegisterRequest
       );
-      if (registerPersonalResponse.ok) {
-        alert("회원가입이 완료되었습니다. 로그인 해주세요.");
-        navigate("/auth/login");
+      if (requestRegisterResponse.ok) {
+        alert("의뢰가 등록되었습니다.");
+        navigate("/request/list");
       } else {
-        alert(registerPersonalResponse.error);
+        alert(requestRegisterResponse.error);
         setIsLoading(false);
       }
     }, []);
@@ -124,7 +126,7 @@ const RegisterPersonalForm = () => {
     <Loading />
   ) : (
     <div>
-      <form onSubmit={handleSubmit(handleRegisterPersonal)}>
+      <form onSubmit={handleSubmit(handleRequestRegister)}>
         <label>이름</label>
         <input
           type="text"
@@ -142,24 +144,6 @@ const RegisterPersonalForm = () => {
           })}
           placeholder="'-'를 제외한 숫자만 입력하세요."
         />
-        <br />
-        <ErrorMessage message={errors?.phone?.message} />
-        <br />
-        <label>이메일</label>
-        <input
-          type="email"
-          {...register("email", { required: "이메일을 입력해주세요." })}
-        />
-        <br />
-        <ErrorMessage message={errors?.email?.message} />
-        <br />
-        <label>비밀번호</label>
-        <input
-          type="password"
-          {...register("password", { required: "비밀번호를 입력해주세요." })}
-        />
-        <br />
-        <ErrorMessage message={errors?.password?.message} />
         <br />
         <label>경력</label>
         <table>
@@ -264,10 +248,34 @@ const RegisterPersonalForm = () => {
           추가하기
         </button>
         <br />
-        <button type="submit">회원가입</button>
+        <label>질문</label>
+        <input
+          type="textarea"
+          {...register("question", { required: "질문을 입력해주세요." })}
+        />
+        <br />
+        <ErrorMessage message={errors?.question?.message} />
+        <br />
+        <label>마감일</label>
+        <Controller
+          control={control}
+          name={"deadline"}
+          render={({ field: { onChange, onBlur, value } }) => {
+            return (
+              <DatePicker
+                onChange={onChange}
+                onSelect={onChange}
+                onBlur={onBlur}
+                selected={value}
+              />
+            );
+          }}
+        />
+        <br />
+        <button type="submit">등록하기</button>
       </form>
     </div>
   );
 };
 
-export default RegisterPersonalForm;
+export default RequestRegisterForm;

@@ -9,29 +9,29 @@ import { TUserType } from "@api/UserApi/type";
 
 export type TOauthProvider = "google" | "kakao";
 
-export interface ILoginRequest extends IPostRequest {
+export interface IAuthLoginRequest extends IPostRequest {
   email: string;
   password: string;
   type: TUserType;
 }
 
-export interface ILoginResponse extends IPostResponse {
+export interface IAuthLoginResponse extends IPostResponse {
   authToken: string;
 }
 
-export interface ILoginOauthRequest extends IApiRequest {
+export interface IAuthLoginOauthRequest extends IApiRequest {
   provider: TOauthProvider;
   code: string;
   redirectUri: string;
 }
 
-export interface ILoginOauthResponse extends IApiResponse {
+export interface IAuthLoginOauthResponse extends IApiResponse {
   authToken: string;
 }
 
-export interface ITokenRenewRequest extends IGetRequest {}
+export interface IAuthTokenRenewRequest extends IGetRequest {}
 
-export interface ITokenRenewResponse extends IGetResponse {
+export interface IAuthTokenRenewResponse extends IGetResponse {
   authToken: string;
 }
 
@@ -42,7 +42,7 @@ export interface ICareer {
   endAt?: Date | null;
 }
 
-export interface IRegisterPersonalRequest extends IPostRequest {
+export interface IAuthRegisterPersonalRequest extends IPostRequest {
   name: string;
   phone: string;
   email: string;
@@ -50,13 +50,13 @@ export interface IRegisterPersonalRequest extends IPostRequest {
   career: Array<ICareer>;
 }
 
-export interface IRegisterPersonalResponse extends IPostResponse {}
+export interface IAuthRegisterPersonalResponse extends IPostResponse {}
 
-export interface IRegisterCorporateRequest extends IPostRequest {
+export interface IAuthRegisterCorporateRequest extends IPostRequest {
   name: string;
   phone: string;
   email: string;
   password: string;
 }
 
-export interface IRegisterCorporateResponse extends IPostResponse {}
+export interface IAuthRegisterCorporateResponse extends IPostResponse {}

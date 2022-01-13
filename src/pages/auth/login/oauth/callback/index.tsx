@@ -3,7 +3,7 @@ import AuthApi from "@api/AuthApi";
 import { WEB_URL } from "@constants/url";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ILoginOauthCallbackPageProps } from "@pages/auth/login/oauth/callback/type";
-import { ILoginOauthRequest } from "@api/AuthApi/type";
+import { IAuthLoginOauthRequest } from "@api/AuthApi/type";
 import { useSetRecoilState } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import jwtDecode from "jwt-decode";
@@ -24,7 +24,7 @@ const LoginOauthCallbackPage = ({ provider }: ILoginOauthCallbackPageProps) => {
           provider,
           code,
           redirectUri,
-        } as ILoginOauthRequest);
+        } as IAuthLoginOauthRequest);
         if (!loginOauthResponse.ok) {
           alert(loginOauthResponse.error || "로그인 오류입니다.");
         } else {

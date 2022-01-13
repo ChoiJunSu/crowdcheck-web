@@ -5,16 +5,16 @@ export interface ICorporate {
   name: string;
 }
 
-export interface ISearchRequest extends IPostRequest {
+export interface ICorporateSearchRequest extends IPostRequest {
   word: string;
 }
 
-export interface ISearchResponse extends IPostResponse {
+export interface ICorporateSearchResponse extends IPostResponse {
   corporates: Array<ICorporate>;
 }
 
-export interface IAddRequest extends IPostRequest {
+export interface ICorporateAddRequest extends IPostRequest {
   name: string;
 }
 
-export interface IAddResponse extends IPostResponse {}
+export interface ICorporateAddResponse extends IPostResponse {}

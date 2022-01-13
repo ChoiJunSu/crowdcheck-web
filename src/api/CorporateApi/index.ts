@@ -1,24 +1,28 @@
 import ApiClient from "@api/ApiClient";
 import {
-  IAddRequest,
-  IAddResponse,
-  ISearchRequest,
-  ISearchResponse,
+  ICorporateAddRequest,
+  ICorporateAddResponse,
+  ICorporateSearchRequest,
+  ICorporateSearchResponse,
 } from "@api/CorporateApi/type";
 
 class CorporateApi {
-  static search = async (data: ISearchRequest): Promise<ISearchResponse> => {
+  static search = async (
+    data: ICorporateSearchRequest
+  ): Promise<ICorporateSearchResponse> => {
     return (await ApiClient.post({
       url: "/corporate/search",
       data,
-    })) as ISearchResponse;
+    })) as ICorporateSearchResponse;
   };
 
-  static add = async (data: IAddRequest): Promise<IAddResponse> => {
+  static add = async (
+    data: ICorporateAddRequest
+  ): Promise<ICorporateAddResponse> => {
     return (await ApiClient.post({
       url: "/corporate/add",
       data,
-    })) as IAddResponse;
+    })) as ICorporateAddResponse;
   };
 }
 
