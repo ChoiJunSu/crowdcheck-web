@@ -1,21 +1,15 @@
-import {
-  IGetRequest,
-  IGetResponse,
-  IPostRequest,
-  IPostResponse,
-} from "@api/ApiClient/type";
-import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 import { TUserType } from "@api/UserApi/type";
+import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 
 export type TOauthProvider = "google" | "kakao";
 
-export interface IAuthLoginRequest extends IPostRequest {
+export interface IAuthLoginRequest extends IApiRequest {
   email: string;
   password: string;
   type: TUserType;
 }
 
-export interface IAuthLoginResponse extends IPostResponse {
+export interface IAuthLoginResponse extends IApiResponse {
   authToken: string;
 }
 
@@ -29,20 +23,31 @@ export interface IAuthLoginOauthResponse extends IApiResponse {
   authToken: string;
 }
 
-export interface IAuthTokenRenewRequest extends IGetRequest {}
+export interface IAuthLoginCandidateRequest extends IApiRequest {
+  name: string;
+  phone: string;
+  code: string;
+}
 
-export interface IAuthTokenRenewResponse extends IGetResponse {
+export interface IAuthLoginCandidateResponse extends IApiResponse {
+  authToken: string;
+}
+
+export interface IAuthTokenRenewRequest extends IApiRequest {}
+
+export interface IAuthTokenRenewResponse extends IApiResponse {
   authToken: string;
 }
 
 export interface ICareer {
-  name: string;
+  corporateId: number;
+  corporateName: string;
   department?: string;
   startAt: Date;
   endAt?: Date | null;
 }
 
-export interface IAuthRegisterPersonalRequest extends IPostRequest {
+export interface IAuthRegisterPersonalRequest extends IApiRequest {
   name: string;
   phone: string;
   email: string;
@@ -50,13 +55,13 @@ export interface IAuthRegisterPersonalRequest extends IPostRequest {
   career: Array<ICareer>;
 }
 
-export interface IAuthRegisterPersonalResponse extends IPostResponse {}
+export interface IAuthRegisterPersonalResponse extends IApiResponse {}
 
-export interface IAuthRegisterCorporateRequest extends IPostRequest {
+export interface IAuthRegisterCorporateRequest extends IApiRequest {
   name: string;
   phone: string;
   email: string;
   password: string;
 }
 
-export interface IAuthRegisterCorporateResponse extends IPostResponse {}
+export interface IAuthRegisterCorporateResponse extends IApiResponse {}

@@ -21,6 +21,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { IRequestRegisterFormData } from "@components/request/register/RequestRegisterForm/type";
 import RequestApi from "@api/RequestApi";
 import { IRequestRegisterRequest } from "@api/RequestApi/type";
+import { WEB_URL } from "@constants/url";
 
 const RequestRegisterForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -35,7 +36,7 @@ const RequestRegisterForm = () => {
     defaultValues: {
       career: [
         {
-          name: "",
+          corporateName: "",
           startAt: new Date(),
           endAt: null,
         },
@@ -58,19 +59,19 @@ const RequestRegisterForm = () => {
     if (
       careerFocusIndex === undefined ||
       isCareerNameDisabled[careerFocusIndex] ||
-      !watchCareer[careerFocusIndex]?.name
+      !watchCareer[careerFocusIndex]?.corporateName
     ) {
       setCorporates([]);
       return;
     }
     (async () => {
       const searchResult: ICorporateSearchResponse = await CorporateApi.search({
-        word: watchCareer[careerFocusIndex].name,
+        word: watchCareer[careerFocusIndex].corporateName,
       } as ICorporateSearchRequest);
       if (!searchResult.ok) alert(searchResult.error);
       setCorporates(searchResult.corporates);
     })();
-  }, [careerFocusIndex, watchCareer[careerFocusIndex]?.name]);
+  }, [careerFocusIndex, watchCareer[careerFocusIndex]?.corporateName]);
 
   const handleAddCorporate = useCallback(() => {}, []);
 
@@ -82,7 +83,8 @@ const RequestRegisterForm = () => {
         true,
         ...isCareerNameDisabled.slice(careerIndex + 1),
       ]);
-      setValue(`career.${careerIndex}.name`, name);
+      setValue(`career.${careerIndex}.corporateId`, id);
+      setValue(`career.${careerIndex}.corporateName`, name);
     },
     [isCareerNameDisabled]
   );
@@ -90,7 +92,7 @@ const RequestRegisterForm = () => {
   const handleAppendCareer = useCallback(() => {
     setIsCareerNameDisabled([...isCareerNameDisabled, false]);
     append({
-      name: "",
+      corporateName: "",
       startAt: new Date(),
       endAt: null,
     });
@@ -115,6 +117,9 @@ const RequestRegisterForm = () => {
       );
       if (requestRegisterResponse.ok) {
         alert("의뢰가 등록되었습니다.");
+        console.log(
+          `${WEB_URL}/candidate?code=${requestRegisterResponse.code}`
+        );
         navigate("/request/list");
       } else {
         alert(requestRegisterResponse.error);
@@ -162,7 +167,12 @@ const RequestRegisterForm = () => {
                   <td>
                     <input
                       type="text"
-                      {...register(`career.${index}.name` as const, {
+                      {...register(`career.${index}.corporateId` as const)}
+                      hidden={true}
+                    />
+                    <input
+                      type="text"
+                      {...register(`career.${index}.corporateName` as const, {
                         required: "기업이름을 입력해주세요.",
                       })}
                       onFocus={() => setCareerFocusIndex(index)}

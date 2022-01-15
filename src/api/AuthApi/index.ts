@@ -9,6 +9,8 @@ import {
   IAuthTokenRenewResponse,
   IAuthRegisterPersonalRequest,
   IAuthRegisterPersonalResponse,
+  IAuthLoginCandidateRequest,
+  IAuthLoginCandidateResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
@@ -28,6 +30,15 @@ class AuthApi {
       url: "/auth/login/oauth",
       params,
     })) as IAuthLoginOauthResponse;
+  };
+
+  static loginCandidate = async (
+    data: IAuthLoginCandidateRequest
+  ): Promise<IAuthLoginCandidateResponse> => {
+    return (await ApiClient.post({
+      url: "/auth/login/candidate",
+      data,
+    })) as IAuthLoginCandidateResponse;
   };
 
   static tokenRenew = async (): Promise<IAuthTokenRenewResponse> => {

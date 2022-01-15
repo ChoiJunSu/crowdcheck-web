@@ -33,7 +33,7 @@ const RegisterPersonalForm = () => {
     defaultValues: {
       career: [
         {
-          name: "",
+          corporateName: "",
           startAt: new Date(),
           endAt: null,
         },
@@ -56,19 +56,19 @@ const RegisterPersonalForm = () => {
     if (
       careerFocusIndex === undefined ||
       isCareerNameDisabled[careerFocusIndex] ||
-      !watchCareer[careerFocusIndex]?.name
+      !watchCareer[careerFocusIndex]?.corporateName
     ) {
       setCorporates([]);
       return;
     }
     (async () => {
       const searchResult: ICorporateSearchResponse = await CorporateApi.search({
-        word: watchCareer[careerFocusIndex].name,
+        word: watchCareer[careerFocusIndex].corporateName,
       } as ICorporateSearchRequest);
       if (!searchResult.ok) alert(searchResult.error);
       setCorporates(searchResult.corporates);
     })();
-  }, [careerFocusIndex, watchCareer[careerFocusIndex]?.name]);
+  }, [careerFocusIndex, watchCareer[careerFocusIndex]?.corporateName]);
 
   const handleAddCorporate = useCallback(() => {}, []);
 
@@ -80,7 +80,8 @@ const RegisterPersonalForm = () => {
         true,
         ...isCareerNameDisabled.slice(careerIndex + 1),
       ]);
-      setValue(`career.${careerIndex}.name`, name);
+      setValue(`career.${careerIndex}.corporateId`, id);
+      setValue(`career.${careerIndex}.corporateName`, name);
     },
     [isCareerNameDisabled]
   );
@@ -88,7 +89,7 @@ const RegisterPersonalForm = () => {
   const handleAppendCareer = useCallback(() => {
     setIsCareerNameDisabled([...isCareerNameDisabled, false]);
     append({
-      name: "",
+      corporateName: "",
       startAt: new Date(),
       endAt: null,
     });
@@ -178,7 +179,12 @@ const RegisterPersonalForm = () => {
                   <td>
                     <input
                       type="text"
-                      {...register(`career.${index}.name` as const, {
+                      {...register(`career.${index}.corporateId` as const)}
+                      hidden={true}
+                    />
+                    <input
+                      type="text"
+                      {...register(`career.${index}.corporateName` as const, {
                         required: "기업이름을 입력해주세요.",
                       })}
                       onFocus={() => setCareerFocusIndex(index)}

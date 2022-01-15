@@ -1,1 +1,1 @@
-export type TUserType = "personal" | "corporate";
+export type TUserType = "personal" | "corporate" | "candidate";

@@ -29,6 +29,7 @@ class ApiClient {
         return data.error || "";
       }
     }
+    console.log(e);
 
     return "서버 오류입니다.";
   };
@@ -41,7 +42,6 @@ class ApiClient {
     let response: IGetResponse = {
       ok: false,
       error: "",
-      data: null,
     };
     try {
       const axiosGetResponse = await axios.get(API_URL + url, {
@@ -64,7 +64,6 @@ class ApiClient {
     let response: IPostResponse = {
       ok: false,
       error: "",
-      data: null,
     };
     try {
       const axiosPostResponse = await axios.post(API_URL + url, data || {}, {
