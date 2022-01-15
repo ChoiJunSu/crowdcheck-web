@@ -77,10 +77,7 @@ const CandidateRequestPage = () => {
             </thead>
           )}
           {careerList.map(
-            (
-              { corporateId, corporateName, department, startAt, endAt },
-              index
-            ) => {
+            ({ corporateName, department, startAt, endAt }, index) => {
               return (
                 <tr key={index}>
                   <td>{corporateName}</td>
@@ -88,13 +85,6 @@ const CandidateRequestPage = () => {
                   <td>{startAt}</td>
                   <td>{endAt}</td>
                   <td>
-                    <input
-                      type="text"
-                      {...register(`agree.${index}.corporateId`, {
-                        value: corporateId,
-                      })}
-                      hidden={true}
-                    />
                     <input
                       type="checkbox"
                       {...register(`agree.${index}.agreed`)}

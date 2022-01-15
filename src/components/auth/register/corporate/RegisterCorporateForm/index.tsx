@@ -90,11 +90,6 @@ const RegisterCorporateForm = () => {
               </li>
             );
           })}
-          {corporates?.length > 0 && corporates?.length < 10 && (
-            <button type="button" onClick={handleAddCorporate}>
-              새 기업 등록하기
-            </button>
-          )}
         </ul>
         <br />
         <ErrorMessage message={errors?.name?.message} />

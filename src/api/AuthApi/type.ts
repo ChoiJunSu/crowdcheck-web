@@ -40,7 +40,6 @@ export interface IAuthTokenRenewResponse extends IApiResponse {
 }
 
 export interface ICareer {
-  corporateId: number;
   corporateName: string;
   department?: string;
   startAt: Date;

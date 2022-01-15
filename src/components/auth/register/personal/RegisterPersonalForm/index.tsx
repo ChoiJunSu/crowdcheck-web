@@ -80,7 +80,6 @@ const RegisterPersonalForm = () => {
         true,
         ...isCareerNameDisabled.slice(careerIndex + 1),
       ]);
-      setValue(`career.${careerIndex}.corporateId`, id);
       setValue(`career.${careerIndex}.corporateName`, name);
     },
     [isCareerNameDisabled]
@@ -179,11 +178,6 @@ const RegisterPersonalForm = () => {
                   <td>
                     <input
                       type="text"
-                      {...register(`career.${index}.corporateId` as const)}
-                      hidden={true}
-                    />
-                    <input
-                      type="text"
                       {...register(`career.${index}.corporateName` as const, {
                         required: "기업이름을 입력해주세요.",
                       })}
@@ -206,11 +200,6 @@ const RegisterPersonalForm = () => {
                             </li>
                           );
                         })}
-                        {corporates?.length > 0 && corporates?.length < 10 && (
-                          <button type="button" onClick={handleAddCorporate}>
-                            새 기업 등록하기
-                          </button>
-                        )}
                       </ul>
                     )}
                   </td>
