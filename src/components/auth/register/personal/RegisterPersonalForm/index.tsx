@@ -1,9 +1,4 @@
-import {
-  SubmitHandler,
-  useFieldArray,
-  useForm,
-  Controller,
-} from "react-hook-form";
+import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterPersonalRequest } from "@api/AuthApi/type";
@@ -17,8 +12,6 @@ import {
 } from "@api/CorporateApi/type";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import { IRegisterPersonalFormData } from "@components/auth/register/personal/RegisterPersonalForm/type";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
 const RegisterPersonalForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -210,36 +203,19 @@ const RegisterPersonalForm = () => {
                     />
                   </td>
                   <td>
-                    <Controller
-                      control={control}
-                      name={`career.${index}.startAt` as const}
-                      rules={{ required: "입사일을 입력해주세요." }}
-                      render={({ field: { onChange, onBlur, value } }) => {
-                        return (
-                          <DatePicker
-                            onChange={onChange}
-                            onSelect={onChange}
-                            onBlur={onBlur}
-                            selected={value}
-                          />
-                        );
-                      }}
+                    <input
+                      type="date"
+                      {...register(`career.${index}.startAt` as const, {
+                        required: "입사일을 입력해주세요.",
+                      })}
                     />
                   </td>
                   <td>
-                    <Controller
-                      control={control}
-                      name={`career.${index}.endAt` as const}
-                      render={({ field: { onChange, onBlur, value } }) => {
-                        return (
-                          <DatePicker
-                            onChange={onChange}
-                            onSelect={onChange}
-                            onBlur={onBlur}
-                            selected={value}
-                          />
-                        );
-                      }}
+                    <input
+                      type="date"
+                      {...register(`career.${index}.endAt` as const, {
+                        required: "퇴사일을 입력해주세요.",
+                      })}
                     />
                   </td>
                   <td>
