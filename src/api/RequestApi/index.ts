@@ -8,6 +8,14 @@ import {
   IRequestListCandidateResponse,
   IRequestAgreeRequest,
   IRequestAgreeResponse,
+  IRequestListReceiverRequest,
+  IRequestListReceiverResponse,
+  IRequestVerifyRequest,
+  IRequestVerifyResponse,
+  IRequestGetReceiverRequest,
+  IRequestGetReceiverResponse,
+  IRequestAnswerRequest,
+  IRequestAnswerResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -20,14 +28,30 @@ class RequestApi {
     })) as IRequestRegisterResponse;
   };
 
+  static getReceiver = async (
+    params: IRequestGetReceiverRequest
+  ): Promise<IRequestGetReceiverResponse> => {
+    return (await ApiClient.get({
+      url: "/request/get/receiver",
+      params,
+    })) as IRequestGetReceiverResponse;
+  };
+
   static getCandidate = async (
     params: IRequestGetCandidateRequest
   ): Promise<IRequestGetCandidateResponse> => {
     return (await ApiClient.get({
-      url: "/request/candidate",
+      url: "/request/get/candidate",
       params,
     })) as IRequestGetCandidateResponse;
   };
+
+  static listReceiver =
+    async ({}: IRequestListReceiverRequest): Promise<IRequestListReceiverResponse> => {
+      return (await ApiClient.get({
+        url: "/request/list/receiver",
+      })) as IRequestListReceiverResponse;
+    };
 
   static listCandidate =
     async ({}: IRequestListCandidateRequest): Promise<IRequestListCandidateResponse> => {
@@ -43,6 +67,24 @@ class RequestApi {
       url: "/request/agree",
       data,
     })) as IRequestAgreeResponse;
+  };
+
+  static verify = async (
+    data: IRequestVerifyRequest
+  ): Promise<IRequestVerifyResponse> => {
+    return (await ApiClient.post({
+      url: "/request/verify",
+      data,
+    })) as IRequestVerifyResponse;
+  };
+
+  static answer = async (
+    data: IRequestAnswerRequest
+  ): Promise<IRequestAnswerResponse> => {
+    return (await ApiClient.post({
+      url: "/request/answer",
+      data,
+    })) as IRequestAnswerResponse;
   };
 }
 

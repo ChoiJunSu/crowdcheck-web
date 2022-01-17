@@ -1,7 +1,15 @@
 import { ICareer } from "@api/AuthApi/type";
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 
-export type TRequestStatus = "registered" | "arrived" | "closed";
+export type TRequestStatus = "registered" | "agreed" | "closed";
+
+export type TReceiverStatus =
+  | "arrived"
+  | "verified"
+  | "rejected"
+  | "answered"
+  | "paid"
+  | "closed";
 
 export interface IAgree {
   corporateId: number;
@@ -26,12 +34,36 @@ export interface ICandidateRequest {
   status: TRequestStatus;
 }
 
+export interface IReceiverRequest {
+  id: number;
+  corporateName: string;
+  candidateName: string;
+  status: TReceiverStatus;
+}
+
+export interface IRequestGetReceiverRequest extends IApiRequest {
+  requestId: string;
+}
+
+export interface IRequestGetReceiverResponse extends IApiResponse {
+  corporateName: string;
+  candidateName: string;
+  question: string;
+}
+
 export interface IRequestGetCandidateRequest extends IApiRequest {
   requestId: string;
 }
 
 export interface IRequestGetCandidateResponse extends IApiResponse {
+  corporateName: string;
   career: Array<ICareer>;
+}
+
+export interface IRequestListReceiverRequest extends IApiRequest {}
+
+export interface IRequestListReceiverResponse extends IApiResponse {
+  request: Array<IReceiverRequest>;
 }
 
 export interface IRequestListCandidateRequest extends IApiRequest {}
@@ -47,3 +79,17 @@ export interface IRequestAgreeRequest extends IApiRequest {
 }
 
 export interface IRequestAgreeResponse extends IApiResponse {}
+
+export interface IRequestVerifyRequest extends IApiRequest {
+  requestId: number;
+  candidatePhone: string;
+}
+
+export interface IRequestVerifyResponse extends IApiResponse {}
+
+export interface IRequestAnswerRequest extends IApiRequest {
+  requestId: number;
+  answer: string;
+}
+
+export interface IRequestAnswerResponse extends IApiResponse {}

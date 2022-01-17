@@ -30,11 +30,12 @@ const LoginOauthCallbackPage = ({ provider }: ILoginOauthCallbackPageProps) => {
         } else {
           const { authToken } = loginOauthResponse;
           try {
-            const { name } = jwtDecode(authToken) as IAuthTokenPayload;
+            const { name, type } = jwtDecode(authToken) as IAuthTokenPayload;
             setLoginState({
               isLoggedIn: true,
               authToken,
               name,
+              type,
             });
             localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
           } catch (e) {

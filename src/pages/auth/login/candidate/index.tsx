@@ -20,7 +20,7 @@ const CandidatePage = () => {
   const code = params.get("code");
   if (!code) {
     alert("잘못된 접근입니다.");
-    navigate("/candidate");
+    navigate(-1);
     return;
   }
 
@@ -41,14 +41,15 @@ const CandidatePage = () => {
     if (loginCandidateResponse.ok) {
       const { authToken } = loginCandidateResponse;
       try {
-        const { name } = jwtDecode(authToken) as IAuthTokenPayload;
+        const { name, type } = jwtDecode(authToken) as IAuthTokenPayload;
         setLoginState({
           isLoggedIn: true,
-          name,
           authToken,
+          name,
+          type,
         });
         localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
-        navigate("/candidate/request/list");
+        navigate("/request/list/candidate");
       } catch (e) {
         alert("지원자 인증 오류입니다.");
       }

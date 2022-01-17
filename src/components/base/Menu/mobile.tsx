@@ -23,8 +23,9 @@ const MMenu = () => {
       onClick: () => {
         setLoginState({
           isLoggedIn: false,
-          authToken: "",
-          name: "",
+          authToken: null,
+          name: null,
+          type: null,
         });
         localStorage.removeItem(LOCAL_AUTH_TOKEN);
         navigate("/");

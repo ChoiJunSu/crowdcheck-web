@@ -5,8 +5,9 @@ const loginAtom = atom<ILoginState>({
   key: "loginAtom",
   default: {
     isLoggedIn: false,
-    authToken: "",
-    name: "",
+    authToken: null,
+    name: null,
+    type: null,
   },
 });
 

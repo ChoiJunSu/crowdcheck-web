@@ -3,26 +3,25 @@ import { useNavigate } from "react-router-dom";
 import RequestApi from "@api/RequestApi";
 import { ICandidateRequest } from "@api/RequestApi/type";
 
-const CandidateRequestList = () => {
+const RequestListCandidatePage = () => {
   const [requestList, setRequestList] = useState<Array<ICandidateRequest>>([]);
   const navigate = useNavigate();
   const requestStatusMapper = {
     registered: "동의를 기다리는 중",
-    arrived: "평가를 기다리는 중",
+    agreed: "평가를 기다리는 중",
     closed: "종료됨",
   };
 
   useEffect(() => {
     (async () => {
       const listCandidateResponse = await RequestApi.listCandidate({});
-      if (listCandidateResponse.ok) {
-        setRequestList(listCandidateResponse.request);
-      }
+      if (!listCandidateResponse.ok) return;
+      setRequestList(listCandidateResponse.request);
     })();
   }, []);
 
   const handleGetRequest = useCallback((id: number) => {
-    navigate(`/candidate/request?requestId=${id}`);
+    navigate(`/request/agree?requestId=${id}`);
   }, []);
 
   return (
@@ -54,4 +53,4 @@ const CandidateRequestList = () => {
   );
 };
 
-export default CandidateRequestList;
+export default RequestListCandidatePage;

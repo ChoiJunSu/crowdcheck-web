@@ -29,11 +29,12 @@ const LoginForm = ({ type }: ILoginFormProps) => {
     if (loginResponse.ok) {
       const { authToken } = loginResponse;
       try {
-        const { name } = jwtDecode(authToken) as IAuthTokenPayload;
+        const { name, type } = jwtDecode(authToken) as IAuthTokenPayload;
         setLoginState({
           isLoggedIn: true,
-          name,
           authToken,
+          name,
+          type,
         });
         localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
         navigate("/");

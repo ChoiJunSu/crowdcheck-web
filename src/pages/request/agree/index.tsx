@@ -4,22 +4,22 @@ import {
   IRequestGetCandidateRequest,
   IRequestGetCandidateResponse,
 } from "@api/RequestApi/type";
-import CandidateApi from "@api/CandidateApi";
 import { ICareer } from "@api/AuthApi/type";
 import { useForm } from "react-hook-form";
 import RequestApi from "@api/RequestApi";
 
-const CandidateRequestPage = () => {
+const RequestAgreePage = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const requestId = params.get("requestId");
   if (!requestId) {
     alert("잘못된 접근입니다.");
-    navigate("/candidate");
+    navigate(-1);
     return;
   }
 
+  const [corporateName, setCorporateName] = useState<string>("");
   const [careerList, setCareerList] = useState<Array<ICareer>>([]);
 
   useEffect(() => {
@@ -30,39 +30,33 @@ const CandidateRequestPage = () => {
         } as IRequestGetCandidateRequest);
       if (!getRequestResponse.ok) {
         alert("의뢰 정보가 없습니다.");
-        navigate("/candidate/request/list");
+        navigate(-1);
         return;
       }
+      setCorporateName(getRequestResponse.corporateName);
       setCareerList(getRequestResponse.career);
     })();
   }, []);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const handleAgree = useCallback(async (data) => {
     const agreeResponse = await RequestApi.agree({
       ...data,
       requestId,
     });
-    console.log({
-      ...data,
-      requestId,
-    });
-    if (agreeResponse.ok) {
-      alert("의뢰 동의가 완료되었습니다.");
-      navigate("/candidate/request/list");
-    } else {
+    if (!agreeResponse.ok) {
       alert(agreeResponse.error);
+      return;
     }
+    alert("의뢰 동의가 완료되었습니다.");
+    navigate("/request/list/candidate");
   }, []);
 
   return (
     <div>
       <h1>지원자 의뢰 조회 페이지</h1>
+      {corporateName && <h2>{corporateName}의 의뢰</h2>}
       <form onSubmit={handleSubmit(handleAgree)}>
         <table>
           {careerList.length > 0 && (
@@ -77,7 +71,10 @@ const CandidateRequestPage = () => {
             </thead>
           )}
           {careerList.map(
-            ({ corporateName, department, startAt, endAt }, index) => {
+            (
+              { corporateId, corporateName, department, startAt, endAt },
+              index
+            ) => {
               return (
                 <tr key={index}>
                   <td>{corporateName}</td>
@@ -85,6 +82,13 @@ const CandidateRequestPage = () => {
                   <td>{startAt}</td>
                   <td>{endAt}</td>
                   <td>
+                    <input
+                      type="text"
+                      {...register(`agree.${index}.corporateId`, {
+                        value: corporateId,
+                      })}
+                      hidden
+                    />
                     <input
                       type="checkbox"
                       {...register(`agree.${index}.agreed`)}
@@ -103,4 +107,4 @@ const CandidateRequestPage = () => {
   );
 };
 
-export default CandidateRequestPage;
+export default RequestAgreePage;

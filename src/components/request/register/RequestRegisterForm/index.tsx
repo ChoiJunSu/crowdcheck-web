@@ -108,7 +108,7 @@ const RequestRegisterForm = () => {
       if (requestRegisterResponse.ok) {
         alert("의뢰가 등록되었습니다.");
         console.log(
-          `${WEB_URL}/candidate?code=${requestRegisterResponse.code}`
+          `${WEB_URL}/auth/login/candidate?code=${requestRegisterResponse.code}`
         );
         navigate("/request/list");
       } else {

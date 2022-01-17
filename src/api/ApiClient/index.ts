@@ -20,16 +20,17 @@ class ApiClient {
   };
 
   static handleAxiosError = (e: any): string => {
-    if (e.response) {
-      const { status, data } = e.response;
-      if (status === 401) {
-        alert("로그인이 필요합니다.");
-        location.href = "/login";
-      } else if (data.error) {
-        return data.error || "";
-      }
+    if (e.response) return "서버 오류입니다.";
+    const { status, data } = e.response;
+    if (status === 401) {
+      alert("로그인이 필요합니다.");
+      location.href = "/login";
+    } else if (status === 403) {
+      alert("권한이 없습니다.");
+      location.href = "/";
+    } else if (data.error) {
+      return data.error || "";
     }
-    console.log(e);
 
     return "서버 오류입니다.";
   };
