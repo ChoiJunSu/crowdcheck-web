@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import RequestApi from "@api/RequestApi";
 import { ICandidateRequest } from "@api/RequestApi/type";
 
-const RequestListCandidatePage = () => {
+const RequestListCandidateView = () => {
   const [requestList, setRequestList] = useState<Array<ICandidateRequest>>([]);
   const navigate = useNavigate();
   const requestStatusMapper = {
@@ -53,4 +53,4 @@ const RequestListCandidatePage = () => {
   );
 };
 
-export default RequestListCandidatePage;
+export default RequestListCandidateView;

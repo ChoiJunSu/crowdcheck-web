@@ -1,5 +1,17 @@
+import { useRecoilValue } from "recoil";
+import loginAtom from "@atoms/loginAtom";
+import RequestListReceiverView from "@views/request/list/RequestListReceiverView";
+import RequestListCandidateView from "@views/request/list/RequestListCandidateView";
+
 const RequestListPage = () => {
-  return <div>의뢰 목록 페이지</div>;
+  const { type } = useRecoilValue(loginAtom);
+
+  return (
+    <div>
+      {type === "personal" && <RequestListReceiverView />}
+      {type === "candidate" && <RequestListCandidateView />}
+    </div>
+  );
 };
 
 export default RequestListPage;

@@ -41,7 +41,7 @@ const RequestAnswerPage = () => {
       return;
     }
     alert("의뢰 답변이 완료되었습니다.");
-    navigate("request/list/receiver");
+    navigate("request/list");
   }, []);
 
   return (

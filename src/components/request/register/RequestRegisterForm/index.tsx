@@ -105,16 +105,16 @@ const RequestRegisterForm = () => {
       const requestRegisterResponse = await RequestApi.register(
         data as IRequestRegisterRequest
       );
-      if (requestRegisterResponse.ok) {
-        alert("의뢰가 등록되었습니다.");
-        console.log(
-          `${WEB_URL}/auth/login/candidate?code=${requestRegisterResponse.code}`
-        );
-        navigate("/request/list");
-      } else {
+      if (!requestRegisterResponse.ok) {
         alert(requestRegisterResponse.error);
         setIsLoading(false);
+        return;
       }
+      alert("의뢰가 등록되었습니다.");
+      console.log(
+        `${WEB_URL}/auth/login/candidate?code=${requestRegisterResponse.code}`
+      );
+      navigate("/request/list");
     }, []);
 
   return isLoading ? (
@@ -151,70 +151,68 @@ const RequestRegisterForm = () => {
             </tr>
           </thead>
           <tbody>
-            {fields.map((field, index) => {
-              return (
-                <tr key={field.id}>
-                  <td>
-                    <input
-                      type="text"
-                      {...register(`career.${index}.corporateName` as const, {
-                        required: "기업이름을 입력해주세요.",
+            {fields.map((field, index) => (
+              <tr key={field.id}>
+                <td>
+                  <input
+                    type="text"
+                    {...register(`career.${index}.corporateName` as const, {
+                      required: "기업이름을 입력해주세요.",
+                    })}
+                    onFocus={() => setCareerFocusIndex(index)}
+                    disabled={isCareerNameDisabled[index]}
+                  />
+                  {index === careerFocusIndex && (
+                    <ul>
+                      {corporates?.map((corporate, corporateIndex) => {
+                        return (
+                          <li key={corporateIndex}>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                handleSelectCareerName(corporate, index)
+                              }
+                            >
+                              {corporate.name}
+                            </button>
+                          </li>
+                        );
                       })}
-                      onFocus={() => setCareerFocusIndex(index)}
-                      disabled={isCareerNameDisabled[index]}
-                    />
-                    {index === careerFocusIndex && (
-                      <ul>
-                        {corporates?.map((corporate, corporateIndex) => {
-                          return (
-                            <li key={corporateIndex}>
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  handleSelectCareerName(corporate, index)
-                                }
-                              >
-                                {corporate.name}
-                              </button>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    )}
-                  </td>
-                  <td>
-                    <input
-                      type="text"
-                      {...register(`career.${index}.department` as const)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="date"
-                      {...register(`career.${index}.startAt` as const, {
-                        required: "입사일을 입력해주세요.",
-                      })}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      type="date"
-                      {...register(`career.${index}.endAt` as const, {
-                        required: "퇴사일을 입력해주세요.",
-                      })}
-                    />
-                  </td>
-                  <td>
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveCareer(index)}
-                    >
-                      삭제하기
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+                    </ul>
+                  )}
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    {...register(`career.${index}.department` as const)}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="date"
+                    {...register(`career.${index}.startAt` as const, {
+                      required: "입사일을 입력해주세요.",
+                    })}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="date"
+                    {...register(`career.${index}.endAt` as const, {
+                      required: "퇴사일을 입력해주세요.",
+                    })}
+                  />
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveCareer(index)}
+                  >
+                    삭제하기
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
         <button type="button" onClick={() => handleAppendCareer()}>

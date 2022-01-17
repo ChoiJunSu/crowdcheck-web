@@ -37,7 +37,6 @@ const CandidatePage = () => {
         ...data,
         code,
       } as IAuthLoginCandidateRequest);
-    console.log(loginCandidateResponse);
     if (loginCandidateResponse.ok) {
       const { authToken } = loginCandidateResponse;
       try {
@@ -49,7 +48,7 @@ const CandidatePage = () => {
           type,
         });
         localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
-        navigate("/request/list/candidate");
+        navigate("/request/list");
       } catch (e) {
         alert("지원자 인증 오류입니다.");
       }

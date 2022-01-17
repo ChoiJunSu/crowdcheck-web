@@ -3,7 +3,7 @@ import RequestApi from "@api/RequestApi";
 import { IReceiverRequest } from "@api/RequestApi/type";
 import { Link } from "react-router-dom";
 
-const RequestListReceiverPage = () => {
+const RequestListReceiverView = () => {
   const [requestList, setRequestList] = useState<Array<IReceiverRequest>>([]);
 
   useEffect(() => {
@@ -33,4 +33,4 @@ const RequestListReceiverPage = () => {
   );
 };
 
-export default RequestListReceiverPage;
+export default RequestListReceiverView;

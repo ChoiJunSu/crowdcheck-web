@@ -50,7 +50,7 @@ const RequestAgreePage = () => {
       return;
     }
     alert("의뢰 동의가 완료되었습니다.");
-    navigate("/request/list/candidate");
+    navigate("/request/list");
   }, []);
 
   return (
