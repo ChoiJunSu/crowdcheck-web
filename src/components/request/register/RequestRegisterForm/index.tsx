@@ -110,7 +110,7 @@ const RequestRegisterForm = () => {
         setIsLoading(false);
         return;
       }
-      alert("의뢰가 등록되었습니다.");
+      alert("의뢰가 등록되었습니다. 지원자에게 동의 링크가 발송됩니다.");
       console.log(
         `${WEB_URL}/auth/login/candidate?code=${requestRegisterResponse.code}`
       );

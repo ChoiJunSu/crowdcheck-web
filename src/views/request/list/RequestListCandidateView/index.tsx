@@ -33,7 +33,6 @@ const RequestListCandidateView = () => {
             <tr>
               <th>기업이름</th>
               <th>상태</th>
-              <th></th>
             </tr>
           </thead>
         )}

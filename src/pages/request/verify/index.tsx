@@ -11,7 +11,6 @@ const RequestVerifyPage = () => {
   if (!requestId) {
     alert("잘못된 접근입니다.");
     navigate(-1);
-    return;
   }
 
   const { register, handleSubmit } = useForm();

@@ -16,6 +16,10 @@ import {
   IRequestGetReceiverResponse,
   IRequestAnswerRequest,
   IRequestAnswerResponse,
+  IRequestListCorporateRequest,
+  IRequestListCorporateResponse,
+  IRequestGetCorporateRequest,
+  IRequestGetCorporateResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -37,6 +41,15 @@ class RequestApi {
     })) as IRequestGetReceiverResponse;
   };
 
+  static getCorporate = async (
+    params: IRequestGetCorporateRequest
+  ): Promise<IRequestGetCorporateResponse> => {
+    return (await ApiClient.get({
+      url: "/request/get/corporate",
+      params,
+    })) as IRequestGetCorporateResponse;
+  };
+
   static getCandidate = async (
     params: IRequestGetCandidateRequest
   ): Promise<IRequestGetCandidateResponse> => {
@@ -51,6 +64,13 @@ class RequestApi {
       return (await ApiClient.get({
         url: "/request/list/receiver",
       })) as IRequestListReceiverResponse;
+    };
+
+  static listCorporate =
+    async ({}: IRequestListCorporateRequest): Promise<IRequestListCorporateResponse> => {
+      return (await ApiClient.get({
+        url: "/request/list/corporate",
+      })) as IRequestListCorporateResponse;
     };
 
   static listCandidate =

@@ -16,7 +16,6 @@ const RequestAgreePage = () => {
   if (!requestId) {
     alert("잘못된 접근입니다.");
     navigate(-1);
-    return;
   }
 
   const [corporateName, setCorporateName] = useState<string>("");
@@ -26,12 +25,11 @@ const RequestAgreePage = () => {
     (async () => {
       const getRequestResponse: IRequestGetCandidateResponse =
         await RequestApi.getCandidate({
-          requestId,
+          requestId: parseInt(requestId as string),
         } as IRequestGetCandidateRequest);
       if (!getRequestResponse.ok) {
         alert("의뢰 정보가 없습니다.");
         navigate(-1);
-        return;
       }
       setCorporateName(getRequestResponse.corporateName);
       setCareerList(getRequestResponse.career);

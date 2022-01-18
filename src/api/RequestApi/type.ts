@@ -8,12 +8,23 @@ export type TReceiverStatus =
   | "verified"
   | "rejected"
   | "answered"
-  | "paid"
   | "closed";
 
 export interface IAgree {
   corporateId: number;
   agreed: boolean;
+}
+
+export interface IReceiver {
+  id: number;
+  status: TReceiverStatus;
+}
+
+export interface IAnswer {
+  id: number;
+  corporateName: string;
+  status: TReceiverStatus;
+  answer: string | null;
 }
 
 export interface IRequestRegisterRequest extends IApiRequest {
@@ -34,6 +45,13 @@ export interface ICandidateRequest {
   status: TRequestStatus;
 }
 
+export interface ICorporateRequest {
+  id: number;
+  candidateName: string;
+  status: TRequestStatus;
+  receiver: Array<IReceiver>;
+}
+
 export interface IReceiverRequest {
   id: number;
   corporateName: string;
@@ -42,7 +60,7 @@ export interface IReceiverRequest {
 }
 
 export interface IRequestGetReceiverRequest extends IApiRequest {
-  requestId: string;
+  requestId: number;
 }
 
 export interface IRequestGetReceiverResponse extends IApiResponse {
@@ -51,8 +69,18 @@ export interface IRequestGetReceiverResponse extends IApiResponse {
   question: string;
 }
 
+export interface IRequestGetCorporateRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestGetCorporateResponse extends IApiResponse {
+  candidateName: string;
+  question: string;
+  answer: Array<IAnswer>;
+}
+
 export interface IRequestGetCandidateRequest extends IApiRequest {
-  requestId: string;
+  requestId: number;
 }
 
 export interface IRequestGetCandidateResponse extends IApiResponse {
@@ -64,6 +92,12 @@ export interface IRequestListReceiverRequest extends IApiRequest {}
 
 export interface IRequestListReceiverResponse extends IApiResponse {
   request: Array<IReceiverRequest>;
+}
+
+export interface IRequestListCorporateRequest extends IApiRequest {}
+
+export interface IRequestListCorporateResponse extends IApiResponse {
+  request: Array<ICorporateRequest>;
 }
 
 export interface IRequestListCandidateRequest extends IApiRequest {}

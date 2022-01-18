@@ -21,7 +21,6 @@ const CandidatePage = () => {
   if (!code) {
     alert("잘못된 접근입니다.");
     navigate(-1);
-    return;
   }
 
   const {
