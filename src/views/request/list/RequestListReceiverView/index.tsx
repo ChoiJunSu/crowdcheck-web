@@ -31,7 +31,7 @@ const RequestListReceiverView = () => {
     (async () => {
       const listReceiverResponse = await RequestApi.listReceiver({});
       if (!listReceiverResponse.ok) return;
-      setRequestList(listReceiverResponse.request);
+      setRequestList(listReceiverResponse.requests);
     })();
   }, [update]);
 
@@ -44,9 +44,15 @@ const RequestListReceiverView = () => {
             <li key={index}>
               {corporateName}에서 {candidateName}님에 대한 의뢰 |{" "}
               {receiverStatusMapper[status]}
-              {(status === "arrived" || status === "verified") && (
+              {status === "arrived" && (
                 <div>
                   <Link to={`/request/verify?requestId=${id}`}>답변하기</Link>
+                  <button onClick={() => handleReject(id)}>거절하기</button>
+                </div>
+              )}
+              {status === "verified" && (
+                <div>
+                  <Link to={`/request/answer?requestId=${id}`}>답변하기</Link>
                   <button onClick={() => handleReject(id)}>거절하기</button>
                 </div>
               )}

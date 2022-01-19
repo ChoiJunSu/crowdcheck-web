@@ -15,7 +15,7 @@ const RequestListCorporateView = () => {
     (async () => {
       const listCorporateResponse = await RequestApi.listCorporate({});
       if (!listCorporateResponse.ok) return;
-      setRequestList(listCorporateResponse.request);
+      setRequestList(listCorporateResponse.requests);
     })();
   }, []);
 
@@ -23,7 +23,7 @@ const RequestListCorporateView = () => {
     <div>
       <h1>의뢰 목록</h1>
       <ul>
-        {requestList.map(({ id, candidateName, status, receiver }, index) => (
+        {requestList.map(({ id, candidateName, status, receivers }, index) => (
           <li key={index}>
             {candidateName}님에 대한 의뢰 | {requestStatusMapper[status]}
             {status !== "registered" && (

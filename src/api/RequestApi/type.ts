@@ -30,7 +30,7 @@ export interface IAnswer {
 export interface IRequestRegisterRequest extends IApiRequest {
   name: string;
   phone: string;
-  career: Array<ICareer>;
+  careers: Array<ICareer>;
   question: string;
   deadline?: Date | null;
 }
@@ -49,7 +49,7 @@ export interface ICorporateRequest {
   id: number;
   candidateName: string;
   status: TRequestStatus;
-  receiver: Array<IReceiver>;
+  receivers: Array<IReceiver>;
 }
 
 export interface IReceiverRequest {
@@ -76,7 +76,7 @@ export interface IRequestGetCorporateRequest extends IApiRequest {
 export interface IRequestGetCorporateResponse extends IApiResponse {
   candidateName: string;
   question: string;
-  answer: Array<IAnswer>;
+  answers: Array<IAnswer>;
 }
 
 export interface IRequestGetCandidateRequest extends IApiRequest {
@@ -85,30 +85,30 @@ export interface IRequestGetCandidateRequest extends IApiRequest {
 
 export interface IRequestGetCandidateResponse extends IApiResponse {
   corporateName: string;
-  career: Array<ICareer>;
+  careers: Array<ICareer>;
 }
 
 export interface IRequestListReceiverRequest extends IApiRequest {}
 
 export interface IRequestListReceiverResponse extends IApiResponse {
-  request: Array<IReceiverRequest>;
+  requests: Array<IReceiverRequest>;
 }
 
 export interface IRequestListCorporateRequest extends IApiRequest {}
 
 export interface IRequestListCorporateResponse extends IApiResponse {
-  request: Array<ICorporateRequest>;
+  requests: Array<ICorporateRequest>;
 }
 
 export interface IRequestListCandidateRequest extends IApiRequest {}
 
 export interface IRequestListCandidateResponse extends IApiResponse {
-  request: Array<ICandidateRequest>;
+  requests: Array<ICandidateRequest>;
 }
 
 export interface IRequestAgreeRequest extends IApiRequest {
   requestId: number;
-  agree: Array<IAgree>;
+  agrees: Array<IAgree>;
   agreeDescription?: string;
 }
 

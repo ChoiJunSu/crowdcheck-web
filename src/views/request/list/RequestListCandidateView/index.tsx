@@ -16,7 +16,7 @@ const RequestListCandidateView = () => {
     (async () => {
       const listCandidateResponse = await RequestApi.listCandidate({});
       if (!listCandidateResponse.ok) return;
-      setRequestList(listCandidateResponse.request);
+      setRequestList(listCandidateResponse.requests);
     })();
   }, []);
 
@@ -36,17 +36,19 @@ const RequestListCandidateView = () => {
             </tr>
           </thead>
         )}
-        {requestList.map(({ id, corporateName, status }, index) => {
-          return (
-            <tr key={index}>
-              <td>{corporateName}</td>
-              <td>{requestStatusMapper[status]}</td>
-              <td>
-                <button onClick={() => handleGetRequest(id)}>상세보기</button>
-              </td>
-            </tr>
-          );
-        })}
+        <tbody>
+          {requestList.map(({ id, corporateName, status }, index) => {
+            return (
+              <tr key={index}>
+                <td>{corporateName}</td>
+                <td>{requestStatusMapper[status]}</td>
+                <td>
+                  <button onClick={() => handleGetRequest(id)}>상세보기</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );

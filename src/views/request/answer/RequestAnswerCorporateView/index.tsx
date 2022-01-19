@@ -15,7 +15,7 @@ const RequestAnswerCorporateView = () => {
 
   const [candidateName, setCandidateName] = useState<string>("");
   const [question, setQuestion] = useState<string>("");
-  const [answer, setAnswer] = useState<Array<IAnswer>>([]);
+  const [answerList, setAnswerList] = useState<Array<IAnswer>>([]);
   const receiverStatusMapper = {
     arrived: "답변을 기다리는 중",
     verified: "답변을 기다리는 중",
@@ -35,7 +35,7 @@ const RequestAnswerCorporateView = () => {
       }
       setCandidateName(getCorporateResponse.candidateName);
       setQuestion(getCorporateResponse.question);
-      setAnswer(getCorporateResponse.answer);
+      setAnswerList(getCorporateResponse.answers);
     })();
   }, []);
 
@@ -43,7 +43,7 @@ const RequestAnswerCorporateView = () => {
     <div>
       <h2>{candidateName}님에 대한 의뢰</h2>
       <h3>질문: {question}</h3>
-      {answer.map(({ id, corporateName, status, answer }, index) => (
+      {answerList.map(({ id, corporateName, status, answer }, index) => (
         <li key={index}>
           <details>
             <summary>

@@ -1,19 +1,20 @@
-import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import AuthApi from "@api/AuthApi";
-import { IAuthRegisterPersonalRequest } from "@api/AuthApi/type";
 import { useCallback, useEffect, useState } from "react";
-import Loading from "@components/base/Loading";
-import CorporateApi from "@api/CorporateApi";
+import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
+import { IRegisterPersonalFormData } from "@components/auth/register/personal/RegisterPersonalForm/type";
 import {
   ICorporate,
   ICorporateSearchRequest,
   ICorporateSearchResponse,
 } from "@api/CorporateApi/type";
+import { useNavigate } from "react-router-dom";
+import CorporateApi from "@api/CorporateApi";
+import AuthApi from "@api/AuthApi";
+import { IAuthRegisterPersonalRequest } from "@api/AuthApi/type";
+import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
-import { IRegisterPersonalFormData } from "@components/auth/register/personal/RegisterPersonalForm/type";
+import { IUserEditPersonalFormData } from "@views/user/edit/UserEditPersonalView/type";
 
-const RegisterPersonalForm = () => {
+const UserEditPersonalPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -22,7 +23,7 @@ const RegisterPersonalForm = () => {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRegisterPersonalFormData>({
+  } = useForm<IUserEditPersonalFormData>({
     defaultValues: {
       careers: [
         {
@@ -241,4 +242,4 @@ const RegisterPersonalForm = () => {
   );
 };
 
-export default RegisterPersonalForm;
+export default UserEditPersonalPage;

@@ -7,6 +7,7 @@ import {
 import { ICareer } from "@api/AuthApi/type";
 import { useForm } from "react-hook-form";
 import RequestApi from "@api/RequestApi";
+import { IRequestAgreeFormDate } from "@pages/request/agree/type";
 
 const RequestAgreePage = () => {
   const navigate = useNavigate();
@@ -32,11 +33,11 @@ const RequestAgreePage = () => {
         navigate(-1);
       }
       setCorporateName(getRequestResponse.corporateName);
-      setCareerList(getRequestResponse.career);
+      setCareerList(getRequestResponse.careers);
     })();
   }, []);
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<IRequestAgreeFormDate>();
 
   const handleAgree = useCallback(async (data) => {
     const agreeResponse = await RequestApi.agree({
@@ -68,34 +69,36 @@ const RequestAgreePage = () => {
               </tr>
             </thead>
           )}
-          {careerList.map(
-            (
-              { corporateId, corporateName, department, startAt, endAt },
-              index
-            ) => {
-              return (
-                <tr key={index}>
-                  <td>{corporateName}</td>
-                  <td>{department}</td>
-                  <td>{startAt}</td>
-                  <td>{endAt}</td>
-                  <td>
-                    <input
-                      type="text"
-                      {...register(`agree.${index}.corporateId`, {
-                        value: corporateId,
-                      })}
-                      hidden
-                    />
-                    <input
-                      type="checkbox"
-                      {...register(`agree.${index}.agreed`)}
-                    />
-                  </td>
-                </tr>
-              );
-            }
-          )}
+          <tbody>
+            {careerList.map(
+              (
+                { corporateId, corporateName, department, startAt, endAt },
+                index
+              ) => {
+                return (
+                  <tr key={index}>
+                    <td>{corporateName}</td>
+                    <td>{department}</td>
+                    <td>{startAt}</td>
+                    <td>{endAt}</td>
+                    <td>
+                      <input
+                        type="text"
+                        {...register(`agrees.${index}.corporateId`, {
+                          value: corporateId,
+                        })}
+                        hidden
+                      />
+                      <input
+                        type="checkbox"
+                        {...register(`agrees.${index}.agreed`)}
+                      />
+                    </td>
+                  </tr>
+                );
+              }
+            )}
+          </tbody>
         </table>
         <label>비동의 사유</label>
         <input type="text" {...register("agreeDescription")} />

@@ -5,5 +5,5 @@ export interface IRegisterPersonalFormData {
   phone: string;
   email: string;
   password: string;
-  career: Array<ICareer>;
+  careers: Array<ICareer>;
 }

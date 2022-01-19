@@ -52,7 +52,7 @@ export interface IAuthRegisterPersonalRequest extends IApiRequest {
   phone: string;
   email: string;
   password: string;
-  career: Array<ICareer>;
+  careers: Array<ICareer>;
 }
 
 export interface IAuthRegisterPersonalResponse extends IApiResponse {}

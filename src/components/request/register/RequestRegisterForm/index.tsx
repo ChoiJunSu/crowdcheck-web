@@ -25,7 +25,7 @@ const RequestRegisterForm = () => {
     formState: { errors },
   } = useForm<IRequestRegisterFormData>({
     defaultValues: {
-      career: [
+      careers: [
         {
           corporateName: "",
           startAt: new Date(),
@@ -36,9 +36,9 @@ const RequestRegisterForm = () => {
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "career",
+    name: "careers",
   });
-  const watchCareer = watch("career");
+  const watchCareer = watch("careers");
   const [careerFocusIndex, setCareerFocusIndex] = useState<number>(0);
   const [corporates, setCorporates] = useState<Array<ICorporate>>([]);
   const [isCareerNameDisabled, setIsCareerNameDisabled] = useState<
@@ -74,7 +74,7 @@ const RequestRegisterForm = () => {
         true,
         ...isCareerNameDisabled.slice(careerIndex + 1),
       ]);
-      setValue(`career.${careerIndex}.corporateName`, name);
+      setValue(`careers.${careerIndex}.corporateName`, name);
     },
     [isCareerNameDisabled]
   );
@@ -156,7 +156,7 @@ const RequestRegisterForm = () => {
                 <td>
                   <input
                     type="text"
-                    {...register(`career.${index}.corporateName` as const, {
+                    {...register(`careers.${index}.corporateName` as const, {
                       required: "기업이름을 입력해주세요.",
                     })}
                     onFocus={() => setCareerFocusIndex(index)}
@@ -184,13 +184,13 @@ const RequestRegisterForm = () => {
                 <td>
                   <input
                     type="text"
-                    {...register(`career.${index}.department` as const)}
+                    {...register(`careers.${index}.department` as const)}
                   />
                 </td>
                 <td>
                   <input
                     type="date"
-                    {...register(`career.${index}.startAt` as const, {
+                    {...register(`careers.${index}.startAt` as const, {
                       required: "입사일을 입력해주세요.",
                     })}
                   />
@@ -198,7 +198,7 @@ const RequestRegisterForm = () => {
                 <td>
                   <input
                     type="date"
-                    {...register(`career.${index}.endAt` as const, {
+                    {...register(`careers.${index}.endAt` as const, {
                       required: "퇴사일을 입력해주세요.",
                     })}
                   />

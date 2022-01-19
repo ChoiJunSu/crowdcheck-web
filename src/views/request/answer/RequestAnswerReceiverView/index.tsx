@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useCallback, useEffect, useState } from "react";
 import RequestApi from "@api/RequestApi";
+import { IRequestAnswerFormData } from "@views/request/answer/RequestAnswerReceiverView/type";
 
 const RequestAnswerReceiverView = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const RequestAnswerReceiverView = () => {
     navigate(-1);
   }
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<IRequestAnswerFormData>();
   const [corporateName, setCorporateName] = useState<string>("");
   const [candidateName, setCandidateName] = useState<string>("");
   const [question, setQuestion] = useState<string>("");
@@ -54,7 +55,7 @@ const RequestAnswerReceiverView = () => {
       {question && (
         <div>
           <h3>질문</h3>
-          <textarea>{question}</textarea>
+          <textarea value={question} readOnly={true} />
         </div>
       )}
       <form onSubmit={handleSubmit(handleAnswer)}>
