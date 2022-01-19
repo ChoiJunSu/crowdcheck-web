@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import RequestApi from "@api/RequestApi";
 import { IReceiverRequest } from "@api/RequestApi/type";
 import { Link } from "react-router-dom";
 
 const RequestListReceiverView = () => {
   const [requestList, setRequestList] = useState<Array<IReceiverRequest>>([]);
+  const [update, setUpdate] = useState<boolean>(false);
   const receiverStatusMapper = {
     arrived: "답변을 기다리는 중",
     verified: "답변을 기다리는 중",
@@ -13,13 +14,26 @@ const RequestListReceiverView = () => {
     closed: "종료됨",
   };
 
+  const handleReject = useCallback(
+    async (requestId: number) => {
+      const rejectResponse = await RequestApi.reject({ requestId });
+      if (!rejectResponse.ok) {
+        alert(rejectResponse.error);
+        return;
+      }
+      alert("의뢰가 거절되었습니다.");
+      setUpdate(!update);
+    },
+    [update]
+  );
+
   useEffect(() => {
     (async () => {
       const listReceiverResponse = await RequestApi.listReceiver({});
       if (!listReceiverResponse.ok) return;
       setRequestList(listReceiverResponse.request);
     })();
-  }, []);
+  }, [update]);
 
   return (
     <div>
@@ -31,7 +45,10 @@ const RequestListReceiverView = () => {
               {corporateName}에서 {candidateName}님에 대한 의뢰 |{" "}
               {receiverStatusMapper[status]}
               {(status === "arrived" || status === "verified") && (
-                <Link to={`/request/verify?requestId=${id}`}>답변하기</Link>
+                <div>
+                  <Link to={`/request/verify?requestId=${id}`}>답변하기</Link>
+                  <button onClick={() => handleReject(id)}>거절하기</button>
+                </div>
               )}
             </li>
           )

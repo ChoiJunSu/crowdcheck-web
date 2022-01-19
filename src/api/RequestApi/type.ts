@@ -127,3 +127,9 @@ export interface IRequestAnswerRequest extends IApiRequest {
 }
 
 export interface IRequestAnswerResponse extends IApiResponse {}
+
+export interface IRequestRejectRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestRejectResponse extends IApiResponse {}

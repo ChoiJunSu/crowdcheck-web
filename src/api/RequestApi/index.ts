@@ -20,6 +20,8 @@ import {
   IRequestListCorporateResponse,
   IRequestGetCorporateRequest,
   IRequestGetCorporateResponse,
+  IRequestRejectRequest,
+  IRequestRejectResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -105,6 +107,15 @@ class RequestApi {
       url: "/request/answer",
       data,
     })) as IRequestAnswerResponse;
+  };
+
+  static reject = async (
+    params: IRequestRejectRequest
+  ): Promise<IRequestRejectResponse> => {
+    return (await ApiClient.get({
+      url: "/request/reject",
+      params,
+    })) as IRequestRejectResponse;
   };
 }
 
