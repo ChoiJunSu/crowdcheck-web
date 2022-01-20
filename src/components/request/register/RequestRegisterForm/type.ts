@@ -5,5 +5,5 @@ export interface IRequestRegisterFormData {
   phone: string;
   careers: Array<ICareer>;
   question: string;
-  deadline?: Date | null;
+  deadline: string | null;
 }

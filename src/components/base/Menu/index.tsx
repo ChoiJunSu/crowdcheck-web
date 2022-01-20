@@ -15,14 +15,9 @@ const Menu = () => {
   useEffect(() => {
     if (isLoggedIn) {
       setItems([
-        {
-          text: "의뢰 목록",
-          onClick: () => navigate("/request/list"),
-        },
-        {
-          text: "의뢰 등록",
-          onClick: () => navigate("/request/register"),
-        },
+        { text: "의뢰 목록", onClick: () => navigate("/request/list") },
+        { text: "의뢰 등록", onClick: () => navigate("/request/register") },
+        { text: "정보 수정", onClick: () => navigate("/user/edit") },
         {
           text: "로그아웃",
           onClick: () => {

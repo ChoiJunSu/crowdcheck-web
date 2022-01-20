@@ -28,7 +28,7 @@ const RequestRegisterForm = () => {
       careers: [
         {
           corporateName: "",
-          startAt: new Date(),
+          startAt: new Date().toISOString().substring(0, 10),
           endAt: null,
         },
       ],
@@ -83,7 +83,7 @@ const RequestRegisterForm = () => {
     setIsCareerNameDisabled([...isCareerNameDisabled, false]);
     append({
       corporateName: "",
-      startAt: new Date(),
+      startAt: new Date().toISOString().substring(0, 10),
       endAt: null,
     });
   }, [isCareerNameDisabled]);
@@ -198,9 +198,7 @@ const RequestRegisterForm = () => {
                 <td>
                   <input
                     type="date"
-                    {...register(`careers.${index}.endAt` as const, {
-                      required: "퇴사일을 입력해주세요.",
-                    })}
+                    {...register(`careers.${index}.endAt` as const)}
                   />
                 </td>
                 <td>

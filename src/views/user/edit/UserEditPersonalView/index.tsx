@@ -13,6 +13,8 @@ import { IAuthRegisterPersonalRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import { IUserEditPersonalFormData } from "@views/user/edit/UserEditPersonalView/type";
+import UserApi from "@api/UserApi";
+import { IUserEditPersonalRequest } from "@api/UserApi/type";
 
 const UserEditPersonalPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,7 +30,7 @@ const UserEditPersonalPage = () => {
       careers: [
         {
           corporateName: "",
-          startAt: new Date(),
+          startAt: new Date().toISOString().substring(0, 10),
           endAt: null,
         },
       ],
@@ -45,6 +47,33 @@ const UserEditPersonalPage = () => {
     Array<boolean>
   >([false]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const getPersonalResponse = await UserApi.getPersonal({});
+      if (!getPersonalResponse.ok) {
+        alert(getPersonalResponse.error);
+        return;
+      }
+      const {
+        user: { email, name, phone },
+        careers,
+      } = getPersonalResponse;
+      setValue("email", email);
+      setValue("name", name);
+      setValue("phone", phone);
+      careers.forEach(
+        ({ corporateName, department, startAt, endAt }, index) => {
+          handleAppendCareer();
+          setValue(`careers.${index}.corporateName`, corporateName);
+          setValue(`careers.${index}.department`, department);
+          setValue(`careers.${index}.startAt`, startAt.substring(0, 10));
+          if (endAt) setValue(`careers.${index}.endAt`, endAt.substring(0, 10));
+        }
+      );
+      handleRemoveCareer(careers.length);
+    })();
+  }, []);
 
   useEffect(() => {
     if (
@@ -83,7 +112,7 @@ const UserEditPersonalPage = () => {
     setIsCareerNameDisabled([...isCareerNameDisabled, false]);
     append({
       corporateName: "",
-      startAt: new Date(),
+      startAt: new Date().toISOString().substring(0, 10),
       endAt: null,
     });
   }, [isCareerNameDisabled]);
@@ -99,30 +128,31 @@ const UserEditPersonalPage = () => {
     [isCareerNameDisabled]
   );
 
-  const handleRegisterPersonal: SubmitHandler<IRegisterPersonalFormData> =
+  const handleEditPersonal: SubmitHandler<IUserEditPersonalFormData> =
     useCallback(async (data) => {
       setIsLoading(true);
-      const registerPersonalResponse = await AuthApi.registerPersonal(
-        data as IAuthRegisterPersonalRequest
+      const editPersonalResponse = await UserApi.editPersonal(
+        data as IUserEditPersonalRequest
       );
-      if (registerPersonalResponse.ok) {
-        alert("회원가입이 완료되었습니다. 로그인 해주세요.");
-        navigate("/auth/login");
-      } else {
-        alert(registerPersonalResponse.error);
+      if (!editPersonalResponse.ok) {
+        alert(editPersonalResponse.error);
         setIsLoading(false);
+        return;
       }
+      alert("정보가 수정되었습니다.");
+      navigate(-1);
     }, []);
 
   return isLoading ? (
     <Loading />
   ) : (
     <div>
-      <form onSubmit={handleSubmit(handleRegisterPersonal)}>
+      <form onSubmit={handleSubmit(handleEditPersonal)}>
         <label>이름</label>
         <input
           type="text"
           {...register("name", { required: "이름을 입력해주세요." })}
+          disabled={true}
         />
         <br />
         <ErrorMessage message={errors?.name?.message} />
@@ -135,6 +165,7 @@ const UserEditPersonalPage = () => {
             pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },
           })}
           placeholder="'-'를 제외한 숫자만 입력하세요."
+          disabled={true}
         />
         <br />
         <ErrorMessage message={errors?.phone?.message} />
@@ -143,15 +174,13 @@ const UserEditPersonalPage = () => {
         <input
           type="email"
           {...register("email", { required: "이메일을 입력해주세요." })}
+          disabled={true}
         />
         <br />
         <ErrorMessage message={errors?.email?.message} />
         <br />
         <label>비밀번호</label>
-        <input
-          type="password"
-          {...register("password", { required: "비밀번호를 입력해주세요." })}
-        />
+        <input type="password" {...register("password")} />
         <br />
         <ErrorMessage message={errors?.password?.message} />
         <br />
@@ -214,9 +243,7 @@ const UserEditPersonalPage = () => {
                   <td>
                     <input
                       type="date"
-                      {...register(`careers.${index}.endAt` as const, {
-                        required: "퇴사일을 입력해주세요.",
-                      })}
+                      {...register(`careers.${index}.endAt` as const)}
                     />
                   </td>
                   <td>
@@ -236,7 +263,7 @@ const UserEditPersonalPage = () => {
           추가하기
         </button>
         <br />
-        <button type="submit">회원가입</button>
+        <button type="submit">저장하기</button>
       </form>
     </div>
   );

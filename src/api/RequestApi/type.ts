@@ -32,7 +32,7 @@ export interface IRequestRegisterRequest extends IApiRequest {
   phone: string;
   careers: Array<ICareer>;
   question: string;
-  deadline?: Date | null;
+  deadline: string | null;
 }
 
 export interface IRequestRegisterResponse extends IApiResponse {
@@ -109,7 +109,7 @@ export interface IRequestListCandidateResponse extends IApiResponse {
 export interface IRequestAgreeRequest extends IApiRequest {
   requestId: number;
   agrees: Array<IAgree>;
-  agreeDescription?: string;
+  agreeDescription: string | null;
 }
 
 export interface IRequestAgreeResponse extends IApiResponse {}

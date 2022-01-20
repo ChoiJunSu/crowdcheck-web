@@ -43,8 +43,8 @@ export interface ICareer {
   corporateId: number;
   corporateName: string;
   department?: string;
-  startAt: Date;
-  endAt?: Date | null;
+  startAt: string;
+  endAt: string | null;
 }
 
 export interface IAuthRegisterPersonalRequest extends IApiRequest {
