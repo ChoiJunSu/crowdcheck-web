@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestHeaders } from "axios";
 import {
   IGetRequest,
   IGetResponse,
@@ -9,14 +9,20 @@ import { API_URL } from "@constants/url";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 class ApiClient {
-  static getHeaders = (headers: any): any => {
+  static getHeaders = (headers: AxiosRequestHeaders): AxiosRequestHeaders => {
     const authToken = localStorage.getItem(LOCAL_AUTH_TOKEN);
-
-    return {
-      ...headers,
-      Authorization: `Bearer ${authToken}`,
-      "Content-Type": "application/json",
-    };
+    if (headers["Content-Type"]) {
+      return {
+        ...headers,
+        Authorization: `Bearer ${authToken}`,
+      };
+    } else {
+      return {
+        ...headers,
+        Authorization: `Bearer ${authToken}`,
+        "Content-Type": "application/json",
+      };
+    }
   };
 
   static handleAxiosError = (e: any): string => {

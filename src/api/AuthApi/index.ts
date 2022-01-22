@@ -61,7 +61,7 @@ class AuthApi {
   ): Promise<IAuthRegisterCorporateResponse> => {
     return (await ApiClient.post({
       url: "/auth/register/corporate",
-      data,
+      data: data.formData,
     })) as IAuthRegisterCorporateResponse;
   };
 }

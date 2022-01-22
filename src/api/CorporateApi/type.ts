@@ -18,3 +18,9 @@ export interface ICorporateAddRequest extends IApiRequest {
 }
 
 export interface ICorporateAddResponse extends IApiResponse {}
+
+export interface ICorporateVerifyRequest extends IApiRequest {
+  formData: FormData;
+}
+
+export interface ICorporateVerifyResponse extends IApiResponse {}

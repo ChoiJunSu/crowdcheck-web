@@ -58,10 +58,7 @@ export interface IAuthRegisterPersonalRequest extends IApiRequest {
 export interface IAuthRegisterPersonalResponse extends IApiResponse {}
 
 export interface IAuthRegisterCorporateRequest extends IApiRequest {
-  name: string;
-  phone: string;
-  email: string;
-  password: string;
+  formData: FormData;
 }
 
 export interface IAuthRegisterCorporateResponse extends IApiResponse {}

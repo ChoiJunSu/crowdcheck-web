@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
-import { IRegisterPersonalFormData } from "@components/auth/register/personal/RegisterPersonalForm/type";
 import {
   ICorporate,
   ICorporateSearchRequest,
@@ -8,8 +7,6 @@ import {
 } from "@api/CorporateApi/type";
 import { useNavigate } from "react-router-dom";
 import CorporateApi from "@api/CorporateApi";
-import AuthApi from "@api/AuthApi";
-import { IAuthRegisterPersonalRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import { IUserEditPersonalFormData } from "@views/user/edit/UserEditPersonalView/type";

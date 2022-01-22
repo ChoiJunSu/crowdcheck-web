@@ -1,8 +1,7 @@
-import LoginOauthButton from "@components/auth/login/oauth/LoginOauthButton";
-import { Link } from "react-router-dom";
 import { useCallback, useState } from "react";
 import { TUserType } from "@api/UserApi/type";
-import LoginForm from "@components/auth/login/LoginForm";
+import AuthLoginPersonalView from "@views/auth/login/AuthLoginPersonalView";
+import AuthLoginCorporateView from "@views/auth/login/AuthLoginCorporateView";
 
 const LoginPage = () => {
   const [type, setType] = useState<TUserType>("personal");
@@ -16,24 +15,8 @@ const LoginPage = () => {
       <h1>로그인 페이지</h1>
       <button onClick={() => handleChangeType("personal")}>개인회원</button>
       <button onClick={() => handleChangeType("corporate")}>기업회원</button>
-      {type === "personal" && (
-        <div>
-          <LoginForm type={"personal"} />
-          <LoginOauthButton provider={"google"} />
-          <LoginOauthButton provider={"kakao"} />
-        </div>
-      )}
-      {type === "personal" && (
-        <div>
-          <Link to="/auth/register/personal">이메일로 가입하기</Link>
-        </div>
-      )}
-      {type === "corporate" && (
-        <div>
-          <LoginForm type={"corporate"} />
-          <Link to="/auth/register/corporate">기업회원으로 가입하기</Link>
-        </div>
-      )}
+      {type === "personal" && <AuthLoginPersonalView />}
+      {type === "corporate" && <AuthLoginCorporateView />}
     </div>
   );
 };

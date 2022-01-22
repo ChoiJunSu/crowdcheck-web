@@ -4,6 +4,8 @@ import {
   ICorporateAddResponse,
   ICorporateSearchRequest,
   ICorporateSearchResponse,
+  ICorporateVerifyRequest,
+  ICorporateVerifyResponse,
 } from "@api/CorporateApi/type";
 
 class CorporateApi {
@@ -23,6 +25,15 @@ class CorporateApi {
       url: "/corporate/add",
       data,
     })) as ICorporateAddResponse;
+  };
+
+  static verify = async (
+    data: ICorporateVerifyRequest
+  ): Promise<ICorporateVerifyResponse> => {
+    return await ApiClient.post({
+      url: "/corporate/verify",
+      data: data.formData,
+    });
   };
 }
 
