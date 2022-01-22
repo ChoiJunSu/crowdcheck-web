@@ -11,6 +11,8 @@ import {
   IAuthRegisterPersonalResponse,
   IAuthLoginCandidateRequest,
   IAuthLoginCandidateResponse,
+  IAuthRegisterOauthRequest,
+  IAuthRegisterOauthResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
@@ -54,6 +56,15 @@ class AuthApi {
       url: "/auth/register/personal",
       data,
     })) as IAuthRegisterPersonalResponse;
+  };
+
+  static registerOauth = async (
+    data: IAuthRegisterOauthRequest
+  ): Promise<IAuthRegisterOauthResponse> => {
+    return (await ApiClient.post({
+      url: "/auth/register/oauth",
+      data,
+    })) as IAuthRegisterOauthResponse;
   };
 
   static registerCorporate = async (

@@ -20,7 +20,7 @@ const AuthLoginPersonalView = () => {
       <LoginForm type={"personal"} />
       {oauthLoginButtons.map(({ text, link }, index) => (
         <div key={index}>
-          <Link to={link}>{text}</Link>
+          <button onClick={() => (location.href = link)}>{text}</button>
         </div>
       ))}
       <Link to="/auth/register/personal">이메일로 가입하기</Link>

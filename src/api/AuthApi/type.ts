@@ -21,6 +21,7 @@ export interface IAuthLoginOauthRequest extends IApiRequest {
 
 export interface IAuthLoginOauthResponse extends IApiResponse {
   authToken: string;
+  registerToken: string;
 }
 
 export interface IAuthLoginCandidateRequest extends IApiRequest {
@@ -56,6 +57,15 @@ export interface IAuthRegisterPersonalRequest extends IApiRequest {
 }
 
 export interface IAuthRegisterPersonalResponse extends IApiResponse {}
+
+export interface IAuthRegisterOauthRequest extends IApiRequest {
+  name: string;
+  phone: string;
+  careers: Array<ICareer>;
+  registerToken: string;
+}
+
+export interface IAuthRegisterOauthResponse extends IApiResponse {}
 
 export interface IAuthRegisterCorporateRequest extends IApiRequest {
   formData: FormData;

@@ -14,37 +14,44 @@ const LoginOauthCallbackPage = ({ provider }: ILoginOauthCallbackPageProps) => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const code = searchParams.get("code");
+  if (!code || !provider) {
+    alert("잘못된 접근입니다.");
+    navigate(-1);
+  }
   const redirectUri = `${WEB_URL}/auth/login/oauth/callback/${provider}`;
   const setLoginState = useSetRecoilState(loginAtom);
 
   useEffect(() => {
     (async () => {
-      if (provider && code) {
-        const loginOauthResponse = await AuthApi.loginOauth({
-          provider,
-          code,
-          redirectUri,
-        } as IAuthLoginOauthRequest);
-        if (!loginOauthResponse.ok) {
-          alert(loginOauthResponse.error || "로그인 오류입니다.");
-        } else {
-          const { authToken } = loginOauthResponse;
-          try {
-            const { name, type } = jwtDecode(authToken) as IAuthTokenPayload;
-            setLoginState({
-              isLoggedIn: true,
-              authToken,
-              name,
-              type,
-            });
-            localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
-          } catch (e) {
-            console.error(e);
-            alert("로그인 오류입니다.");
-          }
-        }
-        navigate("/");
+      const loginOauthResponse = await AuthApi.loginOauth({
+        provider,
+        code,
+        redirectUri,
+      } as IAuthLoginOauthRequest);
+      console.log(loginOauthResponse);
+      if (!loginOauthResponse.ok) {
+        alert(loginOauthResponse.error || "로그인 오류입니다.");
+        if (loginOauthResponse.error === "회원가입이 필요합니다.")
+          navigate(
+            `/auth/register/oauth?registerToken=${loginOauthResponse.registerToken}`
+          );
+        return;
       }
+      const { authToken } = loginOauthResponse;
+      try {
+        const { name, type } = jwtDecode(authToken) as IAuthTokenPayload;
+        setLoginState({
+          isLoggedIn: true,
+          authToken,
+          name,
+          type,
+        });
+        localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
+      } catch (e) {
+        console.error(e);
+        alert("로그인 오류입니다.");
+      }
+      navigate("/");
     })();
   }, []);
 

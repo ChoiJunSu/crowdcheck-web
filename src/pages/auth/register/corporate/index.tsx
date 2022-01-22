@@ -1,6 +1,5 @@
 import { ChangeEvent, useCallback, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterCorporateRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
@@ -12,11 +11,9 @@ const AuthRegisterCorporatePage = () => {
   const [registration, setRegistration] = useState<File | null>(null);
   const {
     register,
-    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<IRegisterCorporateFormData>();
-  const navigate = useNavigate();
 
   const handleUploadRegistration = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -45,15 +42,14 @@ const AuthRegisterCorporatePage = () => {
         const registerCorporateResponse = await AuthApi.registerCorporate({
           formData,
         } as IAuthRegisterCorporateRequest);
-        if (registerCorporateResponse.ok) {
-          alert(
-            "회원가입 신청이 완료되었습니다. 사업자등록증 확인이 완료되면 서비스를 이용하실 수 있습니다. 최대 2 영업일이 소요되며 전화번호로 알려드립니다."
-          );
-          navigate("/");
-        } else {
+        setIsLoading(false);
+        if (!registerCorporateResponse.ok) {
           alert(registerCorporateResponse.error);
-          setIsLoading(false);
+          return;
         }
+        alert(
+          "회원가입 신청이 완료되었습니다. 사업자등록증 확인이 완료되면 서비스를 이용하실 수 있습니다. 최대 2 영업일이 소요되며 전화번호로 알려드립니다."
+        );
       },
       [registration]
     );
