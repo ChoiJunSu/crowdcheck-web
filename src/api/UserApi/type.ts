@@ -16,10 +16,21 @@ export interface IUserGetPersonalResponse extends IApiResponse {
   careers: Array<ICareer>;
 }
 
+export interface IUserGetCorporateRequest extends IApiRequest {}
+
+export interface IUserGetCorporateResponse extends IApiResponse {
+  user: IUser;
+}
+
 export interface IUserEditPersonalRequest extends IApiRequest {
-  name: string;
   password: string | null;
   careers: Array<ICareer>;
 }
 
 export interface IUserEditPersonalResponse extends IApiResponse {}
+
+export interface IUserEditCorporateRequest extends IApiRequest {
+  password: string | null;
+}
+
+export interface IUserEditCorporateResponse extends IApiResponse {}

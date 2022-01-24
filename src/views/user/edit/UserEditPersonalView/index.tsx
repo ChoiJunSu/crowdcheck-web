@@ -1,12 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
-import {
-  ICorporate,
-  ICorporateSearchRequest,
-  ICorporateSearchResponse,
-} from "@api/CorporateApi/type";
 import { useNavigate } from "react-router-dom";
-import CorporateApi from "@api/CorporateApi";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import { IUserEditPersonalFormData } from "@views/user/edit/UserEditPersonalView/type";
@@ -15,7 +9,7 @@ import { IUserEditPersonalRequest } from "@api/UserApi/type";
 import CareerField from "@components/base/form/CareerField";
 import { ICareer } from "@api/AuthApi/type";
 
-const UserEditPersonalPage = () => {
+const UserEditPersonalView = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [careers, setCareers] = useState<Array<ICareer>>([]);
@@ -32,8 +26,6 @@ const UserEditPersonalPage = () => {
   });
   const {
     register,
-    control,
-    watch,
     setValue,
     handleSubmit,
     formState: { errors },
@@ -124,4 +116,4 @@ const UserEditPersonalPage = () => {
   );
 };
 
-export default UserEditPersonalPage;
+export default UserEditPersonalView;
