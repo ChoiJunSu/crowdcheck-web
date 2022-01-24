@@ -9,6 +9,7 @@ import CareerField from "@components/base/form/CareerField";
 import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
 
 const AuthRegisterPersonalPage = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const methods = useForm<IRegisterPersonalFormData>({
     defaultValues: {
@@ -26,7 +27,6 @@ const AuthRegisterPersonalPage = () => {
     handleSubmit,
     formState: { errors },
   } = methods;
-  const navigate = useNavigate();
 
   const handleRegisterPersonal: SubmitHandler<IRegisterPersonalFormData> =
     useCallback(async (data) => {

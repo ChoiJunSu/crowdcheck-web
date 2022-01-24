@@ -41,9 +41,7 @@ const Header = () => {
           }
         }
       })();
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   }, []);
 
   return (

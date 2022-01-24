@@ -28,7 +28,6 @@ const LoginOauthCallbackPage = ({ provider }: ILoginOauthCallbackPageProps) => {
         code,
         redirectUri,
       } as IAuthLoginOauthRequest);
-      console.log(loginOauthResponse);
       if (!loginOauthResponse.ok) {
         alert(loginOauthResponse.error || "로그인 오류입니다.");
         if (loginOauthResponse.error === "회원가입이 필요합니다.")
@@ -48,7 +47,6 @@ const LoginOauthCallbackPage = ({ provider }: ILoginOauthCallbackPageProps) => {
         });
         localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
       } catch (e) {
-        console.error(e);
         alert("로그인 오류입니다.");
       }
       navigate("/");
