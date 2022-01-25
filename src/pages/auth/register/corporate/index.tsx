@@ -5,54 +5,54 @@ import { IAuthRegisterCorporateRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import { IRegisterCorporateFormData } from "@pages/auth/register/corporate/type";
+import { useNavigate } from "react-router-dom";
 
 const AuthRegisterCorporatePage = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [registration, setRegistration] = useState<File | null>(null);
   const {
     register,
     handleSubmit,
+    getValues,
+    setValue,
     formState: { errors },
   } = useForm<IRegisterCorporateFormData>();
 
-  const handleUploadRegistration = useCallback(
+  const handleUploadCertificate = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const {
         target: { files },
       } = event;
       if (!files || !files[0]) return;
-      setRegistration(files[0]);
+      setValue("certificate", files[0]);
     },
     []
   );
 
   const handleRegisterCorporate: SubmitHandler<IRegisterCorporateFormData> =
-    useCallback(
-      async (data) => {
-        if (!registration) {
-          alert("사업자등록증을 업로드 해주세요.");
-          return;
-        }
-        setIsLoading(true);
-        const formData = new FormData();
-        formData.append("registration", registration);
-        for (const [key, value] of Object.entries(data)) {
-          formData.append(key, value);
-        }
-        const registerCorporateResponse = await AuthApi.registerCorporate({
-          formData,
-        } as IAuthRegisterCorporateRequest);
-        setIsLoading(false);
-        if (!registerCorporateResponse.ok) {
-          alert(registerCorporateResponse.error);
-          return;
-        }
-        alert(
-          "회원가입 신청이 완료되었습니다. 사업자등록증 확인이 완료되면 서비스를 이용하실 수 있습니다. 최대 2 영업일이 소요되며 전화번호로 알려드립니다."
-        );
-      },
-      [registration]
-    );
+    useCallback(async (data) => {
+      if (!getValues("certificate")) {
+        alert("사업자등록증을 업로드 해주세요.");
+        return;
+      }
+      setIsLoading(true);
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(data)) {
+        formData.append(key, value);
+      }
+      const registerCorporateResponse = await AuthApi.registerCorporate({
+        formData,
+      } as IAuthRegisterCorporateRequest);
+      setIsLoading(false);
+      if (!registerCorporateResponse.ok) {
+        alert(registerCorporateResponse.error);
+        return;
+      }
+      alert(
+        "회원가입 신청이 완료되었습니다. 사업자등록증 확인이 완료되면 서비스를 이용하실 수 있습니다. 최대 2 영업일이 소요되며 전화번호로 알려드립니다."
+      );
+      navigate("/");
+    }, []);
 
   return isLoading ? (
     <Loading />
@@ -70,7 +70,7 @@ const AuthRegisterCorporatePage = () => {
         <ErrorMessage message={errors?.name?.message} />
         <br />
         <label>사업자등록증</label>
-        <input type="file" onChange={handleUploadRegistration} />
+        <input type="file" onChange={handleUploadCertificate} />
         <br />
         <br />
         <label>전화번호</label>

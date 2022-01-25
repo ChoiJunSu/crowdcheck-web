@@ -11,6 +11,8 @@ import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
 const AuthRegisterPersonalPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isPhoneSent, setIsPhoneSent] = useState<boolean>(false);
+  const [isPhoneVerified, setIsPhoneVerified] = useState<boolean>(false);
   const methods = useForm<IRegisterPersonalFormData>({
     defaultValues: {
       careers: [
@@ -27,6 +29,12 @@ const AuthRegisterPersonalPage = () => {
     handleSubmit,
     formState: { errors },
   } = methods;
+
+  const handlePhoneSend = useCallback(() => {
+    setIsPhoneSent(true);
+  }, []);
+
+  const handlePhoneVerify = useCallback(() => {}, []);
 
   const handleRegisterPersonal: SubmitHandler<IRegisterPersonalFormData> =
     useCallback(async (data) => {
@@ -65,10 +73,24 @@ const AuthRegisterPersonalPage = () => {
               pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },
             })}
             placeholder="'-'를 제외한 숫자만 입력하세요."
+            disabled={isPhoneSent}
           />
+          <button type="button" onClick={handlePhoneSend}>
+            인증번호 받기
+          </button>
           <br />
           <ErrorMessage message={errors?.phone?.message} />
           <br />
+          <input
+            type="text"
+            {...register("phoneVerify", {
+              required: "인증번호를 입력해주세요.",
+            })}
+            disabled={isPhoneVerified}
+          />
+          <button type="button" onClick={handlePhoneVerify}>
+            인증하기
+          </button>
           <label>이메일</label>
           <input
             type="email"

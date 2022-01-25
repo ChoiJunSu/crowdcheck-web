@@ -4,9 +4,15 @@ import { ICorporate } from "@api/CorporateApi/type";
 import CorporateApi from "@api/CorporateApi";
 import Modal from "react-modal";
 import { ICareerFieldProps } from "@components/base/form/CareerField/type";
+import ErrorMessage from "@components/base/form/ErrorMessage";
 
 const CareerField = ({ careers }: ICareerFieldProps) => {
-  const { register, control, setValue } = useFormContext();
+  const {
+    register,
+    control,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "careers",
@@ -105,6 +111,9 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
                   onFocus={() => setCareerFocusIndex(index)}
                   disabled={true}
                 />
+                <ErrorMessage
+                  message={errors.careers?.[index]?.corporateName?.message}
+                />
                 <button type="button" onClick={() => handleOpenModal(index)}>
                   검색
                 </button>
@@ -121,6 +130,9 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
                   {...register(`careers.${index}.startAt` as const, {
                     required: "입사일을 입력해주세요.",
                   })}
+                />
+                <ErrorMessage
+                  message={errors.careers?.[index]?.startAt?.message}
                 />
               </td>
               <td>
