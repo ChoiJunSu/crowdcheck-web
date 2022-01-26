@@ -5,11 +5,14 @@ import CorporateApi from "@api/CorporateApi";
 import Modal from "react-modal";
 import { ICareerFieldProps } from "@components/base/form/CareerField/type";
 import ErrorMessage from "@components/base/form/ErrorMessage";
+import UserApi from "@api/UserApi";
+import { TCareerStatus } from "@api/AuthApi/type";
 
 const CareerField = ({ careers }: ICareerFieldProps) => {
   const {
     register,
     control,
+    getValues,
     setValue,
     formState: { errors },
   } = useFormContext();
@@ -17,21 +20,34 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
     control,
     name: "careers",
   });
+  const [modalMode, setModalMode] = useState<null | "corporate" | "verify">(
+    null
+  );
   const [careerFocusIndex, setCareerFocusIndex] = useState<number>(0);
-  const [corporates, setCorporates] = useState<Array<ICorporate>>([]);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [corporateList, setCorporateList] = useState<Array<ICorporate>>([]);
   const [searchCorporateWord, setSearchCorporateWord] = useState<string>("");
   const addCorporateRef = useRef<HTMLInputElement>(null);
+  const [careerStatusList, setCareerStatusList] = useState<
+    Array<{ status: TCareerStatus; careerId: number }>
+  >([]);
 
   useEffect(() => {
     if (!careers || careers.length === 0) return;
-    careers.forEach(({ corporateName, department, startAt, endAt }, index) => {
-      handleAppendCareer();
-      setValue(`careers.${index}.corporateName`, corporateName);
-      setValue(`careers.${index}.department`, department);
-      setValue(`careers.${index}.startAt`, startAt.substring(0, 10));
-      if (endAt) setValue(`careers.${index}.endAt`, endAt.substring(0, 10));
-    });
+    const newCareerStatusList: Array<{
+      status: TCareerStatus;
+      careerId: number;
+    }> = [];
+    careers.forEach(
+      ({ id, corporateName, department, startAt, endAt, status }, index) => {
+        handleAppendCareer();
+        setValue(`careers.${index}.corporateName`, corporateName);
+        setValue(`careers.${index}.department`, department);
+        setValue(`careers.${index}.startAt`, startAt.substring(0, 10));
+        if (endAt) setValue(`careers.${index}.endAt`, endAt.substring(0, 10));
+        if (status) newCareerStatusList.push({ status, careerId: id });
+      }
+    );
+    setCareerStatusList(newCareerStatusList);
     handleRemoveCareer(careers.length);
   }, [careers]);
 
@@ -47,11 +63,14 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
     remove(careerIndex);
   }, []);
 
-  const handleOpenModal = useCallback((careerIndex: number) => {
-    setCorporates([]);
-    setCareerFocusIndex(careerIndex);
-    setIsModalOpen(true);
-  }, []);
+  const handleOpenModal = useCallback(
+    (mode: "corporate" | "verify", careerIndex: number) => {
+      setCorporateList([]);
+      setCareerFocusIndex(careerIndex);
+      setModalMode(mode);
+    },
+    []
+  );
 
   const handleSearchCorporate = useCallback(
     async (event: ChangeEvent<HTMLInputElement>) => {
@@ -62,16 +81,18 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
       if (!value || value.length < 2) return;
       const searchResponse = await CorporateApi.search({ word: value });
       if (!searchResponse.ok) alert(searchResponse.error);
-      setCorporates(searchResponse.corporates);
+      setCorporateList(searchResponse.corporates);
+      if (addCorporateRef.current) addCorporateRef.current.value = value;
     },
-    []
+    [addCorporateRef.current]
   );
 
   const handleSelectCorporate = useCallback(
     ({ id, name }: ICorporate) => {
-      setCorporates([]);
+      setCorporateList([]);
+      setSearchCorporateWord("");
       setValue(`careers.${careerFocusIndex}.corporateName`, name);
-      setIsModalOpen(false);
+      setModalMode(null);
     },
     [careerFocusIndex]
   );
@@ -85,8 +106,46 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
       `careers.${careerFocusIndex}.corporateName`,
       addCorporateRef.current.value
     );
-    setIsModalOpen(false);
+    setModalMode(null);
   }, [careerFocusIndex, addCorporateRef]);
+
+  const handleUploadCertificate = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const {
+        target: { files },
+      } = event;
+      if (!files || !files[0]) return;
+      setValue("certificate", files[0]);
+    },
+    []
+  );
+
+  const handleVerifyCareer = useCallback(async () => {
+    const { status, careerId } = careerStatusList[careerFocusIndex];
+    if (status !== "registered") {
+      alert("잘못된 접근입니다.");
+      setModalMode(null);
+      return;
+    } else if (!getValues("certificate")) {
+      alert("증빙자료를 업로드 해주세요.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("careerId", careerId.toString());
+    formData.append("certificate", getValues("certificate"));
+    const careerVerifyResponse = await UserApi.careerVerify({
+      formData,
+    });
+    if (!careerVerifyResponse.ok) {
+      alert(careerVerifyResponse.error);
+      return;
+    }
+    const newCareerStatusList = [...careerStatusList];
+    newCareerStatusList[careerFocusIndex].status = "reviewed";
+    setCareerStatusList(newCareerStatusList);
+    alert("저장되었습니다. 증빙자료 검토 후 인증이 완료됩니다.");
+    setModalMode(null);
+  }, [careerFocusIndex, careerStatusList]);
 
   return (
     <div>
@@ -105,16 +164,17 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
               <td>
                 <input
                   type="text"
-                  {...register(`careers.${index}.corporateName` as const, {
-                    required: "기업이름을 입력해주세요.",
-                  })}
+                  {...register(`careers.${index}.corporateName` as const)}
                   onFocus={() => setCareerFocusIndex(index)}
                   disabled={true}
                 />
                 <ErrorMessage
                   message={errors.careers?.[index]?.corporateName?.message}
                 />
-                <button type="button" onClick={() => handleOpenModal(index)}>
+                <button
+                  type="button"
+                  onClick={() => handleOpenModal("corporate", index)}
+                >
                   검색
                 </button>
               </td>
@@ -127,9 +187,7 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
               <td>
                 <input
                   type="date"
-                  {...register(`careers.${index}.startAt` as const, {
-                    required: "입사일을 입력해주세요.",
-                  })}
+                  {...register(`careers.${index}.startAt` as const)}
                 />
                 <ErrorMessage
                   message={errors.careers?.[index]?.startAt?.message}
@@ -142,6 +200,23 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
                 />
               </td>
               <td>
+                {careerStatusList[index] &&
+                  careerStatusList[index].status === "registered" && (
+                    <button
+                      type="button"
+                      onClick={() => handleOpenModal("verify", index)}
+                    >
+                      인증하기
+                    </button>
+                  )}
+                {careerStatusList[index] &&
+                  careerStatusList[index].status === "reviewed" && (
+                    <a>검토 중</a>
+                  )}
+                {careerStatusList[index] &&
+                  careerStatusList[index].status === "verified" && (
+                    <a>인증 완료</a>
+                  )}
                 <button type="button" onClick={() => handleRemoveCareer(index)}>
                   삭제하기
                 </button>
@@ -153,33 +228,50 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
       <button type="button" onClick={() => handleAppendCareer()}>
         추가하기
       </button>
-      <Modal isOpen={isModalOpen}>
-        <h2>기업 검색</h2>
-        <input type="text" onChange={handleSearchCorporate} />
-        <ul>
-          {corporates.map(({ id, name }, index) => (
-            <li key={index}>
-              {name}{" "}
-              <button
-                type="button"
-                onClick={() => handleSelectCorporate({ id, name })}
-              >
-                선택
-              </button>
-            </li>
-          ))}
-          {searchCorporateWord.length < 2 && (
-            <li>검색어를 두 글자 이상 입력하세요.</li>
-          )}
-          {searchCorporateWord.length >= 2 && corporates.length < 10 && (
-            <li>
-              찾으시는 회사가 없다면
-              <input type="text" ref={addCorporateRef} />
-              <button onClick={handleAddCorporate}>등록</button>
-            </li>
-          )}
-        </ul>
-        <button onClick={() => setIsModalOpen(false)}>닫기</button>
+      <input type="file" {...register("certificate")} hidden={true} />
+      <Modal isOpen={modalMode !== null}>
+        {modalMode === "corporate" && (
+          <div>
+            <h2>기업 검색</h2>
+            <input type="text" onChange={handleSearchCorporate} />
+            <ul>
+              {corporateList.map(({ id, name }, index) => (
+                <li key={index}>
+                  {name}{" "}
+                  <button
+                    type="button"
+                    onClick={() => handleSelectCorporate({ id, name })}
+                  >
+                    선택
+                  </button>
+                </li>
+              ))}
+              {searchCorporateWord.length < 2 && (
+                <li>검색어를 두 글자 이상 입력하세요.</li>
+              )}
+              {searchCorporateWord.length >= 2 && corporateList.length < 10 && (
+                <li>
+                  찾으시는 회사가 없다면
+                  <input type="text" ref={addCorporateRef} />
+                  <button onClick={handleAddCorporate}>등록</button>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+        {modalMode === "verify" && (
+          <div>
+            <h2>경력인증</h2>
+            <label>증빙자료</label>
+            <input type="file" onChange={handleUploadCertificate} />
+            <button type="button" onClick={handleVerifyCareer}>
+              저장하기
+            </button>
+          </div>
+        )}
+        <button type="button" onClick={() => setModalMode(null)}>
+          닫기
+        </button>
       </Modal>
     </div>
   );

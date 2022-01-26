@@ -34,3 +34,9 @@ export interface IUserEditCorporateRequest extends IApiRequest {
 }
 
 export interface IUserEditCorporateResponse extends IApiResponse {}
+
+export interface IUserCareerVerifyRequest extends IApiRequest {
+  formData: FormData;
+}
+
+export interface IUserCareerVerifyResponse extends IApiResponse {}

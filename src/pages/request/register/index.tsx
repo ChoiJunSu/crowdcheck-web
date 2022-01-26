@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import RequestApi from "@api/RequestApi";
@@ -8,8 +8,21 @@ import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import CareerField from "@components/base/form/CareerField";
 import { IRequestRegisterFormData } from "@pages/request/register/type";
+import { useRecoilValue } from "recoil";
+import loginAtom from "@atoms/loginAtom";
 
 const RequestRegisterPage = () => {
+  const navigate = useNavigate();
+  const { type } = useRecoilValue(loginAtom);
+
+  useEffect(() => {
+    if (type !== "corporate") {
+      alert("잘못된 접근입니다.");
+      navigate(-1);
+      return;
+    }
+  }, []);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const methods = useForm<IRequestRegisterFormData>({
     defaultValues: {
@@ -27,7 +40,6 @@ const RequestRegisterPage = () => {
     handleSubmit,
     formState: { errors },
   } = methods;
-  const navigate = useNavigate();
 
   const handleRequestRegister: SubmitHandler<IRequestRegisterFormData> =
     useCallback(async (data) => {

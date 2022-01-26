@@ -3,6 +3,8 @@ import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 
 export type TOauthProvider = "google" | "kakao";
 
+export type TCareerStatus = "registered" | "reviewed" | "verified";
+
 export interface IAuthLoginRequest extends IApiRequest {
   email: string;
   password: string;
@@ -41,11 +43,13 @@ export interface IAuthTokenRenewResponse extends IApiResponse {
 }
 
 export interface ICareer {
+  id: number;
   corporateId: number;
   corporateName: string;
   department?: string;
   startAt: string;
   endAt: string | null;
+  status?: TCareerStatus;
 }
 
 export interface IAuthRegisterPersonalRequest extends IApiRequest {

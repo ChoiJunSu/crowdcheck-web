@@ -19,6 +19,8 @@ const RequestVerifyPage = () => {
     const verifyResponse = await RequestApi.verify({ ...data, requestId });
     if (!verifyResponse.ok) {
       alert(verifyResponse.error);
+      if (verifyResponse.error === "경력 인증이 필요합니다.")
+        navigate("/user/edit");
       return;
     }
     alert("검증에 성공했습니다. 답변 페이지로 이동합니다.");

@@ -1,5 +1,7 @@
 import ApiClient from "@api/ApiClient";
 import {
+  IUserCareerVerifyRequest,
+  IUserCareerVerifyResponse,
   IUserEditCorporateRequest,
   IUserEditCorporateResponse,
   IUserEditPersonalRequest,
@@ -45,6 +47,15 @@ class UserApi {
       url: "/user/edit/corporate",
       data,
     })) as IUserEditCorporateResponse;
+  }
+
+  static async careerVerify(
+    data: IUserCareerVerifyRequest
+  ): Promise<IUserCareerVerifyResponse> {
+    return (await ApiClient.post({
+      url: "/user/career/verify",
+      data: data.formData,
+    })) as IUserCareerVerifyResponse;
   }
 }
 
