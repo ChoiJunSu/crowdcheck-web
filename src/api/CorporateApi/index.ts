@@ -9,32 +9,30 @@ import {
 } from "@api/CorporateApi/type";
 
 class CorporateApi {
-  static search = async (
+  static async search(
     data: ICorporateSearchRequest
-  ): Promise<ICorporateSearchResponse> => {
+  ): Promise<ICorporateSearchResponse> {
     return (await ApiClient.post({
       url: "/corporate/search",
       data,
     })) as ICorporateSearchResponse;
-  };
+  }
 
-  static add = async (
-    data: ICorporateAddRequest
-  ): Promise<ICorporateAddResponse> => {
+  static async add(data: ICorporateAddRequest): Promise<ICorporateAddResponse> {
     return (await ApiClient.post({
       url: "/corporate/add",
       data,
     })) as ICorporateAddResponse;
-  };
+  }
 
-  static verify = async (
+  static async verify(
     data: ICorporateVerifyRequest
-  ): Promise<ICorporateVerifyResponse> => {
+  ): Promise<ICorporateVerifyResponse> {
     return await ApiClient.post({
       url: "/corporate/verify",
       data: data.formData,
     });
-  };
+  }
 }
 
 export default CorporateApi;

@@ -13,68 +13,88 @@ import {
   IAuthLoginCandidateResponse,
   IAuthRegisterOauthRequest,
   IAuthRegisterOauthResponse,
+  IAuthPhoneSendRequest,
+  IAuthPhoneSendResponse,
+  IAuthPhoneVerifyRequest,
+  IAuthPhoneVerifyResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
-  static login = async (
-    data: IAuthLoginRequest
-  ): Promise<IAuthLoginResponse> => {
+  static async login(data: IAuthLoginRequest): Promise<IAuthLoginResponse> {
     return (await ApiClient.post({
       url: "/auth/login",
       data,
     })) as IAuthLoginResponse;
-  };
+  }
 
-  static loginOauth = async (
+  static async loginOauth(
     params: IAuthLoginOauthRequest
-  ): Promise<IAuthLoginOauthResponse> => {
+  ): Promise<IAuthLoginOauthResponse> {
     return (await ApiClient.get({
       url: "/auth/login/oauth",
       params,
     })) as IAuthLoginOauthResponse;
-  };
+  }
 
-  static loginCandidate = async (
+  static async loginCandidate(
     data: IAuthLoginCandidateRequest
-  ): Promise<IAuthLoginCandidateResponse> => {
+  ): Promise<IAuthLoginCandidateResponse> {
     return (await ApiClient.post({
       url: "/auth/login/candidate",
       data,
     })) as IAuthLoginCandidateResponse;
-  };
+  }
 
-  static tokenRenew = async (): Promise<IAuthTokenRenewResponse> => {
+  static async tokenRenew(): Promise<IAuthTokenRenewResponse> {
     return (await ApiClient.get({
       url: "/auth/token/renew",
     })) as IAuthTokenRenewResponse;
-  };
+  }
 
-  static registerPersonal = async (
+  static async registerPersonal(
     data: IAuthRegisterPersonalRequest
-  ): Promise<IAuthRegisterPersonalResponse> => {
+  ): Promise<IAuthRegisterPersonalResponse> {
     return (await ApiClient.post({
       url: "/auth/register/personal",
       data,
     })) as IAuthRegisterPersonalResponse;
-  };
+  }
 
-  static registerOauth = async (
+  static async registerOauth(
     data: IAuthRegisterOauthRequest
-  ): Promise<IAuthRegisterOauthResponse> => {
+  ): Promise<IAuthRegisterOauthResponse> {
     return (await ApiClient.post({
       url: "/auth/register/oauth",
       data,
     })) as IAuthRegisterOauthResponse;
-  };
+  }
 
-  static registerCorporate = async (
+  static async registerCorporate(
     data: IAuthRegisterCorporateRequest
-  ): Promise<IAuthRegisterCorporateResponse> => {
+  ): Promise<IAuthRegisterCorporateResponse> {
     return (await ApiClient.post({
       url: "/auth/register/corporate",
       data: data.formData,
     })) as IAuthRegisterCorporateResponse;
-  };
+  }
+
+  static async phoneSend(
+    data: IAuthPhoneSendRequest
+  ): Promise<IAuthPhoneSendResponse> {
+    return (await ApiClient.post({
+      url: "/auth/phone/send",
+      data,
+    })) as IAuthPhoneSendResponse;
+  }
+
+  static async phoneVerify(
+    data: IAuthPhoneVerifyRequest
+  ): Promise<IAuthPhoneVerifyResponse> {
+    return (await ApiClient.post({
+      url: "/auth/phone/verify",
+      data,
+    })) as IAuthPhoneVerifyResponse;
+  }
 }
 
 export default AuthApi;

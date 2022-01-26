@@ -9,7 +9,7 @@ import { API_URL } from "@constants/url";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 class ApiClient {
-  static getHeaders = (headers: AxiosRequestHeaders): AxiosRequestHeaders => {
+  static getHeaders(headers: AxiosRequestHeaders): AxiosRequestHeaders {
     const authToken = localStorage.getItem(LOCAL_AUTH_TOKEN);
     if (headers["Content-Type"]) {
       return {
@@ -23,9 +23,9 @@ class ApiClient {
         "Content-Type": "application/json",
       };
     }
-  };
+  }
 
-  static handleAxiosError = (e: any): string => {
+  static handleAxiosError(e: any): string {
     if (e.response) return "서버 오류입니다.";
     const { status, data } = e.response;
     if (status === 401) {
@@ -39,13 +39,13 @@ class ApiClient {
     }
 
     return "서버 오류입니다.";
-  };
+  }
 
-  static get = async ({
+  static async get({
     url,
     params,
     headers,
-  }: IGetRequest): Promise<IGetResponse> => {
+  }: IGetRequest): Promise<IGetResponse> {
     let response: IGetResponse = {
       ok: false,
       error: "",
@@ -61,13 +61,13 @@ class ApiClient {
     }
 
     return response;
-  };
+  }
 
-  static post = async ({
+  static async post({
     url,
     data,
     headers,
-  }: IPostRequest): Promise<IPostResponse> => {
+  }: IPostRequest): Promise<IPostResponse> {
     let response: IPostResponse = {
       ok: false,
       error: "",
@@ -82,7 +82,7 @@ class ApiClient {
     }
 
     return response;
-  };
+  }
 }
 
 export default ApiClient;

@@ -1,22 +1,24 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterCorporateRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import { IRegisterCorporateFormData } from "@pages/auth/register/corporate/type";
 import { useNavigate } from "react-router-dom";
+import PhoneField from "@components/auth/register/PhoneField";
 
 const AuthRegisterCorporatePage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const methods = useForm<IRegisterCorporateFormData>();
   const {
     register,
     handleSubmit,
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<IRegisterCorporateFormData>();
+  } = methods;
 
   const handleUploadCertificate = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -58,51 +60,44 @@ const AuthRegisterCorporatePage = () => {
     <Loading />
   ) : (
     <div>
-      <form onSubmit={handleSubmit(handleRegisterCorporate)}>
-        <label>기업이름</label>
-        <input
-          type="text"
-          {...register("name", {
-            required: "기업이름을 입력해주세요.",
-          })}
-        />
-        <br />
-        <ErrorMessage message={errors?.name?.message} />
-        <br />
-        <label>사업자등록증</label>
-        <input type="file" onChange={handleUploadCertificate} />
-        <br />
-        <br />
-        <label>전화번호</label>
-        <input
-          type="text"
-          {...register("phone", {
-            required: "전화번호를 입력해주세요.",
-            pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },
-          })}
-          placeholder="'-'를 제외한 숫자만 입력하세요."
-        />
-        <br />
-        <ErrorMessage message={errors?.phone?.message} />
-        <br />
-        <label>이메일</label>
-        <input
-          type="email"
-          {...register("email", { required: "이메일을 입력해주세요." })}
-        />
-        <br />
-        <ErrorMessage message={errors?.email?.message} />
-        <br />
-        <label>비밀번호</label>
-        <input
-          type="password"
-          {...register("password", { required: "비밀번호를 입력해주세요." })}
-        />
-        <br />
-        <ErrorMessage message={errors?.password?.message} />
-        <br />
-        <button type="submit">회원가입</button>
-      </form>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(handleRegisterCorporate)}>
+          <label>기업이름</label>
+          <input
+            type="text"
+            {...register("name", {
+              required: "기업이름을 입력해주세요.",
+            })}
+          />
+          <br />
+          <ErrorMessage message={errors?.name?.message} />
+          <br />
+          <label>사업자등록증</label>
+          <input type="file" onChange={handleUploadCertificate} />
+          <br />
+          <br />
+          <label>전화번호</label>
+          <PhoneField />
+          <br />
+          <label>이메일</label>
+          <input
+            type="email"
+            {...register("email", { required: "이메일을 입력해주세요." })}
+          />
+          <br />
+          <ErrorMessage message={errors?.email?.message} />
+          <br />
+          <label>비밀번호</label>
+          <input
+            type="password"
+            {...register("password", { required: "비밀번호를 입력해주세요." })}
+          />
+          <br />
+          <ErrorMessage message={errors?.password?.message} />
+          <br />
+          <button type="submit">회원가입</button>
+        </form>
+      </FormProvider>
     </div>
   );
 };

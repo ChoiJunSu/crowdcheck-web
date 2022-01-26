@@ -7,6 +7,7 @@ import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import CareerField from "@components/base/form/CareerField";
 import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
+import PhoneField from "@components/auth/register/PhoneField";
 
 const AuthRegisterOauthPage = () => {
   const navigate = useNavigate();
@@ -66,14 +67,7 @@ const AuthRegisterOauthPage = () => {
           <ErrorMessage message={errors?.name?.message} />
           <br />
           <label>전화번호</label>
-          <input
-            type="text"
-            {...register("phone", {
-              required: "전화번호를 입력해주세요.",
-              pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },
-            })}
-            placeholder="'-'를 제외한 숫자만 입력하세요."
-          />
+          <PhoneField />
           <br />
           <ErrorMessage message={errors?.phone?.message} />
           <br />

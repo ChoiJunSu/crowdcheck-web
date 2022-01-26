@@ -25,98 +25,95 @@ import {
 } from "@api/RequestApi/type";
 
 class RequestApi {
-  static register = async (
+  static async register(
     data: IRequestRegisterRequest
-  ): Promise<IRequestRegisterResponse> => {
+  ): Promise<IRequestRegisterResponse> {
     return (await ApiClient.post({
       url: "/request/register",
       data,
     })) as IRequestRegisterResponse;
-  };
+  }
 
-  static getReceiver = async (
+  static async getReceiver(
     params: IRequestGetReceiverRequest
-  ): Promise<IRequestGetReceiverResponse> => {
+  ): Promise<IRequestGetReceiverResponse> {
     return (await ApiClient.get({
       url: "/request/get/receiver",
       params,
     })) as IRequestGetReceiverResponse;
-  };
+  }
 
-  static getCorporate = async (
+  static async getCorporate(
     params: IRequestGetCorporateRequest
-  ): Promise<IRequestGetCorporateResponse> => {
+  ): Promise<IRequestGetCorporateResponse> {
     return (await ApiClient.get({
       url: "/request/get/corporate",
       params,
     })) as IRequestGetCorporateResponse;
-  };
+  }
 
-  static getCandidate = async (
+  static async getCandidate(
     params: IRequestGetCandidateRequest
-  ): Promise<IRequestGetCandidateResponse> => {
+  ): Promise<IRequestGetCandidateResponse> {
     return (await ApiClient.get({
       url: "/request/get/candidate",
       params,
     })) as IRequestGetCandidateResponse;
-  };
+  }
 
-  static listReceiver =
-    async ({}: IRequestListReceiverRequest): Promise<IRequestListReceiverResponse> => {
-      return (await ApiClient.get({
-        url: "/request/list/receiver",
-      })) as IRequestListReceiverResponse;
-    };
+  static async listReceiver({}: IRequestListReceiverRequest): Promise<IRequestListReceiverResponse> {
+    return (await ApiClient.get({
+      url: "/request/list/receiver",
+    })) as IRequestListReceiverResponse;
+  }
 
-  static listCorporate =
-    async ({}: IRequestListCorporateRequest): Promise<IRequestListCorporateResponse> => {
-      return (await ApiClient.get({
-        url: "/request/list/corporate",
-      })) as IRequestListCorporateResponse;
-    };
+  static async listCorporate({}: IRequestListCorporateRequest): Promise<IRequestListCorporateResponse> {
+    return (await ApiClient.get({
+      url: "/request/list/corporate",
+    })) as IRequestListCorporateResponse;
+  }
 
-  static listCandidate =
-    async ({}: IRequestListCandidateRequest): Promise<IRequestListCandidateResponse> => {
-      return (await ApiClient.get({
-        url: "/request/list/candidate",
-      })) as IRequestListCandidateResponse;
-    };
+  static async listCandidate({}: IRequestListCandidateRequest): Promise<IRequestListCandidateResponse> {
+    return (await ApiClient.get({
+      url: "/request/list/candidate",
+    })) as IRequestListCandidateResponse;
+  }
 
-  static agree = async (
+  static async agree(
     data: IRequestAgreeRequest
-  ): Promise<IRequestAgreeResponse> => {
+  ): Promise<IRequestAgreeResponse> {
     return (await ApiClient.post({
       url: "/request/agree",
       data,
     })) as IRequestAgreeResponse;
-  };
+  }
 
-  static verify = async (
+  static async verify(
     data: IRequestVerifyRequest
-  ): Promise<IRequestVerifyResponse> => {
+  ): Promise<IRequestVerifyResponse> {
     return (await ApiClient.post({
       url: "/request/verify",
       data,
     })) as IRequestVerifyResponse;
-  };
+  }
 
-  static answer = async (
+  static async answer(
     data: IRequestAnswerRequest
-  ): Promise<IRequestAnswerResponse> => {
+  ): Promise<IRequestAnswerResponse> {
     return (await ApiClient.post({
       url: "/request/answer",
       data,
     })) as IRequestAnswerResponse;
-  };
+  }
 
-  static reject = async (
+  static async reject(
     params: IRequestRejectRequest
-  ): Promise<IRequestRejectResponse> => {
+  ): Promise<IRequestRejectResponse> {
     return (await ApiClient.get({
       url: "/request/reject",
       params,
     })) as IRequestRejectResponse;
-  };
+  }
 }
 
 export default RequestApi;

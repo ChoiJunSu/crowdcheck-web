@@ -11,41 +11,41 @@ import {
 } from "@api/UserApi/type";
 
 class UserApi {
-  static getPersonal = async (
+  static async getPersonal(
     params: IUserGetPersonalRequest
-  ): Promise<IUserGetPersonalResponse> => {
+  ): Promise<IUserGetPersonalResponse> {
     return (await ApiClient.get({
       url: "/user/get/personal",
       params,
     })) as IUserGetPersonalResponse;
-  };
+  }
 
-  static getCorporate = async (
+  static async getCorporate(
     params: IUserGetCorporateRequest
-  ): Promise<IUserGetCorporateResponse> => {
+  ): Promise<IUserGetCorporateResponse> {
     return (await ApiClient.get({
       url: "/user/get/corporate",
       params,
     })) as IUserGetCorporateResponse;
-  };
+  }
 
-  static editPersonal = async (
+  static async editPersonal(
     data: IUserEditPersonalRequest
-  ): Promise<IUserEditPersonalResponse> => {
+  ): Promise<IUserEditPersonalResponse> {
     return (await ApiClient.post({
       url: "/user/edit/personal",
       data,
     })) as IUserEditPersonalResponse;
-  };
+  }
 
-  static editCorporate = async (
+  static async editCorporate(
     data: IUserEditCorporateRequest
-  ): Promise<IUserEditCorporateResponse> => {
+  ): Promise<IUserEditCorporateResponse> {
     return (await ApiClient.post({
       url: "/user/edit/corporate",
       data,
     })) as IUserEditCorporateResponse;
-  };
+  }
 }
 
 export default UserApi;

@@ -72,3 +72,16 @@ export interface IAuthRegisterCorporateRequest extends IApiRequest {
 }
 
 export interface IAuthRegisterCorporateResponse extends IApiResponse {}
+
+export interface IAuthPhoneSendRequest extends IApiRequest {
+  phone: string;
+}
+
+export interface IAuthPhoneSendResponse extends IApiResponse {}
+
+export interface IAuthPhoneVerifyRequest extends IApiRequest {
+  phone: string;
+  code: number;
+}
+
+export interface IAuthPhoneVerifyResponse extends IApiResponse {}
