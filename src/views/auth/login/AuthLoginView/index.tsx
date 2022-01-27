@@ -93,7 +93,11 @@ const AuthLoginView = () => {
             </button>
           ))}
         </nav>
-        <form onSubmit={handleSubmit(handleLogin)} className="space-y-6">
+        <form
+          onSubmit={handleSubmit(handleLogin)}
+          noValidate={true}
+          className="space-y-6"
+        >
           <div>
             <label
               htmlFor="email"
@@ -104,7 +108,13 @@ const AuthLoginView = () => {
             <div className="mt-1">
               <input
                 type="email"
-                {...register("email", { required: "이메일을 입력하세요." })}
+                {...register("email", {
+                  required: "이메일을 입력하세요.",
+                  pattern: {
+                    value: /^\S+@\S+\.\S+$/,
+                    message: "이메일 형식이 올바르지 않습니다.",
+                  },
+                })}
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cc-green focus:border-cc-green sm:text-sm"
               />
               <ErrorMessage message={errors.email?.message} />
