@@ -25,13 +25,13 @@ const oauthLoginButtons = [
   {
     icon: GoogleLogo,
     text: "구글로 시작하기",
-    color: { background: "#ffffff", text: "#000000" },
+    style: "bg-[#ffffff] text-[#000000]",
     href: `${OAUTH_URL.GOOGLE}?response_type=code&client_id=${OAUTH_CLIENT_ID.GOOGLE}&redirect_uri=${WEB_URL}/auth/login/oauth/callback/google&scope=https://www.googleapis.com/auth/userinfo.email`,
   },
   {
     icon: KakaoLogo,
     text: "카카오로 시작하기",
-    color: { background: "#fee500", text: "#000000" },
+    style: "bg-[#fee500] text-[#000000]/15",
     href: `${OAUTH_URL.KAKAO}?response_type=code&client_id=${OAUTH_CLIENT_ID.KAKAO}&redirect_uri=${WEB_URL}/auth/login/oauth/callback/kakao`,
   },
 ];
@@ -72,10 +72,10 @@ const AuthLoginView = () => {
   };
 
   return (
-    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div className="sm:mx-auto sm:w-full sm:max-w-md">
       <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <nav
-          className="mb-8 block border-b border-gray-200 -mb-px flex"
+          className="mb-10 block border-b border-gray-200 -mb-px flex"
           aria-label="Tabs"
         >
           {tabs.map((tab, index) => (
@@ -139,14 +139,27 @@ const AuthLoginView = () => {
             </div>
           </div>
 
-          <div className="text-sm">
-            <Link
-              to="/auth/register/personal"
-              className="font-medium text-gray-400 hover:text-gray-500 underline"
-            >
-              이메일로 가입하기
-            </Link>
-          </div>
+          {type === "personal" && (
+            <div className="text-sm">
+              <Link
+                to="/auth/register/personal"
+                className="font-medium text-gray-400 hover:text-gray-500 underline"
+              >
+                이메일로 가입하기
+              </Link>
+            </div>
+          )}
+
+          {type === "corporate" && (
+            <div className="text-sm">
+              <Link
+                to="/auth/register/corporate"
+                className="font-medium text-gray-400 hover:text-gray-500 underline"
+              >
+                기업회원 가입하기
+              </Link>
+            </div>
+          )}
 
           <div>
             <button
@@ -174,11 +187,11 @@ const AuthLoginView = () => {
                   <button
                     key={index}
                     onClick={() => (location.href = item.href)}
-                    className={`bg-[${item.color.background}] text-[${item.color.text}] h-10 w-full inline-flex justify-evenly py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50`}
+                    className={`${item.style} h-10 w-full inline-flex justify-evenly py-2 px-8 border border-gray-300 rounded-md shadow-sm text-sm font-medium`}
                   >
                     <span className="sr-only">Sign in with Google</span>
                     <item.icon className="h-6 w-auto" />
-                    <p>{item.text}</p>
+                    <p className="w-2/3">{item.text}</p>
                   </button>
                 ))}
               </div>

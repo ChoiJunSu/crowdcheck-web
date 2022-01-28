@@ -76,7 +76,10 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
           <MenuIcon className="h-6 w-6" aria-hidden="true" />
         </Popover.Button>
       </div>
-      <Popover.Group as="nav" className="hidden md:flex space-x-10">
+      <Popover.Group
+        as="nav"
+        className="hidden md:flex md:items-center space-x-10"
+      >
         {menuItems[type].map((item, index) => (
           <Link
             key={index}
@@ -88,7 +91,7 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
         ))}
         <button
           onClick={handleLogout}
-          className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+          className="whitespace-nowrap inline-flex items-center justify-center px-2 md:px-4 py-1 md:py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cc-green hover:bg-cc-green"
         >
           로그아웃
         </button>
