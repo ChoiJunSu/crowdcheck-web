@@ -7,9 +7,6 @@ const navItems = [
 const Footer = () => {
   return (
     <footer aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">
-        Footer
-      </h2>
       <div className="max-w-7xl mx-auto">
         <div className="py-10 bg-white border-t-2 border-gray-100 lg:grid lg:grid-cols-2 lg:gap-8">
           <div>

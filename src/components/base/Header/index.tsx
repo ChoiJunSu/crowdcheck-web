@@ -52,7 +52,6 @@ const Header = () => {
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link to="/">
-              <span className="sr-only">CrowdCheck</span>
               <HeaderLogo className="h-6 w-auto sm:h-7" />
             </Link>
           </div>

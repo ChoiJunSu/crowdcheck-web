@@ -4,7 +4,6 @@ import { RecoilRoot } from "recoil";
 import App from "./app";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import Modal from "react-modal";
 
 ReactDom.render(
   <React.StrictMode>
@@ -16,5 +15,3 @@ ReactDom.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-Modal.setAppElement("#root");
