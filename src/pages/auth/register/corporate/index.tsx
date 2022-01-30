@@ -6,7 +6,7 @@ import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import { IRegisterCorporateFormData } from "@pages/auth/register/corporate/type";
 import { useNavigate } from "react-router-dom";
-import PhoneField from "@components/auth/register/PhoneField";
+import PhoneField from "@components/base/form/PhoneField";
 import CareerField from "@components/base/form/CareerField";
 
 const AuthRegisterCorporatePage = () => {

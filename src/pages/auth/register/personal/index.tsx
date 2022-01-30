@@ -7,7 +7,7 @@ import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import CareerField from "@components/base/form/CareerField";
 import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
-import PhoneField from "@components/auth/register/PhoneField";
+import PhoneField from "@components/base/form/PhoneField";
 
 const AuthRegisterPersonalPage = () => {
   const navigate = useNavigate();

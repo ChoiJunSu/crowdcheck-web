@@ -15,7 +15,7 @@ import UserApi from "@api/UserApi";
 import { TCareerStatus } from "@api/AuthApi/type";
 import { Transition, Dialog } from "@headlessui/react";
 
-const CareerField = ({ careers }: ICareerFieldProps) => {
+const CareerField = ({ mode, careers }: ICareerFieldProps) => {
   const {
     register,
     control,
@@ -39,7 +39,7 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
   >([]);
 
   useEffect(() => {
-    if (!careers || careers.length === 0) return;
+    if (mode !== "edit" || !careers || careers.length === 0) return;
     const newCareerStatusList: Array<{
       status: TCareerStatus;
       careerId: number;
@@ -218,34 +218,50 @@ const CareerField = ({ careers }: ICareerFieldProps) => {
               />
             </div>
             <div className="row-span-4 sm:row-span-2 flex place-content-center rounded-r-md bg-gray-50 text-gray-500 text-sm">
-              {careerStatusList[index] &&
-                careerStatusList[index].status === "registered" && (
+              {mode === "edit" && careerStatusList[index] && (
+                <div className="w-full">
+                  <div className="w-full h-1/2 grid border-b border-white">
+                    {careerStatusList[index].status === "registered" && (
+                      <button
+                        type="button"
+                        onClick={() => handleOpenModal("verify", index)}
+                        className="rounded-tr-md bg-cc-green text-white"
+                      >
+                        인증하기
+                      </button>
+                    )}
+                    {careerStatusList[index].status === "reviewed" && (
+                      <span className="place-self-center">검토 중</span>
+                    )}
+                    {careerStatusList[index].status === "verified" && (
+                      <span className="place-self-center">인증 완료</span>
+                    )}
+                  </div>
+
                   <button
                     type="button"
-                    onClick={() => handleOpenModal("verify", index)}
+                    onClick={() => handleRemoveCareer(index)}
+                    className="w-full h-1/2 rounded-br-md bg-cc-green text-white"
                   >
-                    인증하기
+                    삭제하기
                   </button>
-                )}
-              {careerStatusList[index] &&
-                careerStatusList[index].status === "reviewed" && <a>검토 중</a>}
-              {careerStatusList[index] &&
-                careerStatusList[index].status === "verified" && (
-                  <a>인증 완료</a>
-                )}
-              <button
-                type="button"
-                onClick={() => handleRemoveCareer(index)}
-                className="w-full rounded-r-md bg-cc-green text-white"
-              >
-                삭제하기
-              </button>
+                </div>
+              )}
+              {!careerStatusList[index] && (
+                <button
+                  type="button"
+                  onClick={() => handleRemoveCareer(index)}
+                  className="w-full rounded-r-md bg-cc-green text-white"
+                >
+                  삭제하기
+                </button>
+              )}
             </div>
           </div>
           <ErrorMessage
             message={
-              errors.careers?.[index].corporateName?.message ||
-              errors.careers?.[index].startAt?.message
+              errors.careers?.[index]?.corporateName?.message ||
+              errors.careers?.[index]?.startAt?.message
             }
           />
         </div>

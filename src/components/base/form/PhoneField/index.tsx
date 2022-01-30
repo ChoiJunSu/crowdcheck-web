@@ -9,6 +9,7 @@ const PhoneField = () => {
     getValues,
     setError,
     clearErrors,
+    setFocus,
     formState: { errors },
   } = useFormContext();
   const [isPhoneSent, setIsPhoneSent] = useState<boolean>(false);
@@ -31,6 +32,7 @@ const PhoneField = () => {
       return;
     }
     alert("인증번호가 발송되었습니다. 5분 안에 인증을 완료해주세요.");
+    setFocus("code");
   }, []);
 
   const handlePhoneVerify = useCallback(async () => {
@@ -76,10 +78,10 @@ const PhoneField = () => {
           })}
           placeholder="'-'를 제외한 숫자만 입력하세요."
           disabled={isPhoneSent}
-          className="w-full sm:w-2/3 shrink min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm text-sm rounded-md border-gray-300"
+          className="w-full sm:w-2/3 min-w-0 shrink focus:ring-cc-green focus:border-cc-green shadow-sm text-sm rounded-md border-gray-300"
         />
         {!isPhoneSent && (
-          <div className="ml-2 sm:ml-0 w-1/3 inline flex justify-end sm:justify-around">
+          <div className="ml-1 sm:ml-2 w-1/3 inline-flex justify-end sm:justify-start">
             <button
               type="button"
               onClick={handlePhoneSend}
