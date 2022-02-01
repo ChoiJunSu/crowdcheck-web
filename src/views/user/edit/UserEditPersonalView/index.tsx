@@ -70,10 +70,7 @@ const UserEditPersonalView = () => {
   ) : (
     <div>
       <FormProvider {...methods}>
-        <form
-          onSubmit={handleSubmit(handleEditPersonal)}
-          className="sm:mx-auto sm:w-full sm:max-w-2xl divide-y divide-gray-200"
-        >
+        <form onSubmit={handleSubmit(handleEditPersonal)} className="form">
           <div className="space-y-8 divide-y divide-gray-200">
             <div>
               <div>
@@ -84,10 +81,7 @@ const UserEditPersonalView = () => {
 
               <div className="mt-4 flex flex-col gap-y-4 ">
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="name" className="label">
                     이름
                   </label>
                   <div className="mt-1">
@@ -97,17 +91,14 @@ const UserEditPersonalView = () => {
                         required: "이름을 입력해주세요.",
                       })}
                       disabled={true}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+                      className="input"
                     />
                     <ErrorMessage message={errors?.name?.message} />
                   </div>
                 </div>
 
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="name" className="label">
                     전화번호
                   </label>
                   <div className="mt-1">
@@ -121,7 +112,7 @@ const UserEditPersonalView = () => {
                         },
                       })}
                       disabled={true}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+                      className="input"
                     />
                     <ErrorMessage message={errors?.phone?.message} />
                   </div>
@@ -138,10 +129,7 @@ const UserEditPersonalView = () => {
 
               <div className="mt-4 flex flex-col gap-y-4 ">
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="email" className="label">
                     이메일
                   </label>
                   <div className="mt-1">
@@ -155,24 +143,22 @@ const UserEditPersonalView = () => {
                         },
                       })}
                       disabled={true}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+                      className="input"
                     />
                     <ErrorMessage message={errors.email?.message} />
                   </div>
                 </div>
 
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="password" className="label">
                     비밀번호
                   </label>
                   <div className="mt-1">
                     <input
                       type="password"
                       {...register("password")}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+                      placeholder="변경하실 비밀번호를 입력하세요."
+                      className="input"
                     />
                     <ErrorMessage message={errors?.password?.message} />
                   </div>

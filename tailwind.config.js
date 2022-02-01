@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         "cc-green": "#2aa090",
       },
+      fontFamily: { sans: ["Pretendard Variable"] },
     },
   },
   plugins: [require("@tailwindcss/forms")],

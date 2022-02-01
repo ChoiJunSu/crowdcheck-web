@@ -78,7 +78,7 @@ const PhoneField = () => {
           })}
           placeholder="'-'를 제외한 숫자만 입력하세요."
           disabled={isPhoneSent}
-          className="w-full sm:w-2/3 min-w-0 shrink focus:ring-cc-green focus:border-cc-green shadow-sm text-sm rounded-md border-gray-300"
+          className="w-full sm:w-2/3 min-w-0 shrink focus:ring-cc-green focus:border-cc-green disabled:bg-gray-300 shadow-sm text-sm rounded-md border-gray-300"
         />
         {!isPhoneSent && (
           <div className="ml-1 sm:ml-2 w-1/3 inline-flex justify-end sm:justify-start">

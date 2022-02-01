@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import { IHeaderMenuProps } from "@components/base/Header/type";
-import { ReactComponent as HeaderLogo } from "@assets/logo.svg";
+import { ReactComponent as HeaderLogo } from "@assets/images/logo.svg";
 
 const menuItems = {
   personal: [

@@ -57,10 +57,7 @@ const AuthRegisterOauthPage = () => {
   ) : (
     <div>
       <FormProvider {...methods}>
-        <form
-          onSubmit={handleSubmit(handleRegisterOauth)}
-          className="sm:mx-auto sm:w-full sm:max-w-2xl divide-y divide-gray-200"
-        >
+        <form onSubmit={handleSubmit(handleRegisterOauth)} className="form">
           <div className="space-y-8 divide-y divide-gray-200">
             <div>
               <div>
@@ -71,10 +68,7 @@ const AuthRegisterOauthPage = () => {
 
               <div className="mt-4 flex flex-col gap-y-4 ">
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="name" className="label">
                     이름
                   </label>
                   <div className="mt-1">
@@ -83,17 +77,14 @@ const AuthRegisterOauthPage = () => {
                       {...register("name", {
                         required: "이름을 입력해주세요.",
                       })}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+                      className="input"
                     />
                     <ErrorMessage message={errors?.name?.message} />
                   </div>
                 </div>
 
                 <div className="sm:w-3/4">
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="phone" className="label">
                     전화번호
                   </label>
                   <div className="mt-1">

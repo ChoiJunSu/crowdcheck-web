@@ -1,6 +1,6 @@
 import { ICareer } from "@api/AuthApi/type";
 
 export interface ICareerFieldProps {
-  mode?: "edit";
+  mode?: "edit" | "candidate";
   careers?: Array<ICareer>;
 }

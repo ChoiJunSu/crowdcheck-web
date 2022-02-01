@@ -5,9 +5,10 @@ import {
   IRequestGetCandidateResponse,
 } from "@api/RequestApi/type";
 import { ICareer } from "@api/AuthApi/type";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import RequestApi from "@api/RequestApi";
 import { IRequestAgreeFormDate } from "@pages/request/agree/type";
+import CareerField from "@components/base/form/CareerField";
 
 const RequestAgreePage = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const RequestAgreePage = () => {
   }
 
   const [corporateName, setCorporateName] = useState<string>("");
-  const [careerList, setCareerList] = useState<Array<ICareer>>([]);
+  const [careers, setCareers] = useState<Array<ICareer>>([]);
 
   useEffect(() => {
     (async () => {
@@ -33,11 +34,12 @@ const RequestAgreePage = () => {
         navigate(-1);
       }
       setCorporateName(getRequestResponse.corporateName);
-      setCareerList(getRequestResponse.careers);
+      setCareers(getRequestResponse.careers);
     })();
   }, []);
 
-  const { register, handleSubmit } = useForm<IRequestAgreeFormDate>();
+  const methods = useForm<IRequestAgreeFormDate>();
+  const { register, handleSubmit } = methods;
 
   const handleAgree = useCallback(async (data) => {
     const agreeResponse = await RequestApi.agree({
@@ -54,56 +56,50 @@ const RequestAgreePage = () => {
 
   return (
     <div>
-      <h1>지원자 의뢰 조회 페이지</h1>
-      {corporateName && <h2>{corporateName}의 의뢰</h2>}
-      <form onSubmit={handleSubmit(handleAgree)}>
-        <table>
-          {careerList.length > 0 && (
-            <thead>
-              <tr>
-                <th>기업이름</th>
-                <th>부서</th>
-                <th>입사일</th>
-                <th>퇴사일</th>
-                <th>선택</th>
-              </tr>
-            </thead>
-          )}
-          <tbody>
-            {careerList.map(
-              (
-                { corporateId, corporateName, department, startAt, endAt },
-                index
-              ) => {
-                return (
-                  <tr key={index}>
-                    <td>{corporateName}</td>
-                    <td>{department}</td>
-                    <td>{startAt}</td>
-                    <td>{endAt}</td>
-                    <td>
-                      <input
-                        type="text"
-                        {...register(`agrees.${index}.corporateId`, {
-                          value: corporateId,
-                        })}
-                        hidden
-                      />
-                      <input
-                        type="checkbox"
-                        {...register(`agrees.${index}.agreed`)}
-                      />
-                    </td>
-                  </tr>
-                );
-              }
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(handleAgree)} className="form">
+          <div className="my-4">
+            {corporateName && (
+              <h2 className="text-xl leading-6 font-medium text-gray-900">
+                {corporateName}의 의뢰
+              </h2>
             )}
-          </tbody>
-        </table>
-        <label>비동의 사유</label>
-        <input type="text" {...register("agreeDescription")} />
-        <button type="submit">동의하기</button>
-      </form>
+          </div>
+          <div className="pt-8">
+            <div>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                경력 정보
+              </h3>
+            </div>
+            <div className="mt-4">
+              <CareerField mode="candidate" careers={careers} />
+            </div>
+          </div>
+          <div className="pt-8">
+            <div>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                비동의 사유
+              </h3>
+            </div>
+            <div className="mt-4">
+              <textarea
+                {...register("agreeDescription")}
+                rows={10}
+                placeholder="비동의 사유를 입력하세요."
+                className="input"
+              />
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-gray-300">
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cc-green hover:cc-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cc-green"
+            >
+              동의하기
+            </button>
+          </div>
+        </form>
+      </FormProvider>
     </div>
   );
 };

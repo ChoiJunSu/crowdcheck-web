@@ -8,7 +8,7 @@ import jwtDecode from "jwt-decode";
 import { IAuthTokenPayload } from "@atoms/loginAtom/type";
 import AuthApi from "@api/AuthApi";
 import HeaderMenu from "@components/base/Header/menu";
-import { ReactComponent as HeaderLogo } from "@assets/logo.svg";
+import { ReactComponent as HeaderLogo } from "@assets/images/logo.svg";
 
 const Header = () => {
   const [loginState, setLoginState] = useRecoilState(loginAtom);

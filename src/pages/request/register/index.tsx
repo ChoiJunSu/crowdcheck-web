@@ -10,6 +10,7 @@ import CareerField from "@components/base/form/CareerField";
 import { IRequestRegisterFormData } from "@pages/request/register/type";
 import { useRecoilValue } from "recoil";
 import loginAtom from "@atoms/loginAtom";
+import PhoneField from "@components/base/form/PhoneField";
 
 const RequestRegisterPage = () => {
   const navigate = useNavigate();
@@ -64,40 +65,88 @@ const RequestRegisterPage = () => {
   ) : (
     <div>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(handleRequestRegister)}>
-          <label>이름</label>
-          <input
-            type="text"
-            {...register("name", { required: "이름을 입력해주세요." })}
-          />
-          <br />
-          <ErrorMessage message={errors?.name?.message} />
-          <br />
-          <label>전화번호</label>
-          <input
-            type="text"
-            {...register("phone", {
-              required: "전화번호를 입력해주세요.",
-              pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },
-            })}
-            placeholder="'-'를 제외한 숫자만 입력하세요."
-          />
-          <br />
-          <label>경력</label>
-          <CareerField />
-          <br />
-          <label>질문</label>
-          <input
-            type="textarea"
-            {...register("question", { required: "질문을 입력해주세요." })}
-          />
-          <br />
-          <ErrorMessage message={errors?.question?.message} />
-          <br />
-          <label>마감일</label>
-          <input type="date" {...register("deadline")} />
-          <br />
-          <button type="submit">등록하기</button>
+        <form onSubmit={handleSubmit(handleRequestRegister)} className="form">
+          <div>
+            <div>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                기본 정보
+              </h3>
+            </div>
+
+            <div className="my-4 flex flex-col gap-y-4">
+              <div className="sm:w-1/2">
+                <label htmlFor="name" className="label">
+                  이름
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    {...register("name", {
+                      required: "이름을 입력해주세요.",
+                    })}
+                    className="input"
+                  />
+                  <ErrorMessage message={errors?.name?.message} />
+                </div>
+              </div>
+
+              <div className="sm:w-1/2">
+                <label htmlFor="phone" className="label">
+                  전화번호
+                </label>
+                <input
+                  type="text"
+                  {...register("phone", {
+                    required: "전화번호를 입력해주세요.",
+                    pattern: {
+                      value: /^\d*$/,
+                      message: "숫자만 입력해주세요.",
+                    },
+                  })}
+                  className="input"
+                  placeholder="'-'를 제외한 숫자만 입력하세요."
+                />
+                <ErrorMessage message={errors.phone?.message} />
+              </div>
+            </div>
+          </div>
+
+          <div className="my-8 pt-8">
+            <h3 className="text-lg leading-6 font-medium text-gray-900">
+              경력 정보
+            </h3>
+            <div className="mt-4">
+              <CareerField />
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <h3 className="text-lg leading-6 font-medium text-gray-900">
+              의뢰 정보
+            </h3>
+            <div className="mt-4">
+              <label className="label">질문</label>
+              <textarea
+                {...register("question", { required: "질문을 입력해주세요." })}
+                rows={10}
+                className="input"
+              />
+              <ErrorMessage message={errors?.question?.message} />
+            </div>
+            <div className="mt-4">
+              <label className="label">마감일</label>
+              <input type="date" {...register("deadline")} className="input" />
+            </div>
+          </div>
+
+          <div className="mt-8 pt-8 border-t border-gray-300">
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cc-green hover:cc-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cc-green"
+            >
+              등록하기
+            </button>
+          </div>
         </form>
       </FormProvider>
     </div>

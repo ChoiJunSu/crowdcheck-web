@@ -49,113 +49,96 @@ const AuthRegisterPersonalPage = () => {
   ) : (
     <div>
       <FormProvider {...methods}>
-        <form
-          onSubmit={handleSubmit(handleRegisterPersonal)}
-          className="sm:mx-auto sm:w-full sm:max-w-2xl divide-y divide-gray-200"
-        >
-          <div className="space-y-8 divide-y divide-gray-200">
+        <form onSubmit={handleSubmit(handleRegisterPersonal)} className="form">
+          <div>
             <div>
-              <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
-                  기본 정보
-                </h3>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                기본 정보
+              </h3>
+            </div>
+
+            <div className="mt-4 flex flex-col gap-y-4 ">
+              <div className="sm:w-1/2">
+                <label htmlFor="name" className="label">
+                  이름
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    {...register("name", {
+                      required: "이름을 입력해주세요.",
+                    })}
+                    className="input"
+                  />
+                  <ErrorMessage message={errors?.name?.message} />
+                </div>
               </div>
 
-              <div className="mt-4 flex flex-col gap-y-4 ">
-                <div className="sm:w-1/2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    이름
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      {...register("name", {
-                        required: "이름을 입력해주세요.",
-                      })}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
-                    />
-                    <ErrorMessage message={errors?.name?.message} />
-                  </div>
-                </div>
-
-                <div className="sm:w-3/4">
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    전화번호
-                  </label>
-                  <div className="mt-1">
-                    <PhoneField />
-                  </div>
+              <div className="sm:w-3/4">
+                <label htmlFor="phone" className="label">
+                  전화번호
+                </label>
+                <div className="mt-1">
+                  <PhoneField />
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="pt-8">
-              <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
-                  로그인 정보
-                </h3>
+          <div className="pt-8">
+            <div>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                로그인 정보
+              </h3>
+            </div>
+
+            <div className="mt-4 flex flex-col gap-y-4 ">
+              <div className="sm:w-1/2">
+                <label htmlFor="email" className="label">
+                  이메일
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="email"
+                    {...register("email", {
+                      required: "이메일을 입력하세요.",
+                      pattern: {
+                        value: /^\S+@\S+\.\S+$/,
+                        message: "이메일 형식이 올바르지 않습니다.",
+                      },
+                    })}
+                    className="input"
+                  />
+                  <ErrorMessage message={errors.email?.message} />
+                </div>
               </div>
 
-              <div className="mt-4 flex flex-col gap-y-4 ">
-                <div className="sm:w-1/2">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    이메일
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="email"
-                      {...register("email", {
-                        required: "이메일을 입력하세요.",
-                        pattern: {
-                          value: /^\S+@\S+\.\S+$/,
-                          message: "이메일 형식이 올바르지 않습니다.",
-                        },
-                      })}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
-                    />
-                    <ErrorMessage message={errors.email?.message} />
-                  </div>
-                </div>
-
-                <div className="sm:w-1/2">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    비밀번호
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="password"
-                      {...register("password", {
-                        required: "비밀번호를 입력해주세요.",
-                      })}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
-                    />
-                    <ErrorMessage message={errors?.password?.message} />
-                  </div>
+              <div className="sm:w-1/2">
+                <label htmlFor="password" className="label">
+                  비밀번호
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="password"
+                    {...register("password", {
+                      required: "비밀번호를 입력해주세요.",
+                    })}
+                    className="input"
+                  />
+                  <ErrorMessage message={errors?.password?.message} />
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="pt-8">
-              <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
-                  경력 정보
-                </h3>
-              </div>
-              <div className="mt-4">
-                <CareerField />
-              </div>
+          <div className="pt-8">
+            <div>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                경력 정보
+              </h3>
+            </div>
+            <div className="mt-4">
+              <CareerField />
             </div>
           </div>
 

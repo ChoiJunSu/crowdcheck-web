@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RequestApi from "@api/RequestApi";
 import { ICandidateRequest } from "@api/RequestApi/type";
+import { CheckCircleIcon } from "@heroicons/react/outline";
 
 const RequestListCandidateView = () => {
   const [requestList, setRequestList] = useState<Array<ICandidateRequest>>([]);
@@ -25,31 +26,63 @@ const RequestListCandidateView = () => {
   }, []);
 
   return (
-    <div>
-      <h1>지원자 의뢰 목록 페이지</h1>
-      <table>
-        {requestList.length > 0 && (
-          <thead>
-            <tr>
-              <th>기업이름</th>
-              <th>상태</th>
-            </tr>
-          </thead>
-        )}
-        <tbody>
-          {requestList.map(({ id, corporateName, status }, index) => {
-            return (
-              <tr key={index}>
-                <td>{corporateName}</td>
-                <td>{requestStatusMapper[status]}</td>
-                <td>
-                  <button onClick={() => handleGetRequest(id)}>상세보기</button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className="sm:mx-auto sm:w-full sm:max-w-2xl flex flex-col">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    기업 이름
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    의뢰 상태
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  ></th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {requestList.map(({ id, corporateName, status }, index) => {
+                  return (
+                    <tr key={index} className="text-center">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {corporateName}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {requestStatusMapper[status]}
+                      </td>
+                      {status === "registered" && (
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-cc-green">
+                          <button
+                            onClick={() => handleGetRequest(id)}
+                            className="inline-flex items-center gap-1"
+                          >
+                            <CheckCircleIcon
+                              className="h-6 w-6"
+                              aria-hidden="true"
+                            />
+                            동의하기
+                          </button>
+                        </td>
+                      )}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -8,7 +8,6 @@ const RequestAnswerPage = () => {
 
   return (
     <div>
-      <h1>의뢰 답변 페이지</h1>
       {type === "personal" && <RequestAnswerReceiverView />}
       {type === "corporate" && <RequestAnswerCorporateView />}
     </div>

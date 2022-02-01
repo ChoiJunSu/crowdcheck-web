@@ -68,10 +68,7 @@ const AuthRegisterCorporatePage = () => {
   ) : (
     <div>
       <FormProvider {...methods}>
-        <form
-          onSubmit={handleSubmit(handleRegisterCorporate)}
-          className="sm:mx-auto sm:w-full sm:max-w-2xl divide-y divide-gray-200"
-        >
+        <form onSubmit={handleSubmit(handleRegisterCorporate)} className="form">
           <div className="space-y-8 divide-y divide-gray-200">
             <div>
               <div>
@@ -82,10 +79,7 @@ const AuthRegisterCorporatePage = () => {
 
               <div className="mt-4 flex flex-col gap-y-4 ">
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="name" className="label">
                     이름
                   </label>
                   <div className="mt-1">
@@ -94,34 +88,28 @@ const AuthRegisterCorporatePage = () => {
                       {...register("name", {
                         required: "이름을 입력해주세요.",
                       })}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+                      className="input"
                     />
                     <ErrorMessage message={errors?.name?.message} />
                   </div>
                 </div>
 
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="certificate"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="certificate" className="label">
                     사업자등록증
                   </label>
                   <div className="mt-1">
                     <input
                       type="file"
                       onChange={handleUploadCertificate}
-                      className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cc-green focus:border-cc-green sm:text-sm"
+                      className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cc-green focus:border-cc-green sm:text-sm"
                     />
                     <ErrorMessage message={errors?.certificate?.message} />
                   </div>
                 </div>
 
                 <div className="sm:w-3/4">
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="phone" className="label">
                     전화번호
                   </label>
                   <div className="mt-1">
@@ -140,10 +128,7 @@ const AuthRegisterCorporatePage = () => {
 
               <div className="mt-4 flex flex-col gap-y-4 ">
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="email" className="label">
                     이메일
                   </label>
                   <div className="mt-1">
@@ -156,17 +141,14 @@ const AuthRegisterCorporatePage = () => {
                           message: "이메일 형식이 올바르지 않습니다.",
                         },
                       })}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+                      className="input"
                     />
                     <ErrorMessage message={errors.email?.message} />
                   </div>
                 </div>
 
                 <div className="sm:w-1/2">
-                  <label
-                    htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="password" className="label">
                     비밀번호
                   </label>
                   <div className="mt-1">
@@ -175,7 +157,7 @@ const AuthRegisterCorporatePage = () => {
                       {...register("password", {
                         required: "비밀번호를 입력해주세요.",
                       })}
-                      className="block w-full min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+                      className="input"
                     />
                     <ErrorMessage message={errors?.password?.message} />
                   </div>

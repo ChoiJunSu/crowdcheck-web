@@ -57,27 +57,49 @@ const AuthLoginCandidateView = () => {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(handleCandidateAuth)}>
-        <label>이름</label>
-        <input
-          type="text"
-          {...register("name", { required: "이름을 입력해주세요." })}
-        />
-        <br />
-        <ErrorMessage message={errors?.name?.message} />
-        <br />
-        <label>전화번호</label>
-        <input
-          type="text"
-          {...register("phone", {
-            required: "전화번호를 입력해주세요.",
-            pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },
-          })}
-          placeholder="'-'를 제외한 숫자만 입력하세요."
-        />
-        <br />
-        <button type="submit">인증하기</button>
+    <div className="sm:mx-auto sm:w-full sm:max-w-md bg-white">
+      <form
+        onSubmit={handleSubmit(handleCandidateAuth)}
+        noValidate={true}
+        className="mt-10 space-y-6"
+      >
+        <div>
+          <label htmlFor="name" className="label">
+            이름
+          </label>
+          <div className="mt-1">
+            <input
+              type="text"
+              {...register("name", { required: "이름을 입력해주세요." })}
+              className="input"
+            />
+            <ErrorMessage message={errors.name?.message} />
+          </div>
+        </div>
+        <div>
+          <label htmlFor="password" className="label">
+            전화번호
+          </label>
+          <div className="mt-1">
+            <input
+              type="text"
+              {...register("phone", {
+                required: "전화번호를 입력해주세요.",
+                pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },
+              })}
+              placeholder="'-'를 제외한 숫자만 입력하세요."
+              className="input"
+            />
+            <ErrorMessage message={errors.password?.message} />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cc-green hover:cc-green"
+        >
+          인증하기
+        </button>
       </form>
     </div>
   );
