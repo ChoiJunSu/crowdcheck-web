@@ -90,7 +90,7 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
         ))}
         <button
           onClick={handleLogout}
-          className="whitespace-nowrap inline-flex items-center justify-center px-2 md:px-4 py-1 md:py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cc-green hover:bg-cc-green"
+          className="whitespace-nowrap inline-flex items-center justify-center px-2 md:px-4 py-1 md:py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cc-green hover:bg-cc-green-dark"
         >
           로그아웃
         </button>
@@ -144,10 +144,7 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
             </div>
             <div className="py-6 px-5 space-y-6">
               <div>
-                <button
-                  onClick={handleLogout}
-                  className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cc-green hover:bg-cc-green"
-                >
+                <button onClick={handleLogout} className="button">
                   로그아웃
                 </button>
               </div>

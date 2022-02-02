@@ -55,10 +55,7 @@ const RequestVerifyPage = () => {
               <ErrorMessage message={errors.name?.message} />
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cc-green hover:cc-green"
-          >
+          <button type="submit" className="button">
             검증하기
           </button>
         </form>

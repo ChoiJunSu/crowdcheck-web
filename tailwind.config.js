@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "cc-green": "#2aa090",
+        "cc-green-dark": "#23877a",
       },
       fontFamily: { sans: ["Pretendard Variable"] },
     },
