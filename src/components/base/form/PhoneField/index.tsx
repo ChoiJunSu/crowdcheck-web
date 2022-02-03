@@ -85,7 +85,7 @@ const PhoneField = () => {
             <button
               type="button"
               onClick={handlePhoneSend}
-              className="whitespace-nowrap inline-flex items-center justify-center px-2 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-cc-green hover:bg-cc-green-dark"
+              className="whitespace-nowrap inline-flex items-center justify-center px-2 py-2 border border-transparent rounded-md shadow-sm text-sm font-normal text-white bg-cc-green hover:bg-cc-green-dark"
             >
               인증번호 받기
             </button>

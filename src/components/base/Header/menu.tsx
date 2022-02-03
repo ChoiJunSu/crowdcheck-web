@@ -14,7 +14,7 @@ import loginAtom from "@atoms/loginAtom";
 import { IHeaderMenuProps } from "@components/base/Header/type";
 import { ReactComponent as HeaderLogo } from "@assets/images/logo.svg";
 
-const menuItems = {
+export const menuItems = {
   personal: [
     {
       icon: ClipboardIcon,
@@ -71,7 +71,7 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
   return (
     <div>
       <div className="-mr-2 -my-2 md:hidden">
-        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cc-green">
+        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cc-green">
           <MenuIcon className="h-6 w-6" aria-hidden="true" />
         </Popover.Button>
       </div>
@@ -83,14 +83,14 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
           <Link
             key={index}
             to={item.to}
-            className="text-base font-medium text-gray-500 hover:text-gray-900"
+            className="text-lg font-medium text-gray-500 hover:text-gray-900"
           >
             {item.text}
           </Link>
         ))}
         <button
           onClick={handleLogout}
-          className="whitespace-nowrap inline-flex items-center justify-center px-2 md:px-4 py-1 md:py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cc-green hover:bg-cc-green-dark"
+          className="whitespace-nowrap inline-flex items-center justify-center px-2 md:px-4 py-1 md:py-2 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-cc-green hover:bg-cc-green-dark"
         >
           로그아웃
         </button>
@@ -115,7 +115,7 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
                   <HeaderLogo className="h-6 w-auto sm:h-7" />
                 </div>
                 <div className="-mr-2">
-                  <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cc-green">
+                  <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cc-green">
                     <span className="sr-only">Close menu</span>
                     <XIcon className="h-6 w-6" aria-hidden="true" />
                   </Popover.Button>
@@ -130,10 +130,10 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
                         className="group -m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                       >
                         <item.icon
-                          className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                          className="flex-shrink-0 h-6 w-6 text-gray-500 group-hover:text-gray-900"
                           aria-hidden="true"
                         />
-                        <span className="ml-3 text-base font-medium text-gray-400 group-hover:text-gray-500">
+                        <span className="ml-3 text-base font-medium text-gray-500 group-hover:text-gray-900">
                           {item.text}
                         </span>
                       </Link>

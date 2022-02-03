@@ -25,13 +25,13 @@ const oauthLoginButtons = [
   {
     icon: GoogleLogo,
     text: "구글로 시작하기",
-    style: "bg-[#ffffff] text-[#000000]",
+    style: "bg-[#ffffff] hover:bg-gray-100 text-[#000000]",
     href: `${OAUTH_URL.GOOGLE}?response_type=code&client_id=${OAUTH_CLIENT_ID.GOOGLE}&redirect_uri=${WEB_URL}/auth/login/oauth/callback/google&scope=https://www.googleapis.com/auth/userinfo.email`,
   },
   {
     icon: KakaoLogo,
     text: "카카오로 시작하기",
-    style: "bg-[#fee500] text-[#000000]/15",
+    style: "bg-[#fee500] hover:bg-[#e5cf00] text-[#000000]/15",
     href: `${OAUTH_URL.KAKAO}?response_type=code&client_id=${OAUTH_CLIENT_ID.KAKAO}&redirect_uri=${WEB_URL}/auth/login/oauth/callback/kakao`,
   },
 ];
@@ -81,7 +81,7 @@ const AuthLoginView = () => {
               tab.type === type
                 ? "border-cc-green text-cc-green"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-            } w-2/4 py-4 px-1 text-center border-b-2 font-medium text-sm`}
+            } w-2/4 py-4 px-1 text-center border-b-2 font-medium text-sm sm:text-lg`}
             aria-current={tab.type === type ? "page" : undefined}
             onClick={() => setType(tab.type as TUserType)}
           >
@@ -129,27 +129,25 @@ const AuthLoginView = () => {
           </div>
         </div>
 
-        {type === "personal" && (
-          <div className="text-sm">
+        <div className="flex justify-end">
+          {type === "personal" && (
             <Link
               to="/auth/register/personal"
-              className="font-medium text-gray-400 hover:text-gray-500 underline"
+              className="font-normal text-sm sm:text-lg text-gray-400 hover:text-gray-500 underline"
             >
               이메일로 가입하기
             </Link>
-          </div>
-        )}
+          )}
 
-        {type === "corporate" && (
-          <div className="text-sm">
+          {type === "corporate" && (
             <Link
               to="/auth/register/corporate"
-              className="font-medium text-gray-400 hover:text-gray-500 underline"
+              className="font-normal text-sm sm:text-lg text-gray-400 hover:text-gray-500 underline"
             >
-              기업회원 가입하기
+              기업회원으로 가입하기
             </Link>
-          </div>
-        )}
+          )}
+        </div>
 
         <button type="submit" className="button">
           로그인
@@ -163,8 +161,10 @@ const AuthLoginView = () => {
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300" />
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">또는</span>
+              <div className="relative flex justify-center text-sm sm:text-lg">
+                <span className="px-2 bg-white text-gray-500 font-normal">
+                  또는
+                </span>
               </div>
             </div>
             <div className="mt-6 grid gap-4">
@@ -172,10 +172,10 @@ const AuthLoginView = () => {
                 <button
                   key={index}
                   onClick={() => (location.href = item.href)}
-                  className={`${item.style} h-10 w-full inline-flex justify-evenly py-2 px-8 border border-gray-300 rounded-md shadow-sm text-sm font-medium`}
+                  className={`${item.style} w-full inline-flex justify-evenly py-2 px-8 border border-gray-200 rounded-md shadow-sm text-sm sm:text-lg font-normal`}
                 >
-                  <item.icon className="h-6 w-auto" />
-                  <p className="w-2/3">{item.text}</p>
+                  <item.icon className="h-6 w-auto self-center" />
+                  <p className="w-2/3 self-center">{item.text}</p>
                 </button>
               ))}
             </div>

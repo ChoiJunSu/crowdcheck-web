@@ -30,19 +30,19 @@ const RequestListCorporateView = () => {
                 <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
                   >
                     지원자 이름
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
                   >
                     의뢰 상태
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-4 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
                   ></th>
                 </tr>
               </thead>
@@ -51,14 +51,14 @@ const RequestListCorporateView = () => {
                   ({ id, candidateName, status, receivers }, index) => {
                     return (
                       <tr key={index} className="text-center">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-900">
                           {candidateName}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500">
                           {requestStatusMapper[status]}
                         </td>
                         {status !== "registered" && (
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-cc-green">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500 hover:text-cc-green">
                             <Link
                               to={`/request/answer?requestId=${id}`}
                               className="inline-flex items-center gap-1"

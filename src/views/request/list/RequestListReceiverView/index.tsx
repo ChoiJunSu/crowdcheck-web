@@ -46,19 +46,19 @@ const RequestListReceiverView = () => {
                 <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
                   >
                     기업 이름
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
                   >
                     지원자 이름
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
                   >
                     의뢰 상태
                   </th>
@@ -72,17 +72,17 @@ const RequestListReceiverView = () => {
                 {requestList.map(
                   ({ id, corporateName, candidateName, status }, index) => (
                     <tr key={index} className="text-center">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-900">
                         {corporateName}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-900">
                         {candidateName}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500">
                         {receiverStatusMapper[status]}
                       </td>
                       {status === "arrived" && (
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500">
                           <div>
                             <Link
                               to={`/request/verify?requestId=${id}`}
@@ -107,7 +107,7 @@ const RequestListReceiverView = () => {
                         </td>
                       )}
                       {status === "verified" && (
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500">
                           <div>
                             <Link
                               to={`/request/answer?requestId=${id}`}

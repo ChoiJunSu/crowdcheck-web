@@ -66,7 +66,7 @@ const RequestAnswerCorporateView = () => {
                         <span className="block font-medium text-gray-900">
                           {corporateName}에서 함께 일한 {id}님
                         </span>
-                        <span className="font-sm text-gray-500">
+                        <span className="text-sm text-gray-500">
                           {receiverStatusMapper[status]}
                         </span>
                       </div>

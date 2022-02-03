@@ -29,11 +29,12 @@ const LoginOauthCallbackPage = ({ provider }: ILoginOauthCallbackPageProps) => {
         redirectUri,
       } as IAuthLoginOauthRequest);
       if (!loginOauthResponse.ok) {
-        alert(loginOauthResponse.error || "로그인 오류입니다.");
         if (loginOauthResponse.error === "회원가입이 필요합니다.")
           navigate(
             `/auth/register/oauth?registerToken=${loginOauthResponse.registerToken}`
           );
+        alert(loginOauthResponse.error || "로그인 오류입니다.");
+        navigate(-1);
         return;
       }
       const { authToken } = loginOauthResponse;

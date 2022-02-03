@@ -225,7 +225,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
                 className="flex-1 min-w-0 block w-full px-3 py-2 border-0 focus:ring-cc-green focus:border-cc-green disabled:bg-gray-200 sm:text-sm"
               />
             </div>
-            <div className="row-span-4 sm:row-span-2 flex place-content-center rounded-r-md bg-gray-50 text-gray-500 text-sm">
+            <div className="row-span-4 sm:row-span-2 flex place-content-center rounded-r-md bg-gray-50 text-gray-500 text-sm font-normal">
               {mode === "edit" && careerStatusList[index] && (
                 <div className="w-full">
                   <div className="w-full h-1/2 grid border-b border-white">
@@ -349,7 +349,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full sm:p-6">
+                  <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl w-full sm:p-6">
                     <div>
                       <div className="mt-3 text-left sm:mt-5">
                         <Dialog.Title
@@ -457,7 +457,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
                   leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                   leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 >
-                  <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full sm:p-6">
+                  <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl w-full sm:p-6">
                     <div>
                       <div className="mt-3 text-left sm:mt-5">
                         <Dialog.Title

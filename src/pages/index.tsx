@@ -1,18 +1,12 @@
 import { useRecoilValue } from "recoil";
 import loginAtom from "@atoms/loginAtom";
+import IndexPublicView from "@views/index/IndexPublicView";
+import IndexView from "@views/index/IndexView";
 
 const IndexPage = () => {
-  const { isLoggedIn, name } = useRecoilValue(loginAtom);
+  const { isLoggedIn } = useRecoilValue(loginAtom);
 
-  return isLoggedIn ? (
-    <div>
-      <h1>어서오세요 {name}님</h1>
-    </div>
-  ) : (
-    <div>
-      <h1>로그인이 필요합니다</h1>
-    </div>
-  );
+  return isLoggedIn ? <IndexView /> : <IndexPublicView />;
 };
 
 export default IndexPage;
