@@ -12,6 +12,7 @@ export type TReceiverStatus =
 
 export interface IAgree {
   corporateId: number;
+  corporateName: string;
   agreed: boolean;
 }
 
@@ -77,6 +78,16 @@ export interface IRequestGetCorporateResponse extends IApiResponse {
   candidateName: string;
   question: string;
   answers: Array<IAnswer>;
+}
+
+export interface IRequestGetCorporateAgreeRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestGetCorporateAgreeResponse extends IApiResponse {
+  candidateName: string;
+  agrees: Array<IAgree>;
+  agreeDescription: string | null;
 }
 
 export interface IRequestGetCandidateRequest extends IApiRequest {

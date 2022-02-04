@@ -22,6 +22,8 @@ import {
   IRequestGetCorporateResponse,
   IRequestRejectRequest,
   IRequestRejectResponse,
+  IRequestGetCorporateAgreeRequest,
+  IRequestGetCorporateAgreeResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -50,6 +52,15 @@ class RequestApi {
       url: "/request/get/corporate",
       params,
     })) as IRequestGetCorporateResponse;
+  }
+
+  static async getCorporateAgree(
+    params: IRequestGetCorporateAgreeRequest
+  ): Promise<IRequestGetCorporateAgreeResponse> {
+    return (await ApiClient.get({
+      url: "/request/get/corporate/agree",
+      params,
+    })) as IRequestGetCorporateAgreeResponse;
   }
 
   static async getCandidate(

@@ -98,7 +98,7 @@ const RequestListReceiverView = () => {
                           <div>
                             <button
                               onClick={() => handleReject(id)}
-                              className="inline-flex items-center gap-1 hover:text-cc-green"
+                              className="sm:ml-2 flex sm:inline-flex items-center gap-1 hover:text-cc-green"
                             >
                               <BanIcon className="h-6 w-6" aria-hidden="true" />
                               거절하기
@@ -123,7 +123,7 @@ const RequestListReceiverView = () => {
                           <div>
                             <button
                               onClick={() => handleReject(id)}
-                              className="inline-flex items-center gap-1 hover:text-cc-green hover:text-cc-green"
+                              className="sm:ml-2 flex sm:inline-flex items-center gap-1 hover:text-cc-green hover:text-cc-green"
                             >
                               <BanIcon className="h-6 w-6" aria-hidden="true" />
                               거절하기
