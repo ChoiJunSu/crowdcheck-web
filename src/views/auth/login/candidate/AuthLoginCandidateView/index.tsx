@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import { useCallback } from "react";
@@ -12,6 +12,7 @@ import jwtDecode from "jwt-decode";
 import { IAuthTokenPayload } from "@atoms/loginAtom/type";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 import ErrorMessage from "@components/base/form/ErrorMessage";
+import PhoneField from "@components/base/form/PhoneField";
 
 const AuthLoginCandidateView = () => {
   const navigate = useNavigate();
@@ -23,11 +24,12 @@ const AuthLoginCandidateView = () => {
     navigate(-1);
   }
 
+  const methods = useForm();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = methods;
   const setLoginState = useSetRecoilState(loginAtom);
 
   const handleCandidateAuth = useCallback(async (data) => {
@@ -58,46 +60,49 @@ const AuthLoginCandidateView = () => {
 
   return (
     <div className="sm:mx-auto sm:w-full sm:max-w-md bg-white">
-      <form
-        onSubmit={handleSubmit(handleCandidateAuth)}
-        noValidate={true}
-        className="mt-10 space-y-6"
-      >
-        <div>
-          <label htmlFor="name" className="label">
-            이름
-          </label>
-          <div className="mt-1">
-            <input
-              type="text"
-              {...register("name", { required: "이름을 입력해주세요." })}
-              className="input"
-            />
-            <ErrorMessage message={errors.name?.message} />
+      <FormProvider {...methods}>
+        <form
+          onSubmit={handleSubmit(handleCandidateAuth)}
+          noValidate={true}
+          className="mt-10 space-y-6 mx-auto"
+        >
+          <div className="sm:w-2/3">
+            <label htmlFor="name" className="label">
+              이름
+            </label>
+            <div className="mt-1">
+              <input
+                type="text"
+                {...register("name", { required: "이름을 입력해주세요." })}
+                className="input"
+              />
+              <ErrorMessage message={errors.name?.message} />
+            </div>
           </div>
-        </div>
-        <div>
-          <label htmlFor="password" className="label">
-            전화번호
-          </label>
-          <div className="mt-1">
-            <input
-              type="text"
-              {...register("phone", {
-                required: "전화번호를 입력해주세요.",
-                pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },
-              })}
-              placeholder="'-'를 제외한 숫자만 입력하세요."
-              className="input"
-            />
-            <ErrorMessage message={errors.password?.message} />
+          <div>
+            <label htmlFor="phone" className="label">
+              전화번호
+            </label>
+            {/*<div className="mt-1">*/}
+            {/*  <input*/}
+            {/*    type="text"*/}
+            {/*    {...register("phone", {*/}
+            {/*      required: "전화번호를 입력해주세요.",*/}
+            {/*      pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },*/}
+            {/*    })}*/}
+            {/*    placeholder="'-'를 제외한 숫자만 입력하세요."*/}
+            {/*    className="input"*/}
+            {/*  />*/}
+            {/*  <ErrorMessage message={errors.password?.message} />*/}
+            {/*</div>*/}
+            <PhoneField />
           </div>
-        </div>
 
-        <button type="submit" className="button">
-          인증하기
-        </button>
-      </form>
+          <button type="submit" className="button sm:w-2/3">
+            로그인
+          </button>
+        </form>
+      </FormProvider>
     </div>
   );
 };

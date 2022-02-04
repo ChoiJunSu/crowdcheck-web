@@ -25,13 +25,13 @@ const PhoneField = () => {
       return;
     }
     clearErrors();
-    setIsPhoneSent(true);
     const phoneSendResponse = await AuthApi.phoneSend({ phone });
     if (!phoneSendResponse.ok) {
       alert(phoneSendResponse.error);
       return;
     }
     alert("인증번호가 발송되었습니다. 5분 안에 인증을 완료해주세요.");
+    setIsPhoneSent(true);
     setFocus("code");
   }, []);
 
@@ -78,14 +78,14 @@ const PhoneField = () => {
           })}
           placeholder="'-'를 제외한 숫자만 입력하세요."
           disabled={isPhoneSent}
-          className="w-full sm:w-2/3 min-w-0 shrink focus:ring-cc-green focus:border-cc-green disabled:bg-gray-300 shadow-sm text-sm rounded-md border-gray-300"
+          className="w-full sm:w-2/3 min-w-0 shrink focus:ring-cc-green focus:border-cc-green disabled:bg-gray-300 shadow-sm text-sm sm:text-lg rounded-md border-gray-300"
         />
         {!isPhoneSent && (
           <div className="ml-1 sm:ml-2 w-1/3 inline-flex justify-end sm:justify-start">
             <button
               type="button"
               onClick={handlePhoneSend}
-              className="whitespace-nowrap inline-flex items-center justify-center px-2 py-2 border border-transparent rounded-md shadow-sm text-sm font-normal text-white bg-cc-green hover:bg-cc-green-dark"
+              className="whitespace-nowrap inline-flex items-center justify-center px-2 py-2 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-normal text-white bg-cc-green hover:bg-cc-green-dark"
             >
               인증번호 받기
             </button>
