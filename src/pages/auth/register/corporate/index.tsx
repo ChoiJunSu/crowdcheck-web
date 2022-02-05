@@ -57,10 +57,8 @@ const AuthRegisterCorporatePage = () => {
         alert(registerCorporateResponse.error);
         return;
       }
-      alert(
-        "회원가입 신청이 완료되었습니다. 사업자등록증 확인이 완료되면 서비스를 이용하실 수 있습니다. 최대 2 영업일이 소요되며 전화번호로 알려드립니다."
-      );
-      navigate("/");
+      alert("회원가입이 완료되었습니다. 로그인 해주세요.");
+      navigate("/auth/login");
     }, []);
 
   return isLoading ? (

@@ -46,10 +46,10 @@ export interface ICareer {
   id: number;
   corporateId: number;
   corporateName: string;
-  department?: string;
+  department: string | null;
   startAt: string;
   endAt: string | null;
-  status?: TCareerStatus;
+  verifiedAt: Date | null;
 }
 
 export interface IAuthRegisterPersonalRequest extends IApiRequest {

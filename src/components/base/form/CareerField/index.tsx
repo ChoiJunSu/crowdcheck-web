@@ -35,18 +35,26 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
   const [searchCorporateWord, setSearchCorporateWord] = useState<string>("");
   const addCorporateRef = useRef<HTMLInputElement>(null);
   const [careerStatusList, setCareerStatusList] = useState<
-    Array<{ status: TCareerStatus; careerId: number }>
+    Array<{ verifiedAt: Date | null; careerId: number }>
   >([]);
 
   useEffect(() => {
     if (!mode || !careers || careers.length === 0) return;
     const newCareerStatusList: Array<{
-      status: TCareerStatus;
+      verifiedAt: Date | null;
       careerId: number;
     }> = [];
     careers.forEach(
       (
-        { id, corporateId, corporateName, department, startAt, endAt, status },
+        {
+          id,
+          corporateId,
+          corporateName,
+          department,
+          startAt,
+          endAt,
+          verifiedAt,
+        },
         index
       ) => {
         handleAppendCareer();
@@ -55,7 +63,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
         setValue(`careers.${index}.department`, department);
         setValue(`careers.${index}.startAt`, startAt.substring(0, 10));
         if (endAt) setValue(`careers.${index}.endAt`, endAt.substring(0, 10));
-        if (status) newCareerStatusList.push({ status, careerId: id });
+        newCareerStatusList.push({ verifiedAt, careerId: id });
       }
     );
     setCareerStatusList(newCareerStatusList);
@@ -141,8 +149,8 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
   );
 
   const handleVerifyCareer = useCallback(async () => {
-    const { status, careerId } = careerStatusList[careerFocusIndex];
-    if (status !== "registered") {
+    const { verifiedAt, careerId } = careerStatusList[careerFocusIndex];
+    if (verifiedAt) {
       alert("잘못된 접근입니다.");
       setModalMode(null);
       return;
@@ -161,7 +169,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
       return;
     }
     const newCareerStatusList = [...careerStatusList];
-    newCareerStatusList[careerFocusIndex].status = "reviewed";
+    newCareerStatusList[careerFocusIndex].verifiedAt = new Date();
     setCareerStatusList(newCareerStatusList);
     alert("저장되었습니다. 증빙자료 검토 후 인증이 완료됩니다.");
     setModalMode(null);
@@ -229,7 +237,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
               {mode === "edit" && careerStatusList[index] && (
                 <div className="w-full">
                   <div className="w-full h-1/2 grid border-b border-white">
-                    {careerStatusList[index].status === "registered" && (
+                    {!careerStatusList[index].verifiedAt && (
                       <button
                         type="button"
                         onClick={() => handleOpenModal("verify", index)}
@@ -238,10 +246,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
                         인증하기
                       </button>
                     )}
-                    {careerStatusList[index].status === "reviewed" && (
-                      <span className="place-self-center">검토 중</span>
-                    )}
-                    {careerStatusList[index].status === "verified" && (
+                    {careerStatusList[index].verifiedAt && (
                       <span className="place-self-center">인증 완료</span>
                     )}
                   </div>

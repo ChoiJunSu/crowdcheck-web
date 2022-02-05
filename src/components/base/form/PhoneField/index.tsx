@@ -25,13 +25,14 @@ const PhoneField = () => {
       return;
     }
     clearErrors();
+    setIsPhoneSent(true);
     const phoneSendResponse = await AuthApi.phoneSend({ phone });
     if (!phoneSendResponse.ok) {
       alert(phoneSendResponse.error);
+      setIsPhoneSent(false);
       return;
     }
     alert("인증번호가 발송되었습니다. 5분 안에 인증을 완료해주세요.");
-    setIsPhoneSent(true);
     setFocus("code");
   }, []);
 
