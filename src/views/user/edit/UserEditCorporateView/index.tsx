@@ -7,14 +7,16 @@ import { IUserEditPersonalFormData } from "@views/user/edit/UserEditPersonalView
 import UserApi from "@api/UserApi";
 import { IUserEditCorporateRequest } from "@api/UserApi/type";
 import { IUserEditCorporateFormData } from "@views/user/edit/UserEditCorporateView/type";
-import PhoneField from "@components/base/form/PhoneField";
 
 const UserEditCorporateView = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
+    getValues,
     setValue,
+    setError,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm<IUserEditPersonalFormData>();
@@ -37,6 +39,14 @@ const UserEditCorporateView = () => {
 
   const handleEditCorporate: SubmitHandler<IUserEditCorporateFormData> =
     useCallback(async (data) => {
+      if (getValues("password") !== getValues("passwordConfirm")) {
+        setError("passwordConfirm", {
+          type: "validate",
+          message: "비밀번호와 일치하지 않습니다.",
+        });
+        return;
+      }
+      clearErrors();
       setIsLoading(true);
       const editCorporateResponse = await UserApi.editCorporate(
         data as IUserEditCorporateRequest
@@ -140,11 +150,37 @@ const UserEditCorporateView = () => {
                 <div className="mt-1">
                   <input
                     type="password"
-                    {...register("password")}
+                    {...register("password", {
+                      required: "비밀번호를 입력해주세요.",
+                      minLength: {
+                        value: 8,
+                        message: "8자 이상 입력해주세요.",
+                      },
+                    })}
                     placeholder="변경하실 비밀번호를 입력하세요."
                     className="input"
                   />
                   <ErrorMessage message={errors?.password?.message} />
+                </div>
+              </div>
+
+              <div className="sm:w-1/2">
+                <label htmlFor="passwordConfirm" className="label">
+                  비밀번호 확인
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="password"
+                    {...register("passwordConfirm", {
+                      required: "비밀번호 확인을 입력해주세요.",
+                      minLength: {
+                        value: 8,
+                        message: "8자 이상 입력해주세요.",
+                      },
+                    })}
+                    className="input"
+                  />
+                  <ErrorMessage message={errors?.passwordConfirm?.message} />
                 </div>
               </div>
             </div>

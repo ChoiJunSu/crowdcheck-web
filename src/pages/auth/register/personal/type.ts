@@ -6,5 +6,6 @@ export interface IRegisterPersonalFormData {
   code: number;
   email: string;
   password: string;
+  passwordConfirm: string;
   careers: Array<ICareer>;
 }

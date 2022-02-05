@@ -5,5 +5,6 @@ export interface IUserEditPersonalFormData {
   phone: string;
   email: string;
   password: string;
+  passwordConfirm: string;
   careers: Array<ICareer>;
 }

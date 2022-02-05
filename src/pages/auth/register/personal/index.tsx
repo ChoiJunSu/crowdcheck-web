@@ -25,12 +25,23 @@ const AuthRegisterPersonalPage = () => {
   });
   const {
     register,
+    getValues,
+    setError,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = methods;
 
   const handleRegisterPersonal: SubmitHandler<IRegisterPersonalFormData> =
     useCallback(async (data) => {
+      if (getValues("password") !== getValues("passwordConfirm")) {
+        setError("passwordConfirm", {
+          type: "validate",
+          message: "비밀번호와 일치하지 않습니다.",
+        });
+        return;
+      }
+      clearErrors();
       setIsLoading(true);
       const registerPersonalResponse = await AuthApi.registerPersonal(
         data as IAuthRegisterPersonalRequest
@@ -122,10 +133,34 @@ const AuthRegisterPersonalPage = () => {
                     type="password"
                     {...register("password", {
                       required: "비밀번호를 입력해주세요.",
+                      minLength: {
+                        value: 8,
+                        message: "8자 이상 입력해주세요.",
+                      },
                     })}
                     className="input"
                   />
                   <ErrorMessage message={errors?.password?.message} />
+                </div>
+              </div>
+
+              <div className="sm:w-1/2">
+                <label htmlFor="passwordConfirm" className="label">
+                  비밀번호 확인
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="password"
+                    {...register("passwordConfirm", {
+                      required: "비밀번호 확인을 입력해주세요.",
+                      minLength: {
+                        value: 8,
+                        message: "8자 이상 입력해주세요.",
+                      },
+                    })}
+                    className="input"
+                  />
+                  <ErrorMessage message={errors?.passwordConfirm?.message} />
                 </div>
               </div>
             </div>

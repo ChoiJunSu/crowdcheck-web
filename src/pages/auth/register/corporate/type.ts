@@ -3,5 +3,6 @@ export interface IRegisterCorporateFormData {
   phone: string;
   email: string;
   password: string;
+  passwordConfirm: string;
   certificate: File;
 }

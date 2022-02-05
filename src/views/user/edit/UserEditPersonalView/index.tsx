@@ -27,7 +27,10 @@ const UserEditPersonalView = () => {
   });
   const {
     register,
+    getValues,
     setValue,
+    setError,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = methods;
@@ -52,6 +55,14 @@ const UserEditPersonalView = () => {
 
   const handleEditPersonal: SubmitHandler<IUserEditPersonalFormData> =
     useCallback(async (data) => {
+      if (getValues("password") !== getValues("passwordConfirm")) {
+        setError("passwordConfirm", {
+          type: "validate",
+          message: "비밀번호와 일치하지 않습니다.",
+        });
+        return;
+      }
+      clearErrors();
       setIsLoading(true);
       const editPersonalResponse = await UserApi.editPersonal(
         data as IUserEditPersonalRequest
@@ -156,11 +167,37 @@ const UserEditPersonalView = () => {
                   <div className="mt-1">
                     <input
                       type="password"
-                      {...register("password")}
+                      {...register("password", {
+                        required: "비밀번호를 입력해주세요.",
+                        minLength: {
+                          value: 8,
+                          message: "8자 이상 입력해주세요.",
+                        },
+                      })}
                       placeholder="변경하실 비밀번호를 입력하세요."
                       className="input"
                     />
                     <ErrorMessage message={errors?.password?.message} />
+                  </div>
+                </div>
+
+                <div className="sm:w-1/2">
+                  <label htmlFor="passwordConfirm" className="label">
+                    비밀번호 확인
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      type="password"
+                      {...register("passwordConfirm", {
+                        required: "비밀번호 확인을 입력해주세요.",
+                        minLength: {
+                          value: 8,
+                          message: "8자 이상 입력해주세요.",
+                        },
+                      })}
+                      className="input"
+                    />
+                    <ErrorMessage message={errors?.passwordConfirm?.message} />
                   </div>
                 </div>
               </div>
