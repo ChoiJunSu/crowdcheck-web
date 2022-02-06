@@ -2,7 +2,7 @@
   "name": "crowdcheck-web",
   "private": true,
   "scripts": {
-    "start": "craco start",
+    "start": "npm i && craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject"
