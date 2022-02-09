@@ -2,8 +2,8 @@
   "name": "crowdcheck-web",
   "private": true,
   "scripts": {
-    "start": "npm i && craco start",
     "build": "craco build",
+    "start": "npm i && npm run build && serve -s build",
     "test": "craco test",
     "eject": "craco eject"
   },
@@ -19,7 +19,8 @@
     "react-hook-form": "^7.22.5",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
-    "recoil": "^0.5.2"
+    "recoil": "^0.5.2",
+    "serve": "^13.0.2"
   },
   "devDependencies": {
     "@types/node": "17.0.4",
