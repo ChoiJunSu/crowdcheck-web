@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "craco start",
     "build": "npm i && craco build",
-    "start": "serve -s ./build"
+    "start": "npm run build && serve -s ./build"
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",
