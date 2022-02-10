@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import AuthApi from "@api/AuthApi";
-import { WEB_URL } from "@constants/url";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ILoginOauthCallbackPageProps } from "@pages/auth/login/oauth/callback/type";
 import { IAuthLoginOauthRequest } from "@api/AuthApi/type";
@@ -18,7 +17,7 @@ const LoginOauthCallbackPage = ({ provider }: ILoginOauthCallbackPageProps) => {
     alert("잘못된 접근입니다.");
     navigate(-1);
   }
-  const redirectUri = `${WEB_URL}/auth/login/oauth/callback/${provider}`;
+  const redirectUri = `${process.env.REACT_APP_WEB_URL}/auth/login/oauth/callback/${provider}`;
   const setLoginState = useSetRecoilState(loginAtom);
 
   useEffect(() => {

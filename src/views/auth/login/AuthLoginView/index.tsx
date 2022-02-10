@@ -11,7 +11,6 @@ import ErrorMessage from "@components/base/form/ErrorMessage";
 import { ReactComponent as GoogleLogo } from "@assets/images/google.svg";
 import { ReactComponent as KakaoLogo } from "@assets/images/kakao.svg";
 import { OAUTH_CLIENT_ID, OAUTH_URL } from "@constants/oauth";
-import { WEB_URL } from "@constants/url";
 import { useState } from "react";
 import { TUserType } from "@api/UserApi/type";
 import { IAuthLoginFormData } from "@views/auth/login/AuthLoginView/type";
@@ -26,13 +25,13 @@ const oauthLoginButtons = [
     icon: GoogleLogo,
     text: "구글로 시작하기",
     style: "bg-[#ffffff] hover:bg-gray-100 text-[#000000]",
-    href: `${OAUTH_URL.GOOGLE}?response_type=code&client_id=${OAUTH_CLIENT_ID.GOOGLE}&redirect_uri=${WEB_URL}/auth/login/oauth/callback/google&scope=https://www.googleapis.com/auth/userinfo.email`,
+    href: `${OAUTH_URL.GOOGLE}?response_type=code&client_id=${OAUTH_CLIENT_ID.GOOGLE}&redirect_uri=${process.env.REACT_APP_WEB_URL}/auth/login/oauth/callback/google&scope=https://www.googleapis.com/auth/userinfo.email`,
   },
   {
     icon: KakaoLogo,
     text: "카카오로 시작하기",
     style: "bg-[#fee500] hover:bg-[#e5cf00] text-[#000000]/15",
-    href: `${OAUTH_URL.KAKAO}?response_type=code&client_id=${OAUTH_CLIENT_ID.KAKAO}&redirect_uri=${WEB_URL}/auth/login/oauth/callback/kakao`,
+    href: `${OAUTH_URL.KAKAO}?response_type=code&client_id=${OAUTH_CLIENT_ID.KAKAO}&redirect_uri=${process.env.REACT_APP_WEB_URL}/auth/login/oauth/callback/kakao`,
   },
 ];
 

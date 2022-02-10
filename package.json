@@ -2,10 +2,9 @@
   "name": "crowdcheck-web",
   "private": true,
   "scripts": {
-    "build": "craco build",
-    "start": "npm i && npm run build && serve -s build",
-    "test": "craco test",
-    "eject": "craco eject"
+    "dev": "craco start",
+    "build": "npm i && craco build",
+    "start": "serve -s ./build"
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",

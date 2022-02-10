@@ -5,7 +5,6 @@ import {
   IPostRequest,
   IPostResponse,
 } from "@api/ApiClient/type";
-import { API_URL } from "@constants/url";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 class ApiClient {
@@ -51,10 +50,13 @@ class ApiClient {
       error: "",
     };
     try {
-      const axiosGetResponse = await axios.get(API_URL + url, {
-        params: params || {},
-        headers: ApiClient.getHeaders(headers || {}),
-      });
+      const axiosGetResponse = await axios.get(
+        process.env.REACT_APP_SERVER_URL + url,
+        {
+          params: params || {},
+          headers: ApiClient.getHeaders(headers || {}),
+        }
+      );
       response = axiosGetResponse.data;
     } catch (e: any) {
       response.error = ApiClient.handleAxiosError(e);
@@ -73,9 +75,13 @@ class ApiClient {
       error: "",
     };
     try {
-      const axiosPostResponse = await axios.post(API_URL + url, data || {}, {
-        headers: ApiClient.getHeaders(headers || {}),
-      });
+      const axiosPostResponse = await axios.post(
+        process.env.REACT_APP_SERVER_URL + url,
+        data || {},
+        {
+          headers: ApiClient.getHeaders(headers || {}),
+        }
+      );
       response = axiosPostResponse.data;
     } catch (e: any) {
       response.error = ApiClient.handleAxiosError(e);

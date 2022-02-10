@@ -3,14 +3,12 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import RequestApi from "@api/RequestApi";
 import { IRequestRegisterRequest } from "@api/RequestApi/type";
-import { WEB_URL } from "@constants/url";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import CareerField from "@components/base/form/CareerField";
 import { IRequestRegisterFormData } from "@pages/request/register/type";
 import { useRecoilValue } from "recoil";
 import loginAtom from "@atoms/loginAtom";
-import PhoneField from "@components/base/form/PhoneField";
 
 const RequestRegisterPage = () => {
   const navigate = useNavigate();
@@ -54,9 +52,6 @@ const RequestRegisterPage = () => {
         return;
       }
       alert("의뢰가 등록되었습니다. 지원자에게 동의 링크가 발송됩니다.");
-      console.log(
-        `${WEB_URL}/auth/login/candidate?code=${requestRegisterResponse.code}`
-      );
       navigate("/request/list");
     }, []);
 
