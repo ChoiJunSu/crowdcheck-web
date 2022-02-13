@@ -10,4 +10,6 @@ artifacts:
   type: zip
   files:
     - '.ebextensions/*'
+    - package.json
+    - package-lock.json
     - 'dist/**/*'
