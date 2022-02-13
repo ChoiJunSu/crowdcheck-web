@@ -12,4 +12,4 @@ artifacts:
     - '.ebextensions/*'
     - package.json
     - package-lock.json
-    - 'dist/**/*'
+    - 'build/**/*'

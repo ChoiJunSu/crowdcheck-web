@@ -1,7 +1,6 @@
 {
   "name": "crowdcheck-web",
   "private": true,
-  "homepage": "./build",
   "scripts": {
     "dev": "craco start",
     "build": "craco build",
