@@ -35,6 +35,9 @@ const RequestVerifyPage = () => {
   return (
     <div>
       <div className="sm:mx-auto sm:w-full sm:max-w-md bg-white">
+        <h2 className="text-xl sm:text-2xl leading-6 font-bold text-gray-900">
+          지원자 정보 검증
+        </h2>
         <form
           onSubmit={handleSubmit(handleVerify)}
           noValidate={true}

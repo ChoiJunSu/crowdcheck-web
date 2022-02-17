@@ -17,6 +17,7 @@ const RequestListReceiverView = () => {
 
   const handleReject = useCallback(
     async (requestId: number) => {
+      if (!confirm("정말로 거절하시겠습니까?")) return;
       const rejectResponse = await RequestApi.reject({ requestId });
       if (!rejectResponse.ok) {
         alert(rejectResponse.error);
@@ -95,7 +96,7 @@ const RequestListReceiverView = () => {
                               답변하기
                             </Link>
                           </div>
-                          <div>
+                          <div className="ml-2 sm:ml-0">
                             <button
                               onClick={() => handleReject(id)}
                               className="flex sm:inline-flex items-center gap-1 hover:text-cc-green"
@@ -111,7 +112,7 @@ const RequestListReceiverView = () => {
                           <div>
                             <Link
                               to={`/request/answer?requestId=${id}`}
-                              className="inline-flex items-center gap-1 hover:text-cc-green hover:text-cc-green"
+                              className="inline-flex items-center gap-1 hover:text-cc-green"
                             >
                               <PencilAltIcon
                                 className="h-6 w-6"
@@ -120,10 +121,10 @@ const RequestListReceiverView = () => {
                               답변하기
                             </Link>
                           </div>
-                          <div>
+                          <div className="ml-2 sm:ml-0">
                             <button
                               onClick={() => handleReject(id)}
-                              className="flex sm:inline-flex items-center gap-1 hover:text-cc-green hover:text-cc-green"
+                              className="flex sm:inline-flex items-center gap-1hover:text-cc-green"
                             >
                               <BanIcon className="h-6 w-6" aria-hidden="true" />
                               거절하기

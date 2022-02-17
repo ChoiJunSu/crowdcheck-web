@@ -16,13 +16,6 @@ import PhoneField from "@components/base/form/PhoneField";
 
 const AuthLoginCandidateView = () => {
   const navigate = useNavigate();
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const code = params.get("code");
-  if (!code) {
-    alert("잘못된 접근입니다.");
-    navigate(-1);
-  }
 
   const methods = useForm();
   const {
@@ -36,7 +29,6 @@ const AuthLoginCandidateView = () => {
     const loginCandidateResponse: IAuthLoginCandidateResponse =
       await AuthApi.loginCandidate({
         ...data,
-        code,
       } as IAuthLoginCandidateRequest);
     if (loginCandidateResponse.ok) {
       const { authToken } = loginCandidateResponse;
@@ -60,6 +52,9 @@ const AuthLoginCandidateView = () => {
 
   return (
     <div className="sm:mx-auto sm:w-full sm:max-w-md bg-white">
+      <h2 className="text-xl sm:text-2xl leading-6 font-bold text-gray-900">
+        지원자 로그인
+      </h2>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(handleCandidateAuth)}
@@ -83,18 +78,6 @@ const AuthLoginCandidateView = () => {
             <label htmlFor="phone" className="label">
               전화번호
             </label>
-            {/*<div className="mt-1">*/}
-            {/*  <input*/}
-            {/*    type="text"*/}
-            {/*    {...register("phone", {*/}
-            {/*      required: "전화번호를 입력해주세요.",*/}
-            {/*      pattern: { value: /^\d*$/, message: "숫자만 입력해주세요." },*/}
-            {/*    })}*/}
-            {/*    placeholder="'-'를 제외한 숫자만 입력하세요."*/}
-            {/*    className="input"*/}
-            {/*  />*/}
-            {/*  <ErrorMessage message={errors.password?.message} />*/}
-            {/*</div>*/}
             <PhoneField />
           </div>
 

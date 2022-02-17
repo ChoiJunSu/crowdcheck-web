@@ -103,7 +103,7 @@ const PhoneField = () => {
                 required: "인증번호를 입력해주세요.",
               })}
               disabled={isPhoneVerified}
-              className="w-full shrink min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm sm:text-sm rounded-md border-gray-300"
+              className="w-full shrink min-w-0 focus:ring-cc-green focus:border-cc-green shadow-sm text-sm sm:text-lg rounded-md border-gray-300"
             />
             <div className="sm:ml-2 w-1/3 flex justify-end">
               <button
