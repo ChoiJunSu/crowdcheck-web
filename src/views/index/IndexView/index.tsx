@@ -8,8 +8,8 @@ const IndexView = () => {
 
   return (
     <div>
-      <div className="max-w-2xl mx-auto py-6 sm:py-10 sm:px-12">
-        <h2 className="text-xl sm:text-2xl leading-6 font-medium text-gray-900">
+      <div className="max-w-lg mx-auto py-6 sm:py-10 sm:px-12">
+        <h2 className="ml-2 sm:ml-0 text-xl sm:text-2xl leading-6 font-bold text-gray-900">
           어서오세요 {name}님
         </h2>
       </div>

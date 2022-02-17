@@ -55,7 +55,7 @@ const RequestAnswerReceiverView = () => {
       {corporateName && candidateName && (
         <div className="my-4">
           {corporateName && (
-            <h2 className="text-xl leading-6 font-medium text-gray-900">
+            <h2 className="text-xl sm:text-2xl leading-6 font-bold text-gray-900">
               {corporateName}의 {candidateName}님에 대한 의뢰
             </h2>
           )}

@@ -45,7 +45,7 @@ const RequestAnswerCorporateView = () => {
     <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto divide-y-2 divide-gray-200">
         <div>
-          <h2 className="text-xl leading-6 font-medium text-gray-900">
+          <h2 className="text-xl sm:text-2xl leading-6 font-bold text-gray-900">
             {candidateName}님에 대한 의뢰
           </h2>
           <div className="mt-4">
