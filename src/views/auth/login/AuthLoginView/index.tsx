@@ -130,12 +130,20 @@ const AuthLoginView = () => {
 
         <div className="flex justify-end">
           {type === "personal" && (
-            <Link
-              to="/auth/register/personal"
-              className="font-normal text-sm sm:text-lg text-gray-400 hover:text-gray-500 underline"
-            >
-              이메일로 가입하기
-            </Link>
+            <div>
+              <Link
+                to="/auth/register/personal"
+                className="block font-normal text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
+              >
+                이메일로 가입하기
+              </Link>
+              <Link
+                to="/auth/login/candidate"
+                className="flex justify-end font-normal text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
+              >
+                지원자 로그인
+              </Link>
+            </div>
           )}
 
           {type === "corporate" && (
