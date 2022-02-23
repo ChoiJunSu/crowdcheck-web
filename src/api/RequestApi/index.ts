@@ -1,7 +1,5 @@
 import ApiClient from "@api/ApiClient";
 import {
-  IRequestRegisterRequest,
-  IRequestRegisterResponse,
   IRequestGetCandidateRequest,
   IRequestGetCandidateResponse,
   IRequestListCandidateRequest,
@@ -24,16 +22,18 @@ import {
   IRequestRejectResponse,
   IRequestGetCorporateAgreeRequest,
   IRequestGetCorporateAgreeResponse,
+  IRequestRegisterReferenceRequest,
+  IRequestRegisterReferenceResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
-  static async register(
-    data: IRequestRegisterRequest
-  ): Promise<IRequestRegisterResponse> {
+  static async registerReference(
+    data: IRequestRegisterReferenceRequest
+  ): Promise<IRequestRegisterReferenceResponse> {
     return (await ApiClient.post({
       url: "/request/register",
       data,
-    })) as IRequestRegisterResponse;
+    })) as IRequestRegisterReferenceResponse;
   }
 
   static async getReceiver(

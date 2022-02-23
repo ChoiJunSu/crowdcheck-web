@@ -20,4 +20,8 @@
     .button {
         @apply w-full flex place-content-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-normal text-white bg-cc-green hover:bg-[#218073]
     }
+
+    .h3 {
+        @apply text-lg sm:text-xl leading-6 font-medium text-gray-900
+    }
 }

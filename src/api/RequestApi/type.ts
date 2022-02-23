@@ -3,6 +3,8 @@ import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 
 export type TRequestStatus = "registered" | "agreed" | "closed";
 
+export type TRequestType = "reference" | "resume";
+
 export type TReceiverStatus =
   | "arrived"
   | "verified"
@@ -28,7 +30,7 @@ export interface IAnswer {
   answer: string | null;
 }
 
-export interface IRequestRegisterRequest extends IApiRequest {
+export interface IRequestRegisterReferenceRequest extends IApiRequest {
   name: string;
   phone: string;
   careers: Array<ICareer>;
@@ -36,7 +38,7 @@ export interface IRequestRegisterRequest extends IApiRequest {
   deadline: string | null;
 }
 
-export interface IRequestRegisterResponse extends IApiResponse {
+export interface IRequestRegisterReferenceResponse extends IApiResponse {
   code: string;
 }
 

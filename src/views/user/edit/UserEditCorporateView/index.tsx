@@ -68,9 +68,7 @@ const UserEditCorporateView = () => {
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
-              <h3 className="text-lg sm:text-xl leading-6 font-medium text-gray-900">
-                기본 정보
-              </h3>
+              <h3 className="h3">기본 정보</h3>
             </div>
 
             <div className="mt-4 flex flex-col gap-y-4 ">
@@ -116,9 +114,7 @@ const UserEditCorporateView = () => {
 
           <div className="pt-8">
             <div>
-              <h3 className="text-lg sm:text-xl leading-6 font-medium text-gray-900">
-                로그인 정보
-              </h3>
+              <h3 className="h3">로그인 정보</h3>
             </div>
 
             <div className="mt-4 flex flex-col gap-y-4 ">

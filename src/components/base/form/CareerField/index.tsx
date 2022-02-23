@@ -181,7 +181,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
         <div key={index} className="mb-4">
           <div className="bg-white rounded-md shadow-sm grid grid-cols-4 sm:grid-cols-7 grid-flow-row-dense rounded-md border border-gray-300">
             <div className="col-span-3 flex-1 min-w-0 flex justify-between border-b border-gray-300">
-              <span className="w-1/4 inline-flex items-center justify-center rounded-tl-md bg-gray-50 text-gray-500 text-sm">
+              <span className="w-1/4 inline-flex items-center justify-center rounded-tl-md bg-gray-50 text-gray-500 text-sm sm:text-md">
                 기업이름
               </span>
               <input
@@ -198,7 +198,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
               />
             </div>
             <div className="col-span-3 flex-1 min-w-0 flex justify-between border-b border-gray-300">
-              <span className="w-1/4 inline-flex items-center justify-center px-3 bg-gray-50 text-gray-500 text-sm">
+              <span className="w-1/4 inline-flex items-center justify-center px-3 bg-gray-50 text-gray-500 text-sm sm:text-md">
                 부서
               </span>
               <input
@@ -209,7 +209,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
               />
             </div>
             <div className="col-span-3 flex-1 min-w-0 flex justify-between border-b sm:border-0 border-gray-300">
-              <span className="w-1/4 inline-flex items-center justify-center rounded-bl-md px-3 bg-gray-50 text-gray-500 text-sm">
+              <span className="w-1/4 inline-flex items-center justify-center rounded-bl-md px-3 bg-gray-50 text-gray-500 text-sm sm:text-md">
                 입사일
               </span>
               <input
@@ -222,7 +222,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
               />
             </div>
             <div className="col-span-3 flex-1 min-w-0 flex justify-between">
-              <span className="w-1/4 inline-flex items-center justify-center px-3 rounded-bl-md sm:rounded-none bg-gray-50 text-gray-500 text-sm">
+              <span className="w-1/4 inline-flex items-center justify-center px-3 rounded-bl-md sm:rounded-none bg-gray-50 text-gray-500 text-sm sm:text-md">
                 퇴사일
               </span>
               <input
@@ -233,7 +233,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
                 className="flex-1 min-w-0 block w-full px-3 py-2 border-0 focus:ring-cc-green focus:border-cc-green disabled:bg-gray-200 sm:text-sm"
               />
             </div>
-            <div className="row-span-4 sm:row-span-2 flex place-content-center rounded-r-md bg-gray-50 text-gray-500 text-sm font-normal">
+            <div className="row-span-4 sm:row-span-2 flex place-content-center rounded-r-md bg-gray-50 text-gray-500 text-sm sm:text-md font-normal">
               {mode === "edit" && careerStatusList[index] && (
                 <div className="w-full">
                   <div className="w-full h-1/2 grid border-b border-white">

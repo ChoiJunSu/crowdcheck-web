@@ -1,6 +1,6 @@
 import { ICareer } from "@api/AuthApi/type";
 
-export interface IRequestRegisterFormData {
+export interface IRequestRegisterReferenceFormData {
   name: string;
   phone: string;
   careers: Array<ICareer>;

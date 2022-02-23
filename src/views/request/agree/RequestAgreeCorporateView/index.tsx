@@ -62,9 +62,7 @@ const RequestAgreeCorporateView = () => {
           </div>
           <div className="pt-8">
             <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                동의 정보
-              </h3>
+              <h3 className="h3">동의 정보</h3>
             </div>
             <div className="mt-4">
               <div className="sm:mx-auto sm:w-full sm:max-w-2xl flex flex-col">
@@ -109,9 +107,7 @@ const RequestAgreeCorporateView = () => {
           </div>
           <div className="pt-8">
             <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                비동의 사유
-              </h3>
+              <h3 className="h3">비동의 사유</h3>
             </div>
             <div className="mt-4">
               <textarea

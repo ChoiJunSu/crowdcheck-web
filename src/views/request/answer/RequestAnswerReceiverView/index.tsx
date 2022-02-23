@@ -63,14 +63,14 @@ const RequestAnswerReceiverView = () => {
       )}
       {question && (
         <div className="pt-8">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">질문</h3>
+          <h3 className="h3">질문</h3>
           <div className="mt-4">
             <textarea value={question} readOnly={true} className="input" />
           </div>
         </div>
       )}
       <div className="pt-8">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">답변</h3>
+        <h3 className="h3">답변</h3>
         <div className="mt-4">
           <textarea
             {...register("answer", { required: "답변을 입력하세요." })}
