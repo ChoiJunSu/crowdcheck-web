@@ -41,7 +41,7 @@ const AuthLoginCandidateView = () => {
           type,
         });
         localStorage.setItem(LOCAL_AUTH_TOKEN, authToken);
-        navigate("/request/list");
+        navigate("/request/reference/list");
       } catch (e) {
         alert("지원자 인증 오류입니다.");
       }

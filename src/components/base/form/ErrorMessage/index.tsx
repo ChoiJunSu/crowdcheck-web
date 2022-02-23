@@ -3,7 +3,7 @@ import { IErrorProps } from "@components/base/form/ErrorMessage/type";
 const ErrorMessage = ({ message }: IErrorProps) => {
   return (
     <div className="block h-4 my-1">
-      <p className="text-sm text-red-600">{message}</p>
+      <p className="text-sm text-red-600 font-medium">{message}</p>
     </div>
   );
 };

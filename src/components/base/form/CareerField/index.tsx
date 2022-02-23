@@ -233,7 +233,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
                 className="flex-1 min-w-0 block w-full px-3 py-2 border-0 focus:ring-cc-green focus:border-cc-green disabled:bg-gray-200 sm:text-sm"
               />
             </div>
-            <div className="row-span-4 sm:row-span-2 flex place-content-center rounded-r-md bg-gray-50 text-gray-500 text-sm sm:text-md font-normal">
+            <div className="row-span-4 sm:row-span-2 flex place-content-center rounded-r-md bg-gray-50 text-gray-500 text-sm sm:text-md font-medium">
               {mode === "edit" && careerStatusList[index] && (
                 <div className="w-full">
                   <div className="w-full h-1/2 grid border-b border-white">

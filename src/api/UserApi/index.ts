@@ -22,7 +22,7 @@ class UserApi {
     })) as IUserGetPersonalResponse;
   }
 
-  static async getCorporate(
+  static async referenceGetCorporate(
     params: IUserGetCorporateRequest
   ): Promise<IUserGetCorporateResponse> {
     return (await ApiClient.get({

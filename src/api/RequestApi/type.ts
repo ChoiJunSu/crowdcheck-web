@@ -30,7 +30,7 @@ export interface IAnswer {
   answer: string | null;
 }
 
-export interface IRequestRegisterReferenceRequest extends IApiRequest {
+export interface IRequestReferenceRegisterRequest extends IApiRequest {
   name: string;
   phone: string;
   careers: Array<ICareer>;
@@ -38,111 +38,116 @@ export interface IRequestRegisterReferenceRequest extends IApiRequest {
   deadline: string | null;
 }
 
-export interface IRequestRegisterReferenceResponse extends IApiResponse {
-  code: string;
+export interface IRequestReferenceRegisterResponse extends IApiResponse {}
+
+export interface IRequestResumeRegisterRequest extends IApiRequest {
+  formData: FormData;
 }
 
-export interface ICandidateRequest {
+export interface IRequestResumeRegisterResponse extends IApiResponse {}
+
+export interface IRequestReferenceCandidate {
   id: number;
   corporateName: string;
   status: TRequestStatus;
 }
 
-export interface ICorporateRequest {
+export interface IRequestReferenceCorporate {
   id: number;
   candidateName: string;
   status: TRequestStatus;
   receivers: Array<IReceiver>;
 }
 
-export interface IReceiverRequest {
+export interface IRequestReferenceReceiver {
   id: number;
   corporateName: string;
   candidateName: string;
   status: TReceiverStatus;
 }
 
-export interface IRequestGetReceiverRequest extends IApiRequest {
+export interface IRequestReferenceGetReceiverRequest extends IApiRequest {
   requestId: number;
 }
 
-export interface IRequestGetReceiverResponse extends IApiResponse {
+export interface IRequestReferenceGetReceiverResponse extends IApiResponse {
   corporateName: string;
   candidateName: string;
   question: string;
 }
 
-export interface IRequestGetCorporateRequest extends IApiRequest {
+export interface IRequestReferenceGetCorporateRequest extends IApiRequest {
   requestId: number;
 }
 
-export interface IRequestGetCorporateResponse extends IApiResponse {
+export interface IRequestReferenceGetCorporateResponse extends IApiResponse {
   candidateName: string;
   question: string;
   answers: Array<IAnswer>;
 }
 
-export interface IRequestGetCorporateAgreeRequest extends IApiRequest {
+export interface IRequestReferenceGetCorporateAgreeRequest extends IApiRequest {
   requestId: number;
 }
 
-export interface IRequestGetCorporateAgreeResponse extends IApiResponse {
+export interface IRequestReferenceGetCorporateAgreeResponse
+  extends IApiResponse {
   candidateName: string;
   agrees: Array<IAgree>;
   agreeDescription: string | null;
 }
 
-export interface IRequestGetCandidateRequest extends IApiRequest {
+export interface IRequestReferenceGetCandidateRequest extends IApiRequest {
   requestId: number;
 }
 
-export interface IRequestGetCandidateResponse extends IApiResponse {
+export interface IRequestReferenceGetCandidateResponse extends IApiResponse {
   corporateName: string;
   careers: Array<ICareer>;
 }
 
-export interface IRequestListReceiverRequest extends IApiRequest {}
+export interface IRequestReferenceListReceiverRequest extends IApiRequest {}
 
-export interface IRequestListReceiverResponse extends IApiResponse {
-  requests: Array<IReceiverRequest>;
+export interface IRequestReferenceListReceiverResponse extends IApiResponse {
+  requests: Array<IRequestReferenceReceiver>;
 }
 
-export interface IRequestListCorporateRequest extends IApiRequest {}
+export interface IRequestReferenceListCorporateRequest extends IApiRequest {}
 
-export interface IRequestListCorporateResponse extends IApiResponse {
-  requests: Array<ICorporateRequest>;
+export interface IRequestReferenceListCorporateResponse extends IApiResponse {
+  requests: Array<IRequestReferenceCorporate>;
 }
 
-export interface IRequestListCandidateRequest extends IApiRequest {}
+export interface IRequestReferenceListCandidateRequest extends IApiRequest {}
 
-export interface IRequestListCandidateResponse extends IApiResponse {
-  requests: Array<ICandidateRequest>;
+export interface IRequestReferenceListCandidateResponse extends IApiResponse {
+  requests: Array<IRequestReferenceCandidate>;
 }
 
-export interface IRequestAgreeRequest extends IApiRequest {
+export interface IRequestReferenceAgreeRequest extends IApiRequest {
   requestId: number;
   agrees: Array<IAgree>;
   agreeDescription: string | null;
 }
 
-export interface IRequestAgreeResponse extends IApiResponse {}
+export interface IRequestReferenceAgreeResponse extends IApiResponse {}
 
-export interface IRequestVerifyRequest extends IApiRequest {
+export interface IRequestReferenceVerifyRequest extends IApiRequest {
   requestId: number;
   candidatePhone: string;
 }
 
-export interface IRequestVerifyResponse extends IApiResponse {}
+export interface IRequestReferenceVerifyResponse extends IApiResponse {}
 
-export interface IRequestAnswerRequest extends IApiRequest {
+export interface IRequestReferenceAnswerRequest extends IApiRequest {
   requestId: number;
   answer: string;
 }
 
-export interface IRequestAnswerResponse extends IApiResponse {}
+export interface IRequestReferenceAnswerResponse extends IApiResponse {}
 
-export interface IRequestRejectRequest extends IApiRequest {
+export interface IRequestReferenceRejectRequest extends IApiRequest {
   requestId: number;
 }
 
-export interface IRequestRejectResponse extends IApiResponse {}
+export interface IRequestReferenceRejectResponse extends IApiResponse {}

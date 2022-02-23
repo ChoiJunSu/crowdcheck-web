@@ -18,8 +18,13 @@ export const menuItems = {
   personal: [
     {
       icon: ClipboardIcon,
-      text: "의뢰 목록",
-      to: "/request/list",
+      text: "평판 의뢰 목록",
+      to: "/request/reference/list",
+    },
+    {
+      icon: ClipboardIcon,
+      text: "이력서 의뢰 목록",
+      to: "/request/resume/list",
     },
     {
       icon: UserIcon,
@@ -30,13 +35,23 @@ export const menuItems = {
   corporate: [
     {
       icon: ClipboardIcon,
-      text: "의뢰 목록",
-      to: "/request/list",
+      text: "평판 의뢰 목록",
+      to: "/request/reference/list",
     },
     {
       icon: PencilAltIcon,
-      text: "의뢰 등록",
-      to: "/request/register",
+      text: "평판 의뢰 등록",
+      to: "/request/reference/register",
+    },
+    {
+      icon: ClipboardIcon,
+      text: "이력서 의뢰 목록",
+      to: "/request/resume/list",
+    },
+    {
+      icon: PencilAltIcon,
+      text: "이력서 의뢰 등록",
+      to: "/request/resume/register",
     },
     {
       icon: UserIcon,
@@ -47,8 +62,8 @@ export const menuItems = {
   candidate: [
     {
       icon: ClipboardIcon,
-      text: "의뢰 목록",
-      to: "/request/list",
+      text: "평판 의뢰 목록",
+      to: "/request/reference/list",
     },
   ],
 };

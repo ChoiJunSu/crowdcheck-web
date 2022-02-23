@@ -133,13 +133,13 @@ const AuthLoginView = () => {
             <div>
               <Link
                 to="/auth/register/personal"
-                className="block font-normal text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
+                className="block font-medium text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
               >
                 이메일로 가입하기
               </Link>
               <Link
                 to="/auth/login/candidate"
-                className="flex justify-end font-normal text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
+                className="flex justify-end font-medium text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
               >
                 지원자 로그인
               </Link>
@@ -149,7 +149,7 @@ const AuthLoginView = () => {
           {type === "corporate" && (
             <Link
               to="/auth/register/corporate"
-              className="font-normal text-sm sm:text-lg text-gray-400 hover:text-gray-500 underline"
+              className="font-medium text-sm sm:text-lg text-gray-400 hover:text-gray-500 underline"
             >
               기업회원으로 가입하기
             </Link>
@@ -169,7 +169,7 @@ const AuthLoginView = () => {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm sm:text-lg">
-                <span className="px-2 bg-white text-gray-500 font-normal">
+                <span className="px-2 bg-white text-gray-500 font-medium">
                   또는
                 </span>
               </div>
@@ -179,7 +179,7 @@ const AuthLoginView = () => {
                 <button
                   key={index}
                   onClick={() => (location.href = item.href)}
-                  className={`${item.style} w-full inline-flex justify-evenly py-2 px-8 border border-gray-200 rounded-md shadow-sm text-sm sm:text-lg font-normal`}
+                  className={`${item.style} w-full inline-flex justify-evenly py-2 px-8 border border-gray-200 rounded-md shadow-sm text-sm sm:text-lg font-medium`}
                 >
                   <item.icon className="h-6 w-auto self-center" />
                   <p className="w-2/3 self-center">{item.text}</p>

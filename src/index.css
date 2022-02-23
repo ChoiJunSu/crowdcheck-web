@@ -10,7 +10,7 @@
     }
 
     .label {
-        @apply block text-sm sm:text-lg font-normal text-gray-500;
+        @apply block text-sm sm:text-lg font-medium text-gray-500;
     }
 
     .input {
@@ -18,7 +18,7 @@
     }
 
     .button {
-        @apply w-full flex place-content-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-normal text-white bg-cc-green hover:bg-[#218073]
+        @apply w-full flex place-content-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-medium text-white bg-cc-green hover:bg-[#218073]
     }
 
     .h3 {
