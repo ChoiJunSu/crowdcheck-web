@@ -62,10 +62,10 @@ const RequestListCandidateView = () => {
                         {requestStatusMapper[status]}
                       </td>
                       {status === "registered" && (
-                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500 hover:text-cc-green">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500">
                           <button
                             onClick={() => handleGetRequest(id)}
-                            className="inline-flex items-center gap-1"
+                            className="inline-flex items-center gap-1 hover:text-cc-green"
                           >
                             <CheckCircleIcon
                               className="h-6 w-6"

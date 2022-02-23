@@ -1,7 +1,10 @@
 const navItems = [
   { name: "이용약관" },
   { name: "개인정보처리방침" },
-  { name: "문의하기" },
+  {
+    name: "문의하기",
+    onClick: () => (location.href = "mailto:dev.crowdcheck@gmail.com"),
+  },
 ];
 
 const Footer = () => {
@@ -24,7 +27,12 @@ const Footer = () => {
           <div className={`mt-8 lg:mt-0 flex flex-row justify-around`}>
             {navItems.map((item, index) => (
               <div key={index}>
-                <p className="text-sm text-gray-400">{item.name}</p>
+                <button
+                  className="text-sm text-gray-400"
+                  onClick={item.onClick}
+                >
+                  {item.name}
+                </button>
               </div>
             ))}
           </div>

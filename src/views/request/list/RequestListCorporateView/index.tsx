@@ -58,10 +58,10 @@ const RequestListCorporateView = () => {
                           {requestStatusMapper[status]}
                         </td>
                         {status !== "registered" && (
-                          <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500 hover:text-cc-green">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-normal text-gray-500">
                             <Link
                               to={`/request/agree?requestId=${id}`}
-                              className="inline-flex items-center gap-1"
+                              className="inline-flex items-center gap-1 hover:text-cc-green"
                             >
                               <CheckCircleIcon
                                 className="h-6 w-6"
@@ -71,7 +71,7 @@ const RequestListCorporateView = () => {
                             </Link>
                             <Link
                               to={`/request/answer?requestId=${id}`}
-                              className="sm:ml-2 flex sm:inline-flex items-center gap-1"
+                              className="sm:ml-2 flex sm:inline-flex items-center gap-1 hover:text-cc-green"
                             >
                               <ChatAlt2Icon
                                 className="h-6 w-6"
