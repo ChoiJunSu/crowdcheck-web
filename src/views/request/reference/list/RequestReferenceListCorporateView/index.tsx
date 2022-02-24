@@ -61,7 +61,7 @@ const RequestReferenceListCorporateView = () => {
                           {requestStatusMapper[status]}
                         </td>
                         {status !== "registered" && (
-                          <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
+                          <td className="grid grid-rows-2 px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
                             <Link
                               to={`/request/reference/agree?requestId=${id}`}
                               className="inline-flex items-center gap-1 hover:text-cc-green"
@@ -74,7 +74,7 @@ const RequestReferenceListCorporateView = () => {
                             </Link>
                             <Link
                               to={`/request/reference/answer?requestId=${id}`}
-                              className="sm:ml-2 flex sm:inline-flex items-center gap-1 hover:text-cc-green"
+                              className="inline-flex items-center gap-1 hover:text-cc-green"
                             >
                               <ChatAlt2Icon
                                 className="h-6 w-6"

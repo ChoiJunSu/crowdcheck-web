@@ -86,53 +86,45 @@ const RequestReferenceListReceiverView = () => {
                         {receiverStatusMapper[status]}
                       </td>
                       {status === "arrived" && (
-                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
-                          <div>
-                            <Link
-                              to={`/request/reference/verify?requestId=${id}`}
-                              className="inline-flex items-center gap-1 hover:text-cc-green"
-                            >
-                              <PencilAltIcon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
-                              답변하기
-                            </Link>
-                          </div>
-                          <div className="ml-2 sm:ml-0">
-                            <button
-                              onClick={() => handleReject(id)}
-                              className="flex sm:inline-flex items-center gap-1 hover:text-cc-green"
-                            >
-                              <BanIcon className="h-6 w-6" aria-hidden="true" />
-                              거절하기
-                            </button>
-                          </div>
+                        <td className="grid grid-rows-2 px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
+                          <Link
+                            to={`/request/reference/verify?requestId=${id}`}
+                            className="inline-flex items-center gap-1 hover:text-cc-green"
+                          >
+                            <PencilAltIcon
+                              className="h-6 w-6"
+                              aria-hidden="true"
+                            />
+                            답변하기
+                          </Link>
+                          <button
+                            onClick={() => handleReject(id)}
+                            className="inline-flex items-center gap-1 hover:text-cc-green"
+                          >
+                            <BanIcon className="h-6 w-6" aria-hidden="true" />
+                            거절하기
+                          </button>
                         </td>
                       )}
                       {status === "verified" && (
-                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
-                          <div>
-                            <Link
-                              to={`/request/reference/answer?requestId=${id}`}
-                              className="inline-flex items-center gap-1 hover:text-cc-green"
-                            >
-                              <PencilAltIcon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
-                              답변하기
-                            </Link>
-                          </div>
-                          <div className="ml-2 sm:ml-0">
-                            <button
-                              onClick={() => handleReject(id)}
-                              className="flex sm:inline-flex items-center gap-1hover:text-cc-green"
-                            >
-                              <BanIcon className="h-6 w-6" aria-hidden="true" />
-                              거절하기
-                            </button>
-                          </div>
+                        <td className="grid grid-rows-2 px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
+                          <Link
+                            to={`/request/reference/answer?requestId=${id}`}
+                            className="inline-flex items-center gap-1 hover:text-cc-green"
+                          >
+                            <PencilAltIcon
+                              className="h-6 w-6"
+                              aria-hidden="true"
+                            />
+                            답변하기
+                          </Link>
+                          <button
+                            onClick={() => handleReject(id)}
+                            className="inline-flex items-center gap-1hover:text-cc-green"
+                          >
+                            <BanIcon className="h-6 w-6" aria-hidden="true" />
+                            거절하기
+                          </button>
                         </td>
                       )}
                     </tr>

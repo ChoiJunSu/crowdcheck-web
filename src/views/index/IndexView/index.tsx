@@ -14,9 +14,9 @@ const IndexView = () => {
             <Link
               key={index}
               to={item.to}
-              className="grid grid-cols-3 place-items-center py-4 sm:py-6 text-lg sm:text-2xl text-gray-500 rounded-md group hover:bg-cc-green hover:text-white"
+              className="grid grid-cols-3 place-items-center py-4 sm:py-6 text-lg sm:text-2xl font-medium text-gray-500 rounded-md group hover:bg-gray-100 hover:text-gray-900"
             >
-              <item.icon className="col-span-1 w-8 sm:w-12 h-8 sm:h-12 mx-auto text-gray-500 group-hover:text-white" />
+              <item.icon className="col-span-1 w-8 sm:w-12 h-8 sm:h-12 mx-auto" />
               <p className="col-span-2">{item.text}</p>
             </Link>
           ))}
