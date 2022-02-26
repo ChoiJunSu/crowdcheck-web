@@ -185,3 +185,11 @@ export interface IRequestResumeListExpertRequest extends IApiRequest {}
 export interface IRequestResumeListExpertResponse extends IApiResponse {
   requests: Array<IRequestResumeExpert>;
 }
+
+export interface IRequestResumeExploreRequest extends IApiRequest {
+  page: number;
+}
+
+export interface IRequestResumeExploreResponse extends IApiResponse {
+  requests: Array<IRequestResumeExpert>;
+}

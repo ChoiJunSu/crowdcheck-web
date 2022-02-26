@@ -8,8 +8,8 @@ const RequestResumeListPage = () => {
 
   return (
     <div>
-      {type === "personal" && <RequestResumeListExpertView />}
       {type === "corporate" && <RequestResumeListCorporateView />}
+      {type === "expert" && <RequestResumeListExpertView />}
     </div>
   );
 };

@@ -30,6 +30,8 @@ import {
   IRequestResumeListCorporateResponse,
   IRequestResumeListExpertRequest,
   IRequestResumeListExpertResponse,
+  IRequestResumeExploreRequest,
+  IRequestResumeExploreResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -153,8 +155,17 @@ class RequestApi {
 
   static async resumeListExpert({}: IRequestResumeListExpertRequest): Promise<IRequestResumeListExpertResponse> {
     return (await ApiClient.get({
-      url: "request/resume/list/expert",
+      url: "/request/resume/list/expert",
     })) as IRequestResumeListExpertResponse;
+  }
+
+  static async resumeExplore(
+    params: IRequestResumeExploreRequest
+  ): Promise<IRequestResumeExploreResponse> {
+    return (await ApiClient.get({
+      url: "/request/resume/explore",
+      params,
+    })) as IRequestResumeExploreResponse;
   }
 }
 

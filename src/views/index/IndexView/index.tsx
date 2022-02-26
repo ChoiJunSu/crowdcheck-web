@@ -9,7 +9,7 @@ const IndexView = () => {
   return (
     <div className="mt-8">
       {type && (
-        <div className="sm:max-w-md mx-auto border border-gray-300 divide-y divide-gray-300 shadow-md rounded-md">
+        <div className="sm:max-w-md mx-auto px-4 bg-gray-50 divide-y divide-gray-300 shadow-sm rounded-md">
           {menuItems[type].map((item, index) => (
             <Link
               key={index}

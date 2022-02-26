@@ -6,4 +6,6 @@ export interface IRequestResumeRegisterFormData {
   specialty: TExpertSpecialty;
   question: string;
   deadline: string | null;
+  rewardNum: number;
+  rewardPrice: number;
 }
