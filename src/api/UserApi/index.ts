@@ -4,10 +4,14 @@ import {
   IUserCareerVerifyResponse,
   IUserEditCorporateRequest,
   IUserEditCorporateResponse,
+  IUserEditExpertRequest,
+  IUserEditExpertResponse,
   IUserEditPersonalRequest,
   IUserEditPersonalResponse,
   IUserGetCorporateRequest,
   IUserGetCorporateResponse,
+  IUserGetExpertRequest,
+  IUserGetExpertResponse,
   IUserGetPersonalRequest,
   IUserGetPersonalResponse,
 } from "@api/UserApi/type";
@@ -22,13 +26,22 @@ class UserApi {
     })) as IUserGetPersonalResponse;
   }
 
-  static async referenceGetCorporate(
+  static async getCorporate(
     params: IUserGetCorporateRequest
   ): Promise<IUserGetCorporateResponse> {
     return (await ApiClient.get({
       url: "/user/get/corporate",
       params,
     })) as IUserGetCorporateResponse;
+  }
+
+  static async getExpert(
+    params: IUserGetExpertRequest
+  ): Promise<IUserGetExpertResponse> {
+    return (await ApiClient.get({
+      url: "/user/get/expert",
+      params,
+    })) as IUserGetExpertResponse;
   }
 
   static async editPersonal(
@@ -47,6 +60,15 @@ class UserApi {
       url: "/user/edit/corporate",
       data,
     })) as IUserEditCorporateResponse;
+  }
+
+  static async editExpert(
+    data: IUserEditExpertRequest
+  ): Promise<IUserEditExpertResponse> {
+    return (await ApiClient.post({
+      url: "/user/edit/expert",
+      data,
+    })) as IUserEditExpertResponse;
   }
 
   static async careerVerify(

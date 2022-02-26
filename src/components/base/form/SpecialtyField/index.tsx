@@ -3,15 +3,26 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { useFormContext } from "react-hook-form";
 import ErrorMessage from "@components/base/form/ErrorMessage";
+import { ISpecialtyFieldProps } from "@components/base/form/SpecialtyField/type";
+import { TExpertSpecialty } from "@api/RequestApi/type";
 
-const specialties = ["개발", "디자인", "기획", "마케팅"];
+const specialties: Array<TExpertSpecialty> = [
+  "개발",
+  "디자인",
+  "기획",
+  "마케팅",
+];
 
-const SpecialtyField = () => {
-  const [selected, setSelected] = useState(specialties[0]);
+const SpecialtyField = ({ mode, specialty }: ISpecialtyFieldProps) => {
+  const [selected, setSelected] = useState<TExpertSpecialty>(specialties[0]);
   const {
     setValue,
     formState: { errors },
   } = useFormContext();
+
+  useEffect(() => {
+    if (mode === "edit" && specialty) setSelected(specialty);
+  }, [specialty]);
 
   useEffect(() => {
     setValue("specialty", selected);
@@ -23,7 +34,12 @@ const SpecialtyField = () => {
         {({ open }) => (
           <div>
             <div className="mt-1 relative">
-              <Listbox.Button className="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cc-green focus:border-cc-green text-sm sm:text-lg">
+              <Listbox.Button
+                disabled={mode === "edit"}
+                className={`${
+                  mode === "edit" ? "bg-gray-300" : "bg-white"
+                } relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-cc-green focus:border-cc-green text-sm sm:text-lg`}
+              >
                 <span className="block truncate">{selected}</span>
                 <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                   <SelectorIcon

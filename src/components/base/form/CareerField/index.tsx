@@ -12,7 +12,6 @@ import CorporateApi from "@api/CorporateApi";
 import { ICareerFieldProps } from "@components/base/form/CareerField/type";
 import ErrorMessage from "@components/base/form/ErrorMessage";
 import UserApi from "@api/UserApi";
-import { TCareerStatus } from "@api/AuthApi/type";
 import { Transition, Dialog } from "@headlessui/react";
 
 const CareerField = ({ mode, careers }: ICareerFieldProps) => {

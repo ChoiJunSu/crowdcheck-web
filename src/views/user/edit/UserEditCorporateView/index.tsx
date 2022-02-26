@@ -23,9 +23,7 @@ const UserEditCorporateView = () => {
 
   useEffect(() => {
     (async () => {
-      const referenceGetCorporateResponse = await UserApi.referenceGetCorporate(
-        {}
-      );
+      const referenceGetCorporateResponse = await UserApi.getCorporate({});
       if (!referenceGetCorporateResponse.ok) {
         alert(referenceGetCorporateResponse.error);
         return;

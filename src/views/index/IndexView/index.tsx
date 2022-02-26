@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { menuItems } from "@components/base/Header/menu";
 
 const IndexView = () => {
-  const { name, type } = useRecoilValue(loginAtom);
+  const { type } = useRecoilValue(loginAtom);
 
   return (
     <div className="mt-8">
