@@ -1,5 +1,6 @@
 import { TUserType } from "@api/UserApi/type";
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
+import { TExpertSpecialty } from "@api/RequestApi/type";
 
 export type TOauthProvider = "google" | "kakao";
 
@@ -19,6 +20,7 @@ export interface IAuthLoginOauthRequest extends IApiRequest {
   provider: TOauthProvider;
   code: string;
   redirectUri: string;
+  type: TUserType;
 }
 
 export interface IAuthLoginOauthResponse extends IApiResponse {
@@ -76,6 +78,12 @@ export interface IAuthRegisterCorporateRequest extends IApiRequest {
 }
 
 export interface IAuthRegisterCorporateResponse extends IApiResponse {}
+
+export interface IAuthRegisterExpertRequest extends IApiRequest {
+  formData: FormData;
+}
+
+export interface IAuthRegisterExpertResponse extends IApiResponse {}
 
 export interface IAuthPhoneSendRequest extends IApiRequest {
   phone: string;

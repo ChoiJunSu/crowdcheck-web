@@ -26,6 +26,10 @@ import {
   IRequestReferenceRegisterResponse,
   IRequestResumeRegisterRequest,
   IRequestResumeRegisterResponse,
+  IRequestResumeListCorporateRequest,
+  IRequestResumeListCorporateResponse,
+  IRequestResumeListExpertRequest,
+  IRequestResumeListExpertResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -36,15 +40,6 @@ class RequestApi {
       url: "/request/reference/register",
       data,
     })) as IRequestReferenceRegisterResponse;
-  }
-
-  static async resumeRegister(
-    data: IRequestResumeRegisterRequest
-  ): Promise<IRequestResumeRegisterResponse> {
-    return (await ApiClient.post({
-      url: "/request/resume/register",
-      data: data.formData,
-    })) as IRequestResumeRegisterResponse;
   }
 
   static async referenceGetReceiver(
@@ -135,6 +130,31 @@ class RequestApi {
       url: "/request/reference/reject",
       params,
     })) as IRequestReferenceRejectResponse;
+  }
+
+  /*
+    resume
+   */
+
+  static async resumeRegister(
+    data: IRequestResumeRegisterRequest
+  ): Promise<IRequestResumeRegisterResponse> {
+    return (await ApiClient.post({
+      url: "/request/resume/register",
+      data: data.formData,
+    })) as IRequestResumeRegisterResponse;
+  }
+
+  static async resumeListCorporate({}: IRequestResumeListCorporateRequest): Promise<IRequestResumeListCorporateResponse> {
+    return (await ApiClient.get({
+      url: "/request/resume/list/corporate",
+    })) as IRequestResumeListCorporateResponse;
+  }
+
+  static async resumeListExpert({}: IRequestResumeListExpertRequest): Promise<IRequestResumeListExpertResponse> {
+    return (await ApiClient.get({
+      url: "request/resume/list/expert",
+    })) as IRequestResumeListExpertResponse;
   }
 }
 

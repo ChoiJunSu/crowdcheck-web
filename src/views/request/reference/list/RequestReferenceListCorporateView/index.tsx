@@ -9,8 +9,8 @@ const RequestReferenceListCorporateView = () => {
     Array<IRequestReferenceCorporate>
   >([]);
   const requestStatusMapper = {
-    registered: "동의를 기다리는 중",
-    agreed: "평가를 기다리는 중",
+    registered: "동의 대기",
+    agreed: "답변 중",
     closed: "종료됨",
   };
 

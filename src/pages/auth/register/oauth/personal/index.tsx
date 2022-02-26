@@ -9,7 +9,7 @@ import CareerField from "@components/base/form/CareerField";
 import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
 import PhoneField from "@components/base/form/PhoneField";
 
-const AuthRegisterOauthPage = () => {
+const AuthRegisterOauthPersonalPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const registerToken = searchParams.get("registerToken");
@@ -113,4 +113,4 @@ const AuthRegisterOauthPage = () => {
   );
 };
 
-export default AuthRegisterOauthPage;
+export default AuthRegisterOauthPersonalPage;

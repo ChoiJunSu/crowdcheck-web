@@ -10,8 +10,8 @@ const RequestReferenceListReceiverView = () => {
   >([]);
   const [update, setUpdate] = useState<boolean>(false);
   const receiverStatusMapper = {
-    arrived: "답변을 기다리는 중",
-    verified: "답변을 기다리는 중",
+    arrived: "답변 중",
+    verified: "답변 중",
     rejected: "거절됨",
     answered: "답변 완료",
     closed: "종료됨",

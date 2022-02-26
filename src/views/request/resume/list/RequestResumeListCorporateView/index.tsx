@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
-import { IRequestReferenceCorporate } from "@api/RequestApi/type";
+import { IRequestResumeCorporate } from "@api/RequestApi/type";
 import RequestApi from "@api/RequestApi";
 import { Link } from "react-router-dom";
-import { ChatAlt2Icon, CheckCircleIcon } from "@heroicons/react/outline";
+import { ChatAlt2Icon } from "@heroicons/react/outline";
 
 const RequestResumeListCorporateView = () => {
-  const [requestList, setRequestReferenceList] = useState<
-    Array<IRequestReferenceCorporate>
+  const [requestList, setRequestList] = useState<
+    Array<IRequestResumeCorporate>
   >([]);
   const requestStatusMapper = {
-    registered: "동의를 기다리는 중",
-    agreed: "평가를 기다리는 중",
+    registered: "답변 중",
+    agreed: "답변 중",
     closed: "종료됨",
   };
 
   useEffect(() => {
     (async () => {
-      const referenceListCorporateResponse =
-        await RequestApi.referenceListCorporate({});
-      if (!referenceListCorporateResponse.ok) return;
-      setRequestReferenceList(referenceListCorporateResponse.requests);
+      const resumeListCorporateResponse = await RequestApi.resumeListCorporate(
+        {}
+      );
+      if (!resumeListCorporateResponse.ok) return;
+      setRequestList(resumeListCorporateResponse.requests);
     })();
   }, []);
 
@@ -35,7 +36,7 @@ const RequestResumeListCorporateView = () => {
                     scope="col"
                     className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    지원자 이름
+                    메모
                   </th>
                   <th
                     scope="col"
@@ -50,44 +51,30 @@ const RequestResumeListCorporateView = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {requestList.map(
-                  ({ id, candidateName, status, receivers }, index) => {
-                    return (
-                      <tr key={index} className="text-center">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-900">
-                          {candidateName}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
-                          {requestStatusMapper[status]}
-                        </td>
-                        {status !== "registered" && (
-                          <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
-                            <Link
-                              to={`/request/reference/agree?requestId=${id}`}
-                              className="inline-flex items-center gap-1 hover:text-cc-green"
-                            >
-                              <CheckCircleIcon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
-                              동의현황
-                            </Link>
-                            <Link
-                              to={`/request/reference/answer?requestId=${id}`}
-                              className="sm:ml-2 flex sm:inline-flex items-center gap-1 hover:text-cc-green"
-                            >
-                              <ChatAlt2Icon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
-                              답변보기
-                            </Link>
-                          </td>
-                        )}
-                      </tr>
-                    );
-                  }
-                )}
+                {requestList.map(({ id, memo, status, receivers }, index) => {
+                  return (
+                    <tr key={index} className="text-center">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-900">
+                        {memo}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
+                        {requestStatusMapper[status]}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
+                        <Link
+                          to={`/request/resume/answer?requestId=${id}`}
+                          className="inline-flex items-center gap-1 hover:text-cc-green"
+                        >
+                          <ChatAlt2Icon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                          />
+                          답변보기
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

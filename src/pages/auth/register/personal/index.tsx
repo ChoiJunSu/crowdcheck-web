@@ -8,6 +8,7 @@ import ErrorMessage from "@components/base/form/ErrorMessage";
 import CareerField from "@components/base/form/CareerField";
 import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
 import PhoneField from "@components/base/form/PhoneField";
+import SpecialtyField from "@components/base/form/SpecialtyField";
 
 const AuthRegisterPersonalPage = () => {
   const navigate = useNavigate();
@@ -166,6 +167,7 @@ const AuthRegisterPersonalPage = () => {
             <div>
               <h3 className="h3">경력 정보</h3>
             </div>
+
             <div className="mt-4">
               <CareerField />
             </div>

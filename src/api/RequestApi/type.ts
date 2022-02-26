@@ -40,12 +40,6 @@ export interface IRequestReferenceRegisterRequest extends IApiRequest {
 
 export interface IRequestReferenceRegisterResponse extends IApiResponse {}
 
-export interface IRequestResumeRegisterRequest extends IApiRequest {
-  formData: FormData;
-}
-
-export interface IRequestResumeRegisterResponse extends IApiResponse {}
-
 export interface IRequestReferenceCandidate {
   id: number;
   corporateName: string;
@@ -151,3 +145,43 @@ export interface IRequestReferenceRejectRequest extends IApiRequest {
 }
 
 export interface IRequestReferenceRejectResponse extends IApiResponse {}
+
+/*
+  Resume
+ */
+
+export interface IRequestResumeCorporate {
+  id: number;
+  memo: string | null;
+  status: TRequestStatus;
+  receivers: Array<IReceiver>;
+}
+
+export interface IRequestResumeExpert {
+  id: number;
+  corporateName: string;
+  deadline: Date | null;
+  rewardNum: number;
+  rewardPrice: number;
+  receiverCount: number;
+}
+
+export type TExpertSpecialty = "개발" | "디자인" | "기획" | "마케팅";
+
+export interface IRequestResumeRegisterRequest extends IApiRequest {
+  formData: FormData;
+}
+
+export interface IRequestResumeRegisterResponse extends IApiResponse {}
+
+export interface IRequestResumeListCorporateRequest extends IApiRequest {}
+
+export interface IRequestResumeListCorporateResponse extends IApiResponse {
+  requests: Array<IRequestResumeCorporate>;
+}
+
+export interface IRequestResumeListExpertRequest extends IApiRequest {}
+
+export interface IRequestResumeListExpertResponse extends IApiResponse {
+  requests: Array<IRequestResumeExpert>;
+}

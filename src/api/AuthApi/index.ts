@@ -17,6 +17,8 @@ import {
   IAuthPhoneSendResponse,
   IAuthPhoneVerifyRequest,
   IAuthPhoneVerifyResponse,
+  IAuthRegisterExpertRequest,
+  IAuthRegisterExpertResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
@@ -76,6 +78,15 @@ class AuthApi {
       url: "/auth/register/corporate",
       data: data.formData,
     })) as IAuthRegisterCorporateResponse;
+  }
+
+  static async registerExpert(
+    data: IAuthRegisterExpertRequest
+  ): Promise<IAuthRegisterExpertResponse> {
+    return (await ApiClient.post({
+      url: "/auth/register/expert",
+      data: data.formData,
+    })) as IAuthRegisterExpertResponse;
   }
 
   static async phoneSend(

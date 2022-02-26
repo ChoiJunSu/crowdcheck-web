@@ -1,7 +1,7 @@
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 import { ICareer } from "@api/AuthApi/type";
 
-export type TUserType = "personal" | "corporate" | "candidate";
+export type TUserType = "personal" | "corporate" | "candidate" | "expert";
 
 export interface IUser {
   email: string;

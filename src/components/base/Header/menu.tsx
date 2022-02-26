@@ -34,24 +34,24 @@ export const menuItems = {
     },
   ],
   corporate: [
+    // {
+    //   icon: ClipboardIcon,
+    //   text: "평판 의뢰 목록",
+    //   to: "/request/reference/list",
+    // },
+    // {
+    //   icon: PencilAltIcon,
+    //   text: "평판 의뢰 등록",
+    //   to: "/request/reference/register",
+    // },
     {
       icon: ClipboardIcon,
-      text: "평판 의뢰 목록",
-      to: "/request/reference/list",
-    },
-    {
-      icon: PencilAltIcon,
-      text: "평판 의뢰 등록",
-      to: "/request/reference/register",
-    },
-    {
-      icon: ClipboardIcon,
-      text: "이력서 의뢰 목록",
+      text: "의뢰 목록",
       to: "/request/resume/list",
     },
     {
       icon: PencilAltIcon,
-      text: "이력서 의뢰 등록",
+      text: "의뢰 등록",
       to: "/request/resume/register",
     },
     {
@@ -65,6 +65,18 @@ export const menuItems = {
       icon: ClipboardIcon,
       text: "평판 의뢰 목록",
       to: "/request/reference/list",
+    },
+  ],
+  expert: [
+    {
+      icon: ClipboardIcon,
+      text: "의뢰 목록",
+      to: "/request/resume/list",
+    },
+    {
+      icon: UserIcon,
+      text: "정보 수정",
+      to: "/user/edit",
     },
   ],
 };
@@ -188,7 +200,7 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                           <Link
-                            to="/request/reference/list"
+                            to="/request/resume/list"
                             className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100 font-medium text-md text-gray-500 hover:text-gray-900"
                           >
                             <ClipboardIcon
