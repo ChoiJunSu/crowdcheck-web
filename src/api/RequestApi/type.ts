@@ -166,6 +166,25 @@ export interface IRequestResumeExpert {
   receiverCount: number;
 }
 
+export interface IRequestResumeDetailExpert {
+  id: number;
+  corporateName: string;
+  question: string;
+  deadline: Date | null;
+  rewardNum: number;
+  rewardPrice: number;
+  receiverCount: number;
+  status: TRequestStatus;
+}
+
+export interface IRequestResumeGetAnswerExpert {
+  id: number;
+  corporateName: string;
+  question: string;
+  resumeUrl: string;
+  portfolioUrl: string | null;
+}
+
 export type TExpertSpecialty = "개발" | "디자인" | "기획" | "마케팅";
 
 export interface IRequestResumeRegisterRequest extends IApiRequest {
@@ -193,3 +212,34 @@ export interface IRequestResumeExploreRequest extends IApiRequest {
 export interface IRequestResumeExploreResponse extends IApiResponse {
   requests: Array<IRequestResumeExpert>;
 }
+
+export interface IRequestResumeDetailExpertRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestResumeDetailExpertResponse extends IApiResponse {
+  request: IRequestResumeDetailExpert | null;
+}
+
+export interface IRequestResumeGetAnswerExpertRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestResumeGetAnswerExpertResponse extends IApiResponse {
+  request: IRequestResumeGetAnswerExpert;
+}
+
+export interface IRequestResumeAnswerRequest extends IApiRequest {
+  requestId: number;
+  workExperience: number;
+  workExperienceDescription: string;
+  roleFit: number;
+  roleFitDescription: string;
+  collaborationAbility: number;
+  collaborationAbilityDescription: string;
+  hardWorking: number;
+  hardWorkingDescription: string;
+  recommendedSalary: string;
+}
+
+export interface IRequestResumeAnswerResponse extends IApiResponse {}

@@ -69,6 +69,17 @@ const RequestResumeRegisterPage = () => {
     []
   );
 
+  const handleUploadPortfolio = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const {
+        target: { files },
+      } = event;
+      if (!files || !files[0]) return;
+      setValue("portfolio", files[0]);
+    },
+    []
+  );
+
   const handleRequestRegister: SubmitHandler<IRequestResumeRegisterFormData> =
     useCallback(async (data) => {
       if (!getValues("resume")) {
@@ -78,6 +89,10 @@ const RequestResumeRegisterPage = () => {
         });
         return;
       }
+      if (
+        !confirm("의뢰를 등록한 후에는 수정이 불가능합니다. 등록하시겠습니까?")
+      )
+        return;
       clearErrors();
       setIsLoading(true);
       const formData = new FormData();
@@ -115,7 +130,7 @@ const RequestResumeRegisterPage = () => {
               <div className="mt-1">
                 <input
                   type="text"
-                  {...register("memo")}
+                  {...register("memo", { required: "메모를 입력하세요." })}
                   placeholder="지원자를 구분하기 위한 메모를 입력하세요."
                   className="input"
                 />
@@ -136,6 +151,20 @@ const RequestResumeRegisterPage = () => {
                 <ErrorMessage message={errors?.resume?.message} />
               </div>
             </div>
+
+            <div className="my-4">
+              <label htmlFor="portfolio" className="label">
+                포트폴리오 (선택)
+              </label>
+              <div className="mt-1">
+                <input
+                  type="file"
+                  onChange={handleUploadPortfolio}
+                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cc-green focus:border-cc-green sm:text-sm"
+                />
+                <ErrorMessage message={errors?.portfolio?.message} />
+              </div>
+            </div>
           </div>
 
           <div className="pt-8">
@@ -153,7 +182,7 @@ const RequestResumeRegisterPage = () => {
               <div className="mt-1">
                 <textarea
                   {...register("question", {
-                    required: "질문을 입력해주세요.",
+                    required: "참고사항을 입력해주세요.",
                   })}
                   rows={10}
                   placeholder="채용 포지션, 담당 업무 등 검토자가 참고할 만한 사항을 입력해주세요."
@@ -164,7 +193,7 @@ const RequestResumeRegisterPage = () => {
             </div>
 
             <div className="mt-4">
-              <label className="label">마감일</label>
+              <label className="label">마감일 (선택)</label>
               <div className="mt-1">
                 <input
                   type="date"
@@ -184,7 +213,7 @@ const RequestResumeRegisterPage = () => {
             </div>
 
             <div className="mt-4">
-              <label className="label">답변 당 지급액</label>
+              <label className="label">선정 답변 당 보상금</label>
               <div className="mt-1">
                 <SelectBox name={"rewardPrice"} options={rewardPrices} />
                 <ErrorMessage message={errors?.rewardPrice?.message} />
@@ -197,7 +226,7 @@ const RequestResumeRegisterPage = () => {
 
             <dl className="mt-4 p-4 bg-gray-100 rounded-lg divide-y divide-gray-300 font-medium text-sm sm:text-lg lg:mt-0 lg:col-span-5">
               <div className="pb-4 flex items-center justify-between">
-                <dt className="text-gray-500">선정 답변에 대한 총 지급액</dt>
+                <dt className="text-gray-500">선정 답변에 대한 총 보상금</dt>
                 <dd className="text-gray-900">{`${(
                   rewardNum * rewardPrice
                 ).toLocaleString()} 원`}</dd>

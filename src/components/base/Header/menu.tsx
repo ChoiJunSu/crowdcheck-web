@@ -47,7 +47,7 @@ export const menuItems = {
     // },
     {
       icon: ClipboardIcon,
-      text: "의뢰 목록",
+      text: "내 의뢰",
       to: "/request/resume/list",
     },
     {
@@ -70,14 +70,14 @@ export const menuItems = {
   ],
   expert: [
     {
+      icon: ClipboardIcon,
+      text: "내 의뢰",
+      to: "/request/resume/list",
+    },
+    {
       icon: DocumentSearchIcon,
       text: "의뢰 탐색",
       to: "/request/resume/explore",
-    },
-    {
-      icon: ClipboardIcon,
-      text: "의뢰 목록",
-      to: "/request/resume/list",
     },
     {
       icon: UserIcon,

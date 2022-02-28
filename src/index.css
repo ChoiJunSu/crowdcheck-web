@@ -6,7 +6,7 @@
 
 @layer components {
     .form {
-        @apply sm:mx-auto sm:w-full sm:max-w-2xl divide-y divide-gray-200;
+        @apply p-1 sm:mx-auto sm:w-full sm:max-w-2xl divide-y divide-gray-200;
     }
 
     .label {

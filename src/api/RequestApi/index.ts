@@ -32,6 +32,12 @@ import {
   IRequestResumeListExpertResponse,
   IRequestResumeExploreRequest,
   IRequestResumeExploreResponse,
+  IRequestResumeDetailExpertRequest,
+  IRequestResumeDetailExpertResponse,
+  IRequestResumeGetAnswerExpertRequest,
+  IRequestResumeGetAnswerExpertResponse,
+  IRequestResumeAnswerRequest,
+  IRequestResumeAnswerResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -166,6 +172,33 @@ class RequestApi {
       url: "/request/resume/explore",
       params,
     })) as IRequestResumeExploreResponse;
+  }
+
+  static async resumeDetailExpert(
+    params: IRequestResumeDetailExpertRequest
+  ): Promise<IRequestResumeDetailExpertResponse> {
+    return (await ApiClient.get({
+      url: "/request/resume/detail/expert",
+      params,
+    })) as IRequestResumeDetailExpertResponse;
+  }
+
+  static async resumeGetAnswerExpert(
+    params: IRequestResumeGetAnswerExpertRequest
+  ): Promise<IRequestResumeGetAnswerExpertResponse> {
+    return (await ApiClient.get({
+      url: "/request/resume/get/answer/expert",
+      params,
+    })) as IRequestResumeGetAnswerExpertResponse;
+  }
+
+  static async resumeAnswer(
+    data: IRequestResumeAnswerRequest
+  ): Promise<IRequestResumeAnswerResponse> {
+    return (await ApiClient.post({
+      url: "/request/resume/answer",
+      data,
+    })) as IRequestResumeAnswerResponse;
   }
 }
 
