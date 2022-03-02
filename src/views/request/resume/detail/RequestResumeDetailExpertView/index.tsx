@@ -2,6 +2,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RequestApi from "@api/RequestApi";
 import { IRequestResumeDetailExpert } from "@api/RequestApi/type";
+import PageHeader from "@components/base/PageHeader";
 
 const requestStatusMapper = {
   registered: "등록됨",
@@ -37,16 +38,21 @@ const RequestResumeDetailExpertView = () => {
 
   return (
     <div className="mx-auto sm:max-w-4xl">
+      {request?.corporateName && <PageHeader title={request.corporateName} />}
       <div className="bg-white overflow-hidden">
-        <div className="">
+        <div>
           <dl className="divide-y divide-gray-200">
-            <h3 className="my-4 sm:my-6 text-xl sm:text-3xl leading-6 font-semibold text-gray-900">
-              {request?.corporateName}의 의뢰
-            </h3>
             <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
               <dt className="text-gray-500">의뢰 상태</dt>
               <dd className="text-gray-900 col-span-3">
                 {request?.status && requestStatusMapper[request?.status]}
+              </dd>
+            </div>
+            <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
+              <dt className="text-gray-500">등록일</dt>
+              <dd className="text-gray-900 col-span-3">
+                {request?.createdAt &&
+                  new Date(request.createdAt).toLocaleDateString()}
               </dd>
             </div>
             <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">

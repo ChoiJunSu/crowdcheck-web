@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterPersonalRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
-import ErrorMessage from "@components/base/form/ErrorMessage";
-import CareerField from "@components/base/form/CareerField";
+import ErrorMessage from "@components/form/ErrorMessage";
+import CareerField from "@components/form/CareerField";
 import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
-import PhoneField from "@components/base/form/PhoneField";
-import SpecialtyField from "@components/base/form/SpecialtyField";
+import PhoneField from "@components/form/PhoneField";
+import SpecialtyField from "@components/form/SpecialtyField";
 
 const AuthRegisterPersonalPage = () => {
   const navigate = useNavigate();

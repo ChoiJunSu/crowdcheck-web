@@ -3,10 +3,10 @@ import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterCorporateRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 import { IRegisterCorporateFormData } from "@pages/auth/register/corporate/type";
 import { useNavigate } from "react-router-dom";
-import PhoneField from "@components/base/form/PhoneField";
+import PhoneField from "@components/form/PhoneField";
 
 const AuthRegisterCorporatePage = () => {
   const navigate = useNavigate();

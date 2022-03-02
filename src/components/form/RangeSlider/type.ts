@@ -3,4 +3,5 @@ export interface IRangeSliderProps {
   min: number;
   max: number;
   step: number;
+  value?: number;
 }

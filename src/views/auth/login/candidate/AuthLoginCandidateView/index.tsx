@@ -11,8 +11,8 @@ import AuthApi from "@api/AuthApi";
 import jwtDecode from "jwt-decode";
 import { IAuthTokenPayload } from "@atoms/loginAtom/type";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
-import ErrorMessage from "@components/base/form/ErrorMessage";
-import PhoneField from "@components/base/form/PhoneField";
+import ErrorMessage from "@components/form/ErrorMessage";
+import PhoneField from "@components/form/PhoneField";
 
 const AuthLoginCandidateView = () => {
   const navigate = useNavigate();

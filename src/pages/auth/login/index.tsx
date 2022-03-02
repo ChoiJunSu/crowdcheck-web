@@ -7,7 +7,7 @@ import loginAtom from "@atoms/loginAtom";
 import jwtDecode from "jwt-decode";
 import { IAuthTokenPayload } from "@atoms/loginAtom/type";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 import { ReactComponent as GoogleLogo } from "@assets/images/google.svg";
 import { ReactComponent as KakaoLogo } from "@assets/images/kakao.svg";
 import { OAUTH_CLIENT_ID, OAUTH_URL } from "@constants/oauth";

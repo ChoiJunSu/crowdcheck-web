@@ -3,10 +3,10 @@ import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterExpertRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 import { useNavigate } from "react-router-dom";
-import PhoneField from "@components/base/form/PhoneField";
-import SpecialtyField from "@components/base/form/SpecialtyField";
+import PhoneField from "@components/form/PhoneField";
+import SpecialtyField from "@components/form/SpecialtyField";
 import { IRegisterExpertFormData } from "@pages/auth/register/expert/type";
 
 const AuthRegisterExpertPage = () => {

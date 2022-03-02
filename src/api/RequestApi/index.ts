@@ -38,6 +38,8 @@ import {
   IRequestResumeGetAnswerExpertResponse,
   IRequestResumeAnswerRequest,
   IRequestResumeAnswerResponse,
+  IRequestResumeDetailCorporateRequest,
+  IRequestResumeDetailCorporateResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -172,6 +174,15 @@ class RequestApi {
       url: "/request/resume/explore",
       params,
     })) as IRequestResumeExploreResponse;
+  }
+
+  static async resumeDetailCorporate(
+    params: IRequestResumeDetailCorporateRequest
+  ): Promise<IRequestResumeDetailCorporateResponse> {
+    return (await ApiClient.get({
+      url: "/request/resume/detail/corporate",
+      params,
+    })) as IRequestResumeDetailCorporateResponse;
   }
 
   static async resumeDetailExpert(

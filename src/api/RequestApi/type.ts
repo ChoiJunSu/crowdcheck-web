@@ -153,8 +153,26 @@ export interface IRequestReferenceRejectResponse extends IApiResponse {}
 export interface IRequestResumeCorporate {
   id: number;
   memo: string | null;
+  deadline: Date | null;
+  rewardNum: number;
+  rewardPrice: number;
+  receiverCount: number;
   status: TRequestStatus;
-  receivers: Array<IReceiver>;
+  createdAt: Date;
+}
+
+export interface IRequestResumeAnswerCorporate {
+  receiverName: string;
+  answeredAt: Date | null;
+  workExperience: number;
+  workExperienceDescription: string;
+  roleFit: number;
+  roleFitDescription: string;
+  collaborationAbility: number;
+  collaborationAbilityDescription: string;
+  hardWorking: number;
+  hardWorkingDescription: string;
+  recommendedSalary: string;
 }
 
 export interface IRequestResumeExpert {
@@ -164,6 +182,20 @@ export interface IRequestResumeExpert {
   rewardNum: number;
   rewardPrice: number;
   receiverCount: number;
+  status: TRequestStatus;
+  createdAt: Date;
+}
+
+export interface IRequestResumeDetailCorporate {
+  id: number;
+  memo: string;
+  question: string;
+  deadline: Date | null;
+  rewardNum: number;
+  rewardPrice: number;
+  receiverCount: number;
+  status: TRequestStatus;
+  createdAt: Date;
 }
 
 export interface IRequestResumeDetailExpert {
@@ -175,6 +207,7 @@ export interface IRequestResumeDetailExpert {
   rewardPrice: number;
   receiverCount: number;
   status: TRequestStatus;
+  createdAt: Date;
 }
 
 export interface IRequestResumeGetAnswerExpert {
@@ -213,12 +246,21 @@ export interface IRequestResumeExploreResponse extends IApiResponse {
   requests: Array<IRequestResumeExpert>;
 }
 
+export interface IRequestResumeDetailCorporateRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestResumeDetailCorporateResponse extends IApiResponse {
+  request: IRequestResumeDetailCorporate;
+  answers: Array<IRequestResumeAnswerCorporate>;
+}
+
 export interface IRequestResumeDetailExpertRequest extends IApiRequest {
   requestId: number;
 }
 
 export interface IRequestResumeDetailExpertResponse extends IApiResponse {
-  request: IRequestResumeDetailExpert | null;
+  request: IRequestResumeDetailExpert;
 }
 
 export interface IRequestResumeGetAnswerExpertRequest extends IApiRequest {

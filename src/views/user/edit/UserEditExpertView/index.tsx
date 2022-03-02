@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Loading from "@components/base/Loading";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 import UserApi from "@api/UserApi";
 import { IUserEditExpertRequest } from "@api/UserApi/type";
 import { IUserEditExpertFormData } from "@views/user/edit/UserEditExpertView/type";
-import SpecialtyField from "@components/base/form/SpecialtyField";
+import SpecialtyField from "@components/form/SpecialtyField";
 import { TExpertSpecialty } from "@api/RequestApi/type";
 
 const UserEditExpertView = () => {

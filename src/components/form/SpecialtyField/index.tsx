@@ -2,8 +2,8 @@ import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { useFormContext } from "react-hook-form";
-import ErrorMessage from "@components/base/form/ErrorMessage";
-import { ISpecialtyFieldProps } from "@components/base/form/SpecialtyField/type";
+import ErrorMessage from "@components/form/ErrorMessage";
+import { ISpecialtyFieldProps } from "@components/form/SpecialtyField/type";
 import { TExpertSpecialty } from "@api/RequestApi/type";
 
 const specialties: Array<TExpertSpecialty> = [

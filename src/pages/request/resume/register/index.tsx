@@ -9,12 +9,12 @@ import { useNavigate } from "react-router-dom";
 import RequestApi from "@api/RequestApi";
 import { IRequestResumeRegisterRequest } from "@api/RequestApi/type";
 import Loading from "@components/base/Loading";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 import { useRecoilValue } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import { IRequestResumeRegisterFormData } from "@pages/request/resume/register/type";
-import ExpertSpecialtyField from "@components/base/form/SpecialtyField";
-import SelectBox from "@components/base/form/SelectBox";
+import ExpertSpecialtyField from "@components/form/SpecialtyField";
+import SelectBox from "@components/form/SelectBox";
 
 const rewardNums = [...Array(10).keys()].map((num) => ({
   name: `${num + 1} 명`,

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useCallback, useEffect, useState } from "react";
 import RequestApi from "@api/RequestApi";
 import { IRequestReferenceAnswerFormData } from "@views/request/reference/answer/RequestReferenceAnswerReceiverView/type";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 
 const RequestReferenceAnswerReceiverView = () => {
   const navigate = useNavigate();

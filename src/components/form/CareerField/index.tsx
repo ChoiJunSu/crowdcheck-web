@@ -9,8 +9,8 @@ import {
 } from "react";
 import { ICorporate } from "@api/CorporateApi/type";
 import CorporateApi from "@api/CorporateApi";
-import { ICareerFieldProps } from "@components/base/form/CareerField/type";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import { ICareerFieldProps } from "@components/form/CareerField/type";
+import ErrorMessage from "@components/form/ErrorMessage";
 import UserApi from "@api/UserApi";
 import { Transition, Dialog } from "@headlessui/react";
 

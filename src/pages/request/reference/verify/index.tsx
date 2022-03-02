@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useCallback } from "react";
 import RequestApi from "@api/RequestApi";
 import { useLocation, useNavigate } from "react-router-dom";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 
 const RequestReferenceVerifyPage = () => {
   const navigate = useNavigate();

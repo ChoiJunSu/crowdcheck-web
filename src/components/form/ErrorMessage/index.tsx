@@ -1,4 +1,4 @@
-import { IErrorProps } from "@components/base/form/ErrorMessage/type";
+import { IErrorProps } from "@components/form/ErrorMessage/type";
 
 const ErrorMessage = ({ message }: IErrorProps) => {
   return (

@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Loading from "@components/base/Loading";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 import { IUserEditPersonalFormData } from "@views/user/edit/UserEditPersonalView/type";
 import UserApi from "@api/UserApi";
 import { IUserEditPersonalRequest } from "@api/UserApi/type";
-import CareerField from "@components/base/form/CareerField";
+import CareerField from "@components/form/CareerField";
 import { ICareer } from "@api/AuthApi/type";
 
 const UserEditPersonalView = () => {

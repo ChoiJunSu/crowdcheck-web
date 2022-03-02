@@ -8,7 +8,7 @@ import { ICareer } from "@api/AuthApi/type";
 import { useForm, FormProvider } from "react-hook-form";
 import RequestApi from "@api/RequestApi";
 import { IRequestReferenceAgreeFormDate } from "@views/request/reference/agree/RequestReferenceAgreeCandidateView/type";
-import CareerField from "@components/base/form/CareerField";
+import CareerField from "@components/form/CareerField";
 
 const RequestReferenceAgreeCandidateView = () => {
   const navigate = useNavigate();

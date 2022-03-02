@@ -3,9 +3,9 @@ import { useCallback, useEffect, useState } from "react";
 import { IRequestResumeGetAnswerExpert } from "@api/RequestApi/type";
 import RequestApi from "@api/RequestApi";
 import { PaperClipIcon } from "@heroicons/react/outline";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
-import RangeSlider from "@components/base/form/RangeSlider";
+import RangeSlider from "@components/form/RangeSlider";
 import { IRequestResumeAnswerFormData } from "@views/request/resume/answer/RequestResumeAnswerExpertView/type";
 
 const RequestResumeAnswerExpertView = () => {
@@ -120,6 +120,7 @@ const RequestResumeAnswerExpertView = () => {
             </ul>
           </dd>
         </div>
+
         <FormProvider {...methods}>
           <form
             onSubmit={handleSubmit(handleRequestResumeAnswer)}

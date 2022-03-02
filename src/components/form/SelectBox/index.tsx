@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { useFormContext } from "react-hook-form";
-import { ISelectBoxProps } from "@components/base/form/SelectBox/type";
+import { ISelectBoxProps } from "@components/form/SelectBox/type";
 
 const SelectBox = ({ name, options }: ISelectBoxProps) => {
   const [selected, setSelected] = useState(options[0]);

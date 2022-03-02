@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import AuthApi from "@api/AuthApi";
 import { useFormContext } from "react-hook-form";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 
 const PhoneField = () => {
   const {

@@ -4,10 +4,10 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterExpertRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
-import ErrorMessage from "@components/base/form/ErrorMessage";
-import PhoneField from "@components/base/form/PhoneField";
+import ErrorMessage from "@components/form/ErrorMessage";
+import PhoneField from "@components/form/PhoneField";
 import { IRegisterExpertFormData } from "@pages/auth/register/expert/type";
-import SpecialtyField from "@components/base/form/SpecialtyField";
+import SpecialtyField from "@components/form/SpecialtyField";
 
 const AuthRegisterOauthExpertPage = () => {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Loading from "@components/base/Loading";
-import ErrorMessage from "@components/base/form/ErrorMessage";
+import ErrorMessage from "@components/form/ErrorMessage";
 import { IUserEditPersonalFormData } from "@views/user/edit/UserEditPersonalView/type";
 import UserApi from "@api/UserApi";
 import { IUserEditCorporateRequest } from "@api/UserApi/type";
