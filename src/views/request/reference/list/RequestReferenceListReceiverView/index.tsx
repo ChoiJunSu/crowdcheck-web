@@ -10,7 +10,7 @@ const RequestReferenceListReceiverView = () => {
   >([]);
   const [update, setUpdate] = useState<boolean>(false);
   const receiverStatusMapper = {
-    arrived: "답변 중",
+    received: "답변 중",
     verified: "답변 중",
     rejected: "거절됨",
     answered: "답변 완료",
@@ -85,7 +85,7 @@ const RequestReferenceListReceiverView = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
                         {receiverStatusMapper[status]}
                       </td>
-                      {status === "arrived" && (
+                      {status === "received" && (
                         <td className="grid grid-rows-2 px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
                           <Link
                             to={`/request/reference/verify?requestId=${id}`}

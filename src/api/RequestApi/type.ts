@@ -1,16 +1,11 @@
 import { ICareer } from "@api/AuthApi/type";
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 
-export type TRequestStatus = "registered" | "agreed" | "closed";
+export type TRequestStatus = "registered" | "agreed" | "closed" | "rewarded";
 
 export type TRequestType = "reference" | "resume";
 
-export type TReceiverStatus =
-  | "arrived"
-  | "verified"
-  | "rejected"
-  | "answered"
-  | "closed";
+export type TReceiverStatus = "received" | "verified" | "rejected" | "answered";
 
 export interface IAgree {
   corporateId: number;
@@ -155,13 +150,14 @@ export interface IRequestResumeCorporate {
   memo: string | null;
   deadline: Date | null;
   rewardNum: number;
-  rewardPrice: number;
+  rewardAmount: number;
   receiverCount: number;
   status: TRequestStatus;
   createdAt: Date;
 }
 
 export interface IRequestResumeAnswerCorporate {
+  receiverId: number;
   receiverName: string;
   answeredAt: Date | null;
   workExperience: number;
@@ -180,7 +176,7 @@ export interface IRequestResumeExpert {
   corporateName: string;
   deadline: Date | null;
   rewardNum: number;
-  rewardPrice: number;
+  rewardAmount: number;
   receiverCount: number;
   status: TRequestStatus;
   createdAt: Date;
@@ -192,7 +188,7 @@ export interface IRequestResumeDetailCorporate {
   question: string;
   deadline: Date | null;
   rewardNum: number;
-  rewardPrice: number;
+  rewardAmount: number;
   receiverCount: number;
   status: TRequestStatus;
   createdAt: Date;
@@ -204,7 +200,7 @@ export interface IRequestResumeDetailExpert {
   question: string;
   deadline: Date | null;
   rewardNum: number;
-  rewardPrice: number;
+  rewardAmount: number;
   receiverCount: number;
   status: TRequestStatus;
   createdAt: Date;
@@ -261,6 +257,7 @@ export interface IRequestResumeDetailExpertRequest extends IApiRequest {
 
 export interface IRequestResumeDetailExpertResponse extends IApiResponse {
   request: IRequestResumeDetailExpert;
+  answered: boolean;
 }
 
 export interface IRequestResumeGetAnswerExpertRequest extends IApiRequest {
@@ -285,3 +282,16 @@ export interface IRequestResumeAnswerRequest extends IApiRequest {
 }
 
 export interface IRequestResumeAnswerResponse extends IApiResponse {}
+
+export interface IRequestResumeCloseRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestResumeCloseResponse extends IApiResponse {}
+
+export interface IRequestResumeRewardRequest extends IApiRequest {
+  requestId: number;
+  receivers: Array<{ id: number }>;
+}
+
+export interface IRequestResumeRewardResponse extends IApiResponse {}

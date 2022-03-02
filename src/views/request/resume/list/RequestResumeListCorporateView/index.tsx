@@ -10,9 +10,10 @@ import {
 import { Link } from "react-router-dom";
 
 const requestStatusMapper = {
-  registered: "등록됨",
-  agreed: "등록됨",
-  closed: "마감됨",
+  registered: "답변 대기 중",
+  agreed: "",
+  closed: "답변 선정 중",
+  rewarded: "종료됨",
 };
 
 const RequestResumeListCorporateView = () => {
@@ -57,22 +58,34 @@ const RequestResumeListCorporateView = () => {
                       className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                    선정 답변: {request.rewardNum}명 | 현재 답변:{" "}
-                    {request.receiverCount}명
+                    <span>선정 답변</span>
+                    <span className="mx-2 text-cc-green">
+                      {request.rewardNum}명
+                    </span>
+                    <span>현재 답변</span>
+                    <span className="mx-2 text-cc-green">
+                      {request.receiverCount}명
+                    </span>
                   </p>
                   <p className="mt-2 sm:col-span-2 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">
                     <InformationCircleIcon
                       className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                    상태: {requestStatusMapper[request.status]}
+                    <span>상태</span>
+                    <span className="mx-2 text-cc-green">
+                      {requestStatusMapper[request.status]}
+                    </span>
                   </p>
                   <p className="mt-2 sm:col-span-3 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">
                     <CalendarIcon
                       className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                    등록일: {new Date(request.createdAt).toLocaleDateString()}
+                    <span>등록일</span>
+                    <span className="mx-2 text-cc-green">
+                      {new Date(request.createdAt).toLocaleDateString()}
+                    </span>
                   </p>
                 </div>
               </div>

@@ -4,16 +4,18 @@ import RequestApi from "@api/RequestApi";
 import { IRequestReferenceCandidate } from "@api/RequestApi/type";
 import { CheckCircleIcon } from "@heroicons/react/outline";
 
+const requestStatusMapper = {
+  registered: "동의 대기",
+  agreed: "답변 중",
+  closed: "종료됨",
+  rewarded: "",
+};
+
 const RequestReferenceListCandidateView = () => {
   const [requestList, setRequestReferenceList] = useState<
     Array<IRequestReferenceCandidate>
   >([]);
   const navigate = useNavigate();
-  const requestStatusMapper = {
-    registered: "동의 대기",
-    agreed: "답변 중",
-    closed: "종료됨",
-  };
 
   useEffect(() => {
     (async () => {

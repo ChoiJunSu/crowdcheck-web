@@ -5,9 +5,10 @@ import { IRequestResumeDetailExpert } from "@api/RequestApi/type";
 import PageHeader from "@components/base/PageHeader";
 
 const requestStatusMapper = {
-  registered: "등록됨",
-  agreed: "등록됨",
-  closed: "마감됨",
+  registered: "답변 대기 중",
+  agreed: "",
+  closed: "답변 선정 중",
+  rewarded: "종료됨",
 };
 
 const RequestResumeDetailExpertView = () => {
@@ -17,6 +18,7 @@ const RequestResumeDetailExpertView = () => {
   const [request, setRequest] = useState<IRequestResumeDetailExpert | null>(
     null
   );
+  const [answered, setAnswered] = useState<boolean>(false);
 
   useEffect(() => {
     if (!requestId) {
@@ -33,6 +35,7 @@ const RequestResumeDetailExpertView = () => {
         navigate(-1);
       }
       setRequest(requestResumeDetailExpertResponse.request);
+      setAnswered(requestResumeDetailExpertResponse.answered);
     })();
   }, [requestId]);
 
@@ -78,7 +81,7 @@ const RequestResumeDetailExpertView = () => {
             <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
               <dt className="text-gray-500">선정 보상금</dt>
               <dd className="text-gray-900 col-span-3">
-                {request?.rewardPrice.toLocaleString()} 원
+                {request?.rewardAmount.toLocaleString()} 원
               </dd>
             </div>
             <div className="py-4 sm:py-6 sm:grid sm:grid-cols-4 sm:gap-4 items-center text-md sm:text-lg font-medium">
@@ -95,16 +98,22 @@ const RequestResumeDetailExpertView = () => {
           </dl>
         </div>
       </div>
-      {request?.status === "registered" && (
-        <div className="mt-8">
+
+      <div className="mt-8">
+        {request?.status === "registered" && !answered && (
           <Link
             to={`/request/resume/answer?requestId=${request.id}`}
             className="button"
           >
             답변하러 가기
           </Link>
-        </div>
-      )}
+        )}
+        {answered && (
+          <div className="w-full flex place-content-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-medium text-gray-900 bg-gray-300">
+            답변 완료
+          </div>
+        )}
+      </div>
     </div>
   );
 };

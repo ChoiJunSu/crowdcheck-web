@@ -49,25 +49,36 @@ const RequestResumeListExpertView = () => {
                       className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                    선정 보상금: {request.rewardPrice.toLocaleString()}원
+                    <span>선정 보상금</span>
+                    <span className="mx-2 text-cc-green">
+                      {request.rewardAmount.toLocaleString()}원
+                    </span>
                   </p>
                   <p className="mt-2 sm:col-span-3 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">
                     <UsersIcon
                       className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                    선정 답변: {request.rewardNum}명 | 현재 답변:{" "}
-                    {request.receiverCount}명
+                    <span>선정 답변</span>
+                    <span className="mx-2 text-cc-green">
+                      {request.rewardNum}명
+                    </span>
+                    <span>현재 답변</span>
+                    <span className="mx-2 text-cc-green">
+                      {request.receiverCount}명
+                    </span>
                   </p>
                   <p className="mt-2 sm:col-span-2 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">
                     <CalendarIcon
                       className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                    마감일:{" "}
-                    {request.deadline
-                      ? `${new Date(request.deadline).toLocaleDateString()}`
-                      : "없음"}
+                    <span>마감일</span>
+                    <span className="mx-2 text-cc-green">
+                      {request.deadline
+                        ? `${new Date(request.deadline).toLocaleDateString()}`
+                        : "없음"}
+                    </span>
                   </p>
                 </div>
               </div>

@@ -8,5 +8,5 @@ export interface IRequestResumeRegisterFormData {
   question: string;
   deadline: string | null;
   rewardNum: number;
-  rewardPrice: number;
+  rewardAmount: number;
 }

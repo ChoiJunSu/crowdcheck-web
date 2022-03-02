@@ -50,7 +50,7 @@ const RequestResumeExplorePage = () => {
                       className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                    선정 보상금: {request.rewardPrice.toLocaleString()}원
+                    선정 보상금: {request.rewardAmount.toLocaleString()}원
                   </p>
                   <p className="mt-2 sm:col-span-3 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">
                     <UsersIcon

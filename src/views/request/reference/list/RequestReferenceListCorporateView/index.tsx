@@ -4,15 +4,17 @@ import { IRequestReferenceCorporate } from "@api/RequestApi/type";
 import { Link } from "react-router-dom";
 import { ChatAlt2Icon, CheckCircleIcon } from "@heroicons/react/outline";
 
+const requestStatusMapper = {
+  registered: "동의 대기",
+  agreed: "답변 중",
+  closed: "종료됨",
+  rewarded: "",
+};
+
 const RequestReferenceListCorporateView = () => {
   const [requestList, setRequestReferenceList] = useState<
     Array<IRequestReferenceCorporate>
   >([]);
-  const requestStatusMapper = {
-    registered: "동의 대기",
-    agreed: "답변 중",
-    closed: "종료됨",
-  };
 
   useEffect(() => {
     (async () => {

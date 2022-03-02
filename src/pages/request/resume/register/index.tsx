@@ -21,7 +21,7 @@ const rewardNums = [...Array(10).keys()].map((num) => ({
   value: num + 1,
 }));
 
-const rewardPrices = [...Array(10).keys()].map((num) => ({
+const rewardAmounts = [...Array(10).keys()].map((num) => ({
   name: `${((num + 1) * 10000).toLocaleString()} 원`,
   value: (num + 1) * 10000,
 }));
@@ -42,7 +42,7 @@ const RequestResumeRegisterPage = () => {
   const methods = useForm<IRequestResumeRegisterFormData>({
     defaultValues: {
       rewardNum: rewardNums[0].value,
-      rewardPrice: rewardPrices[0].value,
+      rewardAmount: rewardAmounts[0].value,
     },
   });
   const {
@@ -56,7 +56,7 @@ const RequestResumeRegisterPage = () => {
     formState: { errors },
   } = methods;
   const rewardNum = useWatch({ control, name: "rewardNum" });
-  const rewardPrice = useWatch({ control, name: "rewardPrice" });
+  const rewardAmount = useWatch({ control, name: "rewardAmount" });
 
   const handleUploadResume = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -215,8 +215,8 @@ const RequestResumeRegisterPage = () => {
             <div className="mt-4">
               <label className="label">선정 답변 당 보상금</label>
               <div className="mt-1">
-                <SelectBox name={"rewardPrice"} options={rewardPrices} />
-                <ErrorMessage message={errors?.rewardPrice?.message} />
+                <SelectBox name={"rewardAmount"} options={rewardAmounts} />
+                <ErrorMessage message={errors?.rewardAmount?.message} />
               </div>
             </div>
           </div>
@@ -228,14 +228,14 @@ const RequestResumeRegisterPage = () => {
               <div className="pb-4 flex items-center justify-between">
                 <dt className="text-gray-500">선정 답변에 대한 총 보상금</dt>
                 <dd className="text-gray-900">{`${(
-                  rewardNum * rewardPrice
+                  rewardNum * rewardAmount
                 ).toLocaleString()} 원`}</dd>
               </div>
               <div className="py-4 flex items-center justify-between">
                 <dt className="text-gray-500">답변 선정 보증금 (10%)</dt>
                 <dd className="text-gray-900">{`${(
                   rewardNum *
-                  rewardPrice *
+                  rewardAmount *
                   0.1
                 ).toLocaleString()} 원`}</dd>
               </div>
@@ -243,7 +243,7 @@ const RequestResumeRegisterPage = () => {
                 <dt className="text-gray-500">부가가치세 (10%)</dt>
                 <dd className="text-gray-900">{`${(
                   rewardNum *
-                  rewardPrice *
+                  rewardAmount *
                   0.1
                 ).toLocaleString()} 원`}</dd>
               </div>
@@ -251,7 +251,7 @@ const RequestResumeRegisterPage = () => {
                 <dt className="text-gray-900">총 결제금액</dt>
                 <dd className="text-cc-green">{`${(
                   rewardNum *
-                  rewardPrice *
+                  rewardAmount *
                   1.2
                 ).toLocaleString()} 원`}</dd>
               </div>

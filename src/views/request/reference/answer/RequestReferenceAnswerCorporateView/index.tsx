@@ -19,7 +19,7 @@ const RequestReferenceAnswerCorporateView = () => {
   const [question, setQuestion] = useState<string>("");
   const [answerList, setAnswerList] = useState<Array<IAnswer>>([]);
   const receiverStatusMapper = {
-    arrived: "답변 중",
+    received: "답변 중",
     verified: "답변 중",
     rejected: "거절됨",
     answered: "답변 완료",

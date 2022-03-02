@@ -40,6 +40,10 @@ import {
   IRequestResumeAnswerResponse,
   IRequestResumeDetailCorporateRequest,
   IRequestResumeDetailCorporateResponse,
+  IRequestResumeCloseRequest,
+  IRequestResumeCloseResponse,
+  IRequestResumeRewardRequest,
+  IRequestResumeRewardResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -210,6 +214,24 @@ class RequestApi {
       url: "/request/resume/answer",
       data,
     })) as IRequestResumeAnswerResponse;
+  }
+
+  static async resumeClose(
+    params: IRequestResumeCloseRequest
+  ): Promise<IRequestResumeCloseResponse> {
+    return (await ApiClient.get({
+      url: "/request/resume/close",
+      params,
+    })) as IRequestResumeCloseResponse;
+  }
+
+  static async resumeReward(
+    data: IRequestResumeRewardRequest
+  ): Promise<IRequestResumeRewardResponse> {
+    return (await ApiClient.post({
+      url: "/request/resume/reward",
+      data,
+    })) as IRequestResumeRewardResponse;
   }
 }
 
