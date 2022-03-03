@@ -19,6 +19,8 @@ import {
   IAuthPhoneVerifyResponse,
   IAuthRegisterExpertRequest,
   IAuthRegisterExpertResponse,
+  IAuthWithdrawRequest,
+  IAuthWithdrawResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
@@ -105,6 +107,15 @@ class AuthApi {
       url: "/auth/phone/verify",
       data,
     })) as IAuthPhoneVerifyResponse;
+  }
+
+  static async withdraw(
+    params: IAuthWithdrawRequest
+  ): Promise<IAuthWithdrawResponse> {
+    return (await ApiClient.get({
+      url: "/auth/withdraw",
+      params,
+    })) as IAuthWithdrawResponse;
   }
 }
 

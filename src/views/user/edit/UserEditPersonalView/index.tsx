@@ -8,6 +8,10 @@ import UserApi from "@api/UserApi";
 import { IUserEditPersonalRequest } from "@api/UserApi/type";
 import CareerField from "@components/form/CareerField";
 import { ICareer } from "@api/AuthApi/type";
+import { useSetRecoilState } from "recoil";
+import loginAtom from "@atoms/loginAtom";
+import AuthApi from "@api/AuthApi";
+import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 const UserEditPersonalView = () => {
   const navigate = useNavigate();
@@ -33,6 +37,7 @@ const UserEditPersonalView = () => {
     handleSubmit,
     formState: { errors },
   } = methods;
+  const setLoginState = useSetRecoilState(loginAtom);
 
   useEffect(() => {
     (async () => {
@@ -74,6 +79,24 @@ const UserEditPersonalView = () => {
       alert("정보가 수정되었습니다.");
       navigate(-1);
     }, []);
+
+  const handleWithdraw = useCallback(async () => {
+    if (!confirm("정말로 탈퇴하시겠습니까?")) return;
+    const authWithdrawResponse = await AuthApi.withdraw({});
+    if (!authWithdrawResponse.ok) {
+      alert(authWithdrawResponse.error);
+      return;
+    }
+    alert("탈퇴가 완료되었습니다.");
+    setLoginState({
+      isLoggedIn: false,
+      authToken: null,
+      name: null,
+      type: null,
+    });
+    localStorage.removeItem(LOCAL_AUTH_TOKEN);
+    navigate("/");
+  }, []);
 
   return isLoading ? (
     <Loading />
@@ -211,6 +234,13 @@ const UserEditPersonalView = () => {
           <div className="mt-8 pt-8 border-t border-gray-300">
             <button type="submit" className="button">
               저장하기
+            </button>
+            <button
+              type="button"
+              onClick={handleWithdraw}
+              className="mt-4 w-full flex place-content-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-medium text-white bg-red-500 hover:bg-red-800"
+            >
+              탈퇴하기
             </button>
           </div>
         </form>

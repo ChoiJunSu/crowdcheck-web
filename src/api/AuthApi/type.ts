@@ -97,3 +97,7 @@ export interface IAuthPhoneVerifyRequest extends IApiRequest {
 }
 
 export interface IAuthPhoneVerifyResponse extends IApiResponse {}
+
+export interface IAuthWithdrawRequest extends IApiRequest {}
+
+export interface IAuthWithdrawResponse extends IApiResponse {}

@@ -4,7 +4,7 @@ const IndexPublicView = () => {
   return (
     <div>
       <div className="max-w-2xl mx-auto py-6 sm:py-12 px-6 sm:px-10">
-        <h1 className="text-2xl sm:text-4xl leading-6 text-center font-extrabold text-gray-900">
+        <h1 className="text-2xl sm:text-4xl leading-6 font-extrabold text-gray-900">
           간편하고 정확한 온라인 평판 조회
         </h1>
       </div>
