@@ -25,7 +25,7 @@ const RequestReferenceAgreeCorporateView = () => {
 
   useEffect(() => {
     (async () => {
-      const getRequestResponse = await RequestApi.referenceGetCorporateAgree({
+      const getRequestResponse = await RequestApi.referenceGetAgreeCorporate({
         requestId: parseInt(requestId as string),
       } as IRequestReferenceGetCandidateRequest);
       if (!getRequestResponse.ok) {

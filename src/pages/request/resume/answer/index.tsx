@@ -98,7 +98,11 @@ const RequestResumeAnswerPage = () => {
                   </span>
                 </div>
                 <div className="ml-4 flex-shrink-0">
-                  <a href={request?.resumeUrl} className="hover:text-cc-green">
+                  <a
+                    href={request?.resumeUrl}
+                    target="_blank"
+                    className="hover:text-cc-green"
+                  >
                     다운로드
                   </a>
                 </div>
@@ -117,6 +121,7 @@ const RequestResumeAnswerPage = () => {
                   <div className="ml-4 flex-shrink-0">
                     <a
                       href={request.portfolioUrl}
+                      target="_blank"
                       className="hover:text-cc-green"
                     >
                       다운로드

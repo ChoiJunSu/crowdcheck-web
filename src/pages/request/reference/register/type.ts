@@ -6,4 +6,6 @@ export interface IRequestReferenceRegisterFormData {
   careers: Array<ICareer>;
   question: string;
   deadline: string | null;
+  rewardNum: number;
+  rewardAmount: number;
 }

@@ -20,14 +20,14 @@ export const menuItems = {
   personal: [
     {
       icon: ClipboardIcon,
-      text: "평판 의뢰 목록",
+      text: "내 의뢰",
       to: "/request/reference/list",
     },
-    {
-      icon: ClipboardIcon,
-      text: "이력서 의뢰 목록",
-      to: "/request/resume/list",
-    },
+    // {
+    //   icon: ClipboardIcon,
+    //   text: "이력서 의뢰 목록",
+    //   to: "/request/resume/list",
+    // },
     {
       icon: UserIcon,
       text: "정보 수정",
@@ -35,26 +35,26 @@ export const menuItems = {
     },
   ],
   corporate: [
-    // {
-    //   icon: ClipboardIcon,
-    //   text: "평판 의뢰 목록",
-    //   to: "/request/reference/list",
-    // },
-    // {
-    //   icon: PencilAltIcon,
-    //   text: "평판 의뢰 등록",
-    //   to: "/request/reference/register",
-    // },
     {
       icon: ClipboardIcon,
       text: "내 의뢰",
-      to: "/request/resume/list",
+      to: "/request/reference/list",
     },
     {
       icon: PencilAltIcon,
       text: "의뢰 등록",
-      to: "/request/resume/register",
+      to: "/request/reference/register",
     },
+    // {
+    //   icon: ClipboardIcon,
+    //   text: "내 의뢰",
+    //   to: "/request/resume/list",
+    // },
+    // {
+    //   icon: PencilAltIcon,
+    //   text: "의뢰 등록",
+    //   to: "/request/resume/register",
+    // },
     {
       icon: UserIcon,
       text: "정보 수정",

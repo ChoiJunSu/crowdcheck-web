@@ -28,14 +28,14 @@ const UserEditCorporateView = () => {
 
   useEffect(() => {
     (async () => {
-      const referenceGetCorporateResponse = await UserApi.getCorporate({});
-      if (!referenceGetCorporateResponse.ok) {
-        alert(referenceGetCorporateResponse.error);
+      const userGetCorporate = await UserApi.getCorporate({});
+      if (!userGetCorporate.ok) {
+        alert(userGetCorporate.error);
         return;
       }
       const {
         user: { email, name, phone },
-      } = referenceGetCorporateResponse;
+      } = userGetCorporate;
       setValue("email", email);
       setValue("name", name);
       setValue("phone", phone);

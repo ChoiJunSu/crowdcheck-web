@@ -16,8 +16,8 @@ import { TUserType } from "@api/UserApi/type";
 import { IAuthLoginFormData } from "@pages/auth/login/type";
 
 const tabs = [
-  // { name: "개인 회원", type: "personal" },
-  { name: "전문가 회원", type: "expert" },
+  { name: "개인 회원", type: "personal" },
+  // { name: "전문가 회원", type: "expert" },
   { name: "기업 회원", type: "corporate" },
 ];
 
@@ -29,7 +29,7 @@ const AuthLoginPage = () => {
     formState: { errors },
   } = useForm<IAuthLoginFormData>();
   const setLoginState = useSetRecoilState(loginAtom);
-  const [type, setType] = useState<TUserType>("expert");
+  const [type, setType] = useState<TUserType>("personal");
 
   const oauthLoginButtons = [
     {
@@ -131,7 +131,7 @@ const AuthLoginPage = () => {
 
         <div className="flex justify-end">
           {type === "personal" && (
-            <div>
+            <div className="text-right">
               <Link
                 to="/auth/register/personal"
                 className="block font-medium text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"

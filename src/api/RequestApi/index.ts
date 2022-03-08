@@ -10,18 +10,18 @@ import {
   IRequestReferenceListReceiverResponse,
   IRequestReferenceVerifyRequest,
   IRequestReferenceVerifyResponse,
-  IRequestReferenceGetReceiverRequest,
-  IRequestReferenceGetReceiverResponse,
+  IRequestReferenceDetailReceiverRequest,
+  IRequestReferenceDetailReceiverResponse,
   IRequestReferenceAnswerRequest,
   IRequestReferenceAnswerResponse,
   IRequestReferenceListCorporateRequest,
   IRequestReferenceListCorporateResponse,
-  IRequestReferenceGetCorporateRequest,
-  IRequestReferenceGetCorporateResponse,
+  IRequestReferenceDetailCorporateRequest,
+  IRequestReferenceDetailCorporateResponse,
   IRequestReferenceRejectRequest,
   IRequestReferenceRejectResponse,
-  IRequestReferenceGetCorporateAgreeRequest,
-  IRequestReferenceGetCorporateAgreeResponse,
+  IRequestReferenceGetAgreeCorporateRequest,
+  IRequestReferenceGetAgreeCorporateResponse,
   IRequestReferenceRegisterRequest,
   IRequestReferenceRegisterResponse,
   IRequestResumeRegisterRequest,
@@ -44,6 +44,10 @@ import {
   IRequestResumeCloseResponse,
   IRequestResumeRewardRequest,
   IRequestResumeRewardResponse,
+  IRequestReferenceCloseRequest,
+  IRequestReferenceCloseResponse,
+  IRequestReferenceRewardRequest,
+  IRequestReferenceRewardResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -56,31 +60,31 @@ class RequestApi {
     })) as IRequestReferenceRegisterResponse;
   }
 
-  static async referenceGetReceiver(
-    params: IRequestReferenceGetReceiverRequest
-  ): Promise<IRequestReferenceGetReceiverResponse> {
+  static async referenceDetailReceiver(
+    params: IRequestReferenceDetailReceiverRequest
+  ): Promise<IRequestReferenceDetailReceiverResponse> {
     return (await ApiClient.get({
-      url: "/request/reference/get/receiver",
+      url: "/request/reference/detail/receiver",
       params,
-    })) as IRequestReferenceGetReceiverResponse;
+    })) as IRequestReferenceDetailReceiverResponse;
   }
 
-  static async referenceGetCorporate(
-    params: IRequestReferenceGetCorporateRequest
-  ): Promise<IRequestReferenceGetCorporateResponse> {
+  static async referenceDetailCorporate(
+    params: IRequestReferenceDetailCorporateRequest
+  ): Promise<IRequestReferenceDetailCorporateResponse> {
     return (await ApiClient.get({
-      url: "/request/reference/get/corporate",
+      url: "/request/reference/detail/corporate",
       params,
-    })) as IRequestReferenceGetCorporateResponse;
+    })) as IRequestReferenceDetailCorporateResponse;
   }
 
-  static async referenceGetCorporateAgree(
-    params: IRequestReferenceGetCorporateAgreeRequest
-  ): Promise<IRequestReferenceGetCorporateAgreeResponse> {
+  static async referenceGetAgreeCorporate(
+    params: IRequestReferenceGetAgreeCorporateRequest
+  ): Promise<IRequestReferenceGetAgreeCorporateResponse> {
     return (await ApiClient.get({
-      url: "/request/reference/get/corporate/agree",
+      url: "/request/reference/get/agree/corporate",
       params,
-    })) as IRequestReferenceGetCorporateAgreeResponse;
+    })) as IRequestReferenceGetAgreeCorporateResponse;
   }
 
   static async referenceGetCandidate(
@@ -144,6 +148,24 @@ class RequestApi {
       url: "/request/reference/reject",
       params,
     })) as IRequestReferenceRejectResponse;
+  }
+
+  static async referenceClose(
+    params: IRequestReferenceCloseRequest
+  ): Promise<IRequestReferenceCloseResponse> {
+    return (await ApiClient.get({
+      url: "/request/reference/close",
+      params,
+    })) as IRequestReferenceCloseResponse;
+  }
+
+  static async referenceReward(
+    data: IRequestReferenceRewardRequest
+  ): Promise<IRequestReferenceRewardResponse> {
+    return (await ApiClient.post({
+      url: "/request/reference/reward",
+      data,
+    })) as IRequestReferenceRewardResponse;
   }
 
   /*

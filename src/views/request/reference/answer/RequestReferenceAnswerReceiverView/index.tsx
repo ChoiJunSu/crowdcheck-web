@@ -26,17 +26,17 @@ const RequestReferenceAnswerReceiverView = () => {
 
   useEffect(() => {
     (async () => {
-      const referenceGetReceiverResponse =
-        await RequestApi.referenceGetReceiver({
+      const referenceDetailReceiverResponse =
+        await RequestApi.referenceDetailReceiver({
           requestId: parseInt(requestId!),
         });
-      if (!referenceGetReceiverResponse.ok) {
-        alert(referenceGetReceiverResponse.error);
+      if (!referenceDetailReceiverResponse.ok) {
+        alert(referenceDetailReceiverResponse.error);
         return;
       }
-      setCorporateName(referenceGetReceiverResponse.corporateName);
-      setCandidateName(referenceGetReceiverResponse.candidateName);
-      setQuestion(referenceGetReceiverResponse.question);
+      setCorporateName(referenceDetailReceiverResponse.request.corporateName);
+      setCandidateName(referenceDetailReceiverResponse.request.candidateName);
+      setQuestion(referenceDetailReceiverResponse.request.question);
     })();
   }, []);
 
@@ -50,7 +50,7 @@ const RequestReferenceAnswerReceiverView = () => {
       return;
     }
     alert("의뢰 답변이 완료되었습니다.");
-    navigate("request/list");
+    navigate("/request/reference/list");
   }, []);
 
   return (

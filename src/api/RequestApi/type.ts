@@ -44,42 +44,82 @@ export interface IRequestReferenceCandidate {
 export interface IRequestReferenceCorporate {
   id: number;
   candidateName: string;
+  deadline: Date | null;
+  rewardNum: number;
+  rewardAmount: number;
+  receiverCount: number;
   status: TRequestStatus;
-  receivers: Array<IReceiver>;
+  createdAt: Date;
+}
+
+export interface IRequestReferenceDetailCorporate {
+  id: number;
+  candidateName: string;
+  question: string;
+  deadline: Date | null;
+  rewardNum: number;
+  rewardAmount: number;
+  receiverCount: number;
+  status: TRequestStatus;
+  createdAt: Date;
+}
+
+export interface IRequestReferenceAnswerCorporate {
+  receiverId: number;
+  corporateName: string;
+  status: TReceiverStatus;
+  answer: string | null;
+  answeredAt: Date | null;
 }
 
 export interface IRequestReferenceReceiver {
   id: number;
   corporateName: string;
   candidateName: string;
-  status: TReceiverStatus;
+  deadline: Date | null;
+  rewardNum: number;
+  rewardAmount: number;
+  receiverCount: number;
+  status: TRequestStatus;
+  createdAt: Date;
 }
 
-export interface IRequestReferenceGetReceiverRequest extends IApiRequest {
-  requestId: number;
-}
-
-export interface IRequestReferenceGetReceiverResponse extends IApiResponse {
+export interface IRequestReferenceDetailReceiver {
+  id: number;
   corporateName: string;
   candidateName: string;
   question: string;
+  deadline: Date | null;
+  rewardNum: number;
+  rewardAmount: number;
+  receiverCount: number;
+  status: TRequestStatus;
+  createdAt: Date;
 }
 
-export interface IRequestReferenceGetCorporateRequest extends IApiRequest {
+export interface IRequestReferenceDetailReceiverRequest extends IApiRequest {
   requestId: number;
 }
 
-export interface IRequestReferenceGetCorporateResponse extends IApiResponse {
-  candidateName: string;
-  question: string;
-  answers: Array<IAnswer>;
+export interface IRequestReferenceDetailReceiverResponse extends IApiResponse {
+  request: IRequestReferenceDetailReceiver;
+  receiverStatus: TReceiverStatus;
 }
 
-export interface IRequestReferenceGetCorporateAgreeRequest extends IApiRequest {
+export interface IRequestReferenceDetailCorporateRequest extends IApiRequest {
   requestId: number;
 }
 
-export interface IRequestReferenceGetCorporateAgreeResponse
+export interface IRequestReferenceDetailCorporateResponse extends IApiResponse {
+  request: IRequestReferenceDetailCorporate;
+  answers: Array<IRequestReferenceAnswerCorporate>;
+}
+
+export interface IRequestReferenceGetAgreeCorporateRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestReferenceGetAgreeCorporateResponse
   extends IApiResponse {
   candidateName: string;
   agrees: Array<IAgree>;
@@ -140,6 +180,19 @@ export interface IRequestReferenceRejectRequest extends IApiRequest {
 }
 
 export interface IRequestReferenceRejectResponse extends IApiResponse {}
+
+export interface IRequestReferenceCloseRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestReferenceCloseResponse extends IApiResponse {}
+
+export interface IRequestReferenceRewardRequest extends IApiRequest {
+  requestId: number;
+  receivers: Array<{ id: number }>;
+}
+
+export interface IRequestReferenceRewardResponse extends IApiResponse {}
 
 /*
   Resume
