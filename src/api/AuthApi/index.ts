@@ -64,11 +64,11 @@ class AuthApi {
     })) as IAuthRegisterPersonalResponse;
   }
 
-  static async registerOauth(
+  static async registerOauthPersonal(
     data: IAuthRegisterOauthRequest
   ): Promise<IAuthRegisterOauthResponse> {
     return (await ApiClient.post({
-      url: "/auth/register/oauth",
+      url: "/auth/register/oauth/personal",
       data,
     })) as IAuthRegisterOauthResponse;
   }

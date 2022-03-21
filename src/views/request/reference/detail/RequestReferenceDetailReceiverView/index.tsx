@@ -124,7 +124,7 @@ const RequestReferenceDetailReceiverView = () => {
         {(receiverStatus === "received" || receiverStatus === "verified") && (
           <div className="flex gap-4">
             <Link
-              to={`/request/reference/answer?requestId=${requestId}`}
+              to={`/request/reference/verify?requestId=${requestId}`}
               className="button"
             >
               답변하러 가기

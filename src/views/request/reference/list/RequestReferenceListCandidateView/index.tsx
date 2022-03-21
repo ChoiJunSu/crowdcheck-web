@@ -7,8 +7,8 @@ import { CheckCircleIcon } from "@heroicons/react/outline";
 const requestStatusMapper = {
   registered: "동의 대기",
   agreed: "답변 중",
-  closed: "종료됨",
-  rewarded: "",
+  closed: "답변 선정 중",
+  rewarded: "종료됨",
 };
 
 const RequestReferenceListCandidateView = () => {

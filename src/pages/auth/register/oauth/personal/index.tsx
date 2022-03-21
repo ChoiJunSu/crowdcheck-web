@@ -39,15 +39,17 @@ const AuthRegisterOauthPersonalPage = () => {
   const handleRegisterOauth: SubmitHandler<IRegisterPersonalFormData> =
     useCallback(async (data) => {
       setIsLoading(true);
-      const registerOauthResponse = await AuthApi.registerOauth({
-        ...data,
-        registerToken,
-      } as IAuthRegisterOauthRequest);
-      if (registerOauthResponse.ok) {
+      const registerOauthPersonalResponse = await AuthApi.registerOauthPersonal(
+        {
+          ...data,
+          registerToken,
+        } as IAuthRegisterOauthRequest
+      );
+      if (registerOauthPersonalResponse.ok) {
         alert("회원가입이 완료되었습니다. 로그인 해주세요.");
         navigate("/auth/login");
       } else {
-        alert(registerOauthResponse.error);
+        alert(registerOauthPersonalResponse.error);
         setIsLoading(false);
       }
     }, []);

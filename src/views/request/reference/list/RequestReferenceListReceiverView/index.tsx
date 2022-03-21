@@ -103,6 +103,11 @@ const RequestReferenceListReceiverView = () => {
             </div>
           </li>
         ))}
+        {requestList.length === 0 && (
+          <li className="text-gray-500 text-center sm:text-xl py-10">
+            의뢰가 없습니다.
+          </li>
+        )}
       </ul>
     </div>
   );

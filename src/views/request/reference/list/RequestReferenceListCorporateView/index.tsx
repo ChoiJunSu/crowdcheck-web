@@ -14,8 +14,8 @@ import {
 const requestStatusMapper = {
   registered: "동의 대기",
   agreed: "답변 중",
-  closed: "종료됨",
-  rewarded: "",
+  closed: "답변 선정 중",
+  rewarded: "종료됨",
 };
 
 const RequestReferenceListCorporateView = () => {
@@ -93,6 +93,11 @@ const RequestReferenceListCorporateView = () => {
             </div>
           </li>
         ))}
+        {requestList.length === 0 && (
+          <li className="text-gray-500 text-center sm:text-xl py-10">
+            의뢰가 없습니다.
+          </li>
+        )}
       </ul>
     </div>
   );
