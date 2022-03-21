@@ -1,10 +1,10 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "크라우드체크",
+  "name": "간편하고 정확한 온라인 평판 조회 크라우드체크",
   "icons": [
     {
       "src": "favicon.svg",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "any",
       "type": "image/x-icon"
     }
   ],
