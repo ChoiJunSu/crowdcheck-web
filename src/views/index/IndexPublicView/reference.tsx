@@ -4,7 +4,7 @@ import { ReactComponent as LandingReferenceMobileImage } from "@assets/images/la
 
 const IndexPublicReferenceView = () => {
   return (
-    <div className="mx-auto sm:max-w-6xl px-2 mt-6 sm:mt-10">
+    <div className="mx-auto sm:max-w-6xl px-2 sm:mt-10">
       <div>
         <LandingReferencePCImage className="w-full hidden sm:block" />
         <LandingReferenceMobileImage className="w-full h-fit sm:hidden" />
