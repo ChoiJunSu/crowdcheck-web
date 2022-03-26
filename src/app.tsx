@@ -18,7 +18,7 @@ const App = () => {
       <Route
         path="/*"
         element={
-          <div className="flex flex-col h-screen px-4 sm:px-6 lg:px-8 absolute inset-0">
+          <div className="flex flex-col h-screen px-4 sm:px-6 lg:px-8">
             <div className="mb-4 sm:mb-6 lg:mb-10">
               <Header />
             </div>
