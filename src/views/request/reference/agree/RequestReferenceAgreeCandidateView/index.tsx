@@ -50,7 +50,9 @@ const RequestReferenceAgreeCandidateView = () => {
       alert(agreeResponse.error);
       return;
     }
-    alert("의뢰 동의가 완료되었습니다.");
+    alert(
+      "평판 조회 동의가 완료되었습니다. 평판 제공자에게 평판 요청 링크를 전달해주세요."
+    );
     navigate("/request/reference/list");
   }, []);
 
@@ -65,27 +67,36 @@ const RequestReferenceAgreeCandidateView = () => {
               </h2>
             )}
           </div>
+
           <div className="pt-8">
             <div>
               <h3 className="h3">경력 정보</h3>
+              <label htmlFor="name" className="label">
+                평판 조회에 동의하는 경력을 모두 선택해주세요.
+              </label>
             </div>
             <div className="mt-4">
               <CareerField mode="candidate" careers={careers} />
             </div>
           </div>
+
           <div className="pt-8">
             <div>
-              <h3 className="h3">비동의 사유</h3>
+              <h3 className="h3">비동의 사유 (선택)</h3>
+              <label htmlFor="name" className="label">
+                평판 조회에 동의하지 않는 경력이 있는 경우 사유를 입력해주세요.
+              </label>
             </div>
             <div className="mt-4">
               <textarea
                 {...register("agreeDescription")}
-                rows={10}
-                placeholder="비동의 사유를 입력하세요."
+                rows={2}
+                placeholder="예시: 재직 중인 회사입니다."
                 className="input"
               />
             </div>
           </div>
+
           <div className="mt-8 pt-8 border-t border-gray-300">
             <button type="submit" className="button">
               동의하기

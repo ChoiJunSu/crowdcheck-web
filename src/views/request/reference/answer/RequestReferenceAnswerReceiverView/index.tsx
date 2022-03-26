@@ -49,7 +49,7 @@ const RequestReferenceAnswerReceiverView = () => {
       alert(answerResponse.error);
       return;
     }
-    alert("의뢰 답변이 완료되었습니다.");
+    alert("의뢰 답변이 완료되었습니다. 소중한 평판 감사합니다.");
     navigate("/request/reference/list");
   }, []);
 

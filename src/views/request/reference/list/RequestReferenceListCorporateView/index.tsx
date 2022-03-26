@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import RequestApi from "@api/RequestApi";
-import { IRequestReferenceCorporate } from "@api/RequestApi/type";
+import {
+  IRequestReferenceCorporate,
+  requestReferenceStatusMapper,
+} from "@api/RequestApi/type";
 import { Link } from "react-router-dom";
 import {
   CalendarIcon,
@@ -10,13 +13,6 @@ import {
   InformationCircleIcon,
   UsersIcon,
 } from "@heroicons/react/outline";
-
-const requestStatusMapper = {
-  registered: "동의 대기",
-  agreed: "답변 중",
-  closed: "답변 선정 중",
-  rewarded: "종료됨",
-};
 
 const RequestReferenceListCorporateView = () => {
   const [requestList, setRequestReferenceList] = useState<
@@ -41,7 +37,7 @@ const RequestReferenceListCorporateView = () => {
               <div className="px-4 py-4 sm:px-6">
                 <div className="flex items-center justify-between">
                   <p className="text-xl sm:text-2xl font-medium text-gray-900 truncate">
-                    {request.candidateName}
+                    {request.candidateName}님에 대한 의뢰
                   </p>
                   <div className="ml-2 flex-shrink-0 flex">
                     <Link
@@ -59,10 +55,10 @@ const RequestReferenceListCorporateView = () => {
                       className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
                       aria-hidden="true"
                     />
-                    <span>선정 답변</span>
-                    <span className="mx-2 text-cc-green">
-                      {request.rewardNum}명
-                    </span>
+                    {/*<span>선정 답변</span>*/}
+                    {/*<span className="mx-2 text-cc-green">*/}
+                    {/*  {request.rewardNum}명*/}
+                    {/*</span>*/}
                     <span>현재 답변</span>
                     <span className="mx-2 text-cc-green">
                       {request.receiverCount}명
@@ -75,7 +71,7 @@ const RequestReferenceListCorporateView = () => {
                     />
                     <span>상태</span>
                     <span className="mx-2 text-cc-green">
-                      {requestStatusMapper[request.status]}
+                      {requestReferenceStatusMapper[request.status]}
                     </span>
                   </p>
                   <p className="mt-2 sm:col-span-3 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">

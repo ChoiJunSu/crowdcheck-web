@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
   IRequestReferenceAnswerCorporate,
   IRequestReferenceDetailCorporate,
+  receiverStatusMapper,
 } from "@api/RequestApi/type";
 import RequestApi from "@api/RequestApi";
 import PageHeader from "@components/base/PageHeader";
@@ -12,14 +13,6 @@ import { useRecoilValue } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import { useForm, useWatch } from "react-hook-form";
 import { IRequestReferenceRewardFormData } from "@pages/request/reference/reward/type";
-
-const receiverStatusMapper = {
-  received: "답변 중",
-  verified: "답변 중",
-  rejected: "거절됨",
-  answered: "답변 완료",
-  closed: "종료됨",
-};
 
 const RequestReferenceRewardPage = () => {
   const { type } = useRecoilValue(loginAtom);

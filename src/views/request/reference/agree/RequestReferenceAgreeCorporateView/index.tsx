@@ -114,7 +114,7 @@ const RequestReferenceAgreeCorporateView = () => {
             <div className="mt-4">
               <textarea
                 {...register("agreeDescription")}
-                rows={10}
+                rows={2}
                 placeholder="입력된 비동의 사유가 없습니다."
                 className="input"
                 disabled={true}

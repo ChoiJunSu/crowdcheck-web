@@ -47,7 +47,7 @@ const Header = () => {
   }, []);
 
   return (
-    <Popover className="relative bg-white">
+    <Popover className="block bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -58,7 +58,13 @@ const Header = () => {
           {isLoggedIn && type ? (
             <HeaderMenu type={type} />
           ) : (
-            <div className="md:flex items-center justify-end md:flex-1 lg:w-0">
+            <div className="flex items-center space-x-6">
+              <Link
+                to="/guide"
+                className="text-sm sm:text-lg font-medium text-gray-500 hover:text-cc-green"
+              >
+                가이드
+              </Link>
               <Link
                 to="/auth/login"
                 className="whitespace-nowrap inline-flex items-center justify-center px-2 md:px-4 py-1 md:py-2 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-medium text-white bg-cc-green hover:bg-cc-green-dark"

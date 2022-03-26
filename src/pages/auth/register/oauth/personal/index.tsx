@@ -97,6 +97,11 @@ const AuthRegisterOauthPersonalPage = () => {
             <div className="pt-8">
               <div>
                 <h3 className="h3">경력 정보</h3>
+                <label className="label">
+                  지원자의 평판 작성 요청을 받아 가입하시는 경우
+                  <br />
+                  해당 지원자와 함께 일했던 경력은 필수적으로 입력해주세요.
+                </label>
               </div>
               <div className="mt-4">
                 <CareerField />

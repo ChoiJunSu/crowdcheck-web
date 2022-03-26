@@ -7,6 +7,21 @@ export type TRequestType = "reference" | "resume";
 
 export type TReceiverStatus = "received" | "verified" | "rejected" | "answered";
 
+export const requestReferenceStatusMapper = {
+  registered: "동의 대기",
+  agreed: "답변 중",
+  closed: "종료됨",
+  rewarded: "종료됨",
+};
+
+export const receiverStatusMapper = {
+  received: "답변 중",
+  verified: "답변 중",
+  rejected: "거절됨",
+  answered: "답변 완료",
+  closed: "종료됨",
+};
+
 export interface IAgree {
   corporateId: number;
   corporateName: string;
@@ -39,6 +54,7 @@ export interface IRequestReferenceCandidate {
   id: number;
   corporateName: string;
   status: TRequestStatus;
+  createdAt: Date;
 }
 
 export interface IRequestReferenceCorporate {
@@ -82,6 +98,7 @@ export interface IRequestReferenceReceiver {
   receiverCount: number;
   status: TRequestStatus;
   createdAt: Date;
+  receiverStatus: TReceiverStatus;
 }
 
 export interface IRequestReferenceDetailReceiver {

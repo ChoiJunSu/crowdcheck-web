@@ -1,5 +1,6 @@
 import { Popover, Transition } from "@headlessui/react";
 import {
+  BookOpenIcon,
   ChevronDownIcon,
   ClipboardIcon,
   DocumentSearchIcon,
@@ -33,6 +34,11 @@ export const menuItems = {
       text: "정보 수정",
       to: "/user/edit",
     },
+    {
+      icon: BookOpenIcon,
+      text: "가이드",
+      to: "/guide",
+    },
   ],
   corporate: [
     {
@@ -60,11 +66,16 @@ export const menuItems = {
       text: "정보 수정",
       to: "/user/edit",
     },
+    {
+      icon: BookOpenIcon,
+      text: "가이드",
+      to: "/guide",
+    },
   ],
   candidate: [
     {
       icon: ClipboardIcon,
-      text: "평판 의뢰 목록",
+      text: "내 의뢰",
       to: "/request/reference/list",
     },
   ],
@@ -83,6 +94,11 @@ export const menuItems = {
       icon: UserIcon,
       text: "정보 수정",
       to: "/user/edit",
+    },
+    {
+      icon: BookOpenIcon,
+      text: "가이드",
+      to: "/guide",
     },
   ],
 };

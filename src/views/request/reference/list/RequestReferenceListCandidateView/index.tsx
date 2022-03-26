@@ -1,21 +1,22 @@
-import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import RequestApi from "@api/RequestApi";
-import { IRequestReferenceCandidate } from "@api/RequestApi/type";
-import { CheckCircleIcon } from "@heroicons/react/outline";
-
-const requestStatusMapper = {
-  registered: "동의 대기",
-  agreed: "답변 중",
-  closed: "답변 선정 중",
-  rewarded: "종료됨",
-};
+import {
+  IRequestReferenceCandidate,
+  requestReferenceStatusMapper,
+} from "@api/RequestApi/type";
+import {
+  CalendarIcon,
+  CheckCircleIcon,
+  ChevronRightIcon,
+  InformationCircleIcon,
+  UsersIcon,
+} from "@heroicons/react/outline";
 
 const RequestReferenceListCandidateView = () => {
   const [requestList, setRequestReferenceList] = useState<
     Array<IRequestReferenceCandidate>
   >([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -26,68 +27,80 @@ const RequestReferenceListCandidateView = () => {
     })();
   }, []);
 
-  const handleGetRequest = useCallback((id: number) => {
-    navigate(`/request/reference/agree?requestId=${id}`);
-  }, []);
-
   return (
-    <div className="sm:mx-auto sm:w-full sm:max-w-2xl flex flex-col">
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    기업 이름
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-4 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    의뢰 상태
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-sm sm:text-lg font-medium text-gray-500 uppercase tracking-wider"
-                  ></th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {requestList.map(({ id, corporateName, status }, index) => {
-                  return (
-                    <tr key={index} className="text-center">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-900">
-                        {corporateName}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
-                        {requestStatusMapper[status]}
-                      </td>
-                      {status === "registered" && (
-                        <td className="px-6 py-4 whitespace-nowrap text-sm sm:text-lg font-medium text-gray-500">
-                          <button
-                            onClick={() => handleGetRequest(id)}
-                            className="inline-flex items-center gap-1 hover:text-cc-green"
-                          >
-                            <CheckCircleIcon
-                              className="h-6 w-6"
-                              aria-hidden="true"
-                            />
-                            동의하기
-                          </button>
-                        </td>
-                      )}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <div className="sm:mx-auto sm:max-w-4xl bg-white shadow overflow-hidden rounded-md">
+      <ul role="list" className="divide-y divide-gray-200">
+        {requestList.map((request, index) => (
+          <li key={index}>
+            <div className="block">
+              <div className="px-4 py-4 sm:px-6">
+                <div className="sm:flex items-center justify-between">
+                  <p className="text-xl sm:text-2xl font-medium text-gray-900 truncate">
+                    {request.corporateName}의 평판 조회 요청
+                  </p>
+                  {request.status === "registered" && (
+                    <div className="mt-1 sm:mt-0 sm:ml-2 flex-shrink-0 flex">
+                      <Link
+                        to={`/request/reference/agree?requestId=${request.id}`}
+                        className="sm:px-2 inline-flex text-md sm:text-lg leading-5 rounded-full font-medium text-gray-600 hover:text-cc-green"
+                      >
+                        동의하러 가기
+                        <ChevronRightIcon className="self-center flex-shrink-0 mr-1.5 h-5 w-5" />
+                      </Link>
+                    </div>
+                  )}
+                  {request.status === "agreed" && (
+                    <div className="mt-1 sm:mt-0 sm:ml-2 flex-shrink-0 flex">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            `평판 작성을 부탁드립니다.\n다음 주소로 방문하여 가이드를 확인해주세요.\nhttps://crowdcheck.io/guide/referee`
+                          );
+                          alert(
+                            "클립보드에 복사되었습니다. 평판 제공자에게 전달해주세요."
+                          );
+                        }}
+                        className="sm:px-2 inline-flex text-md sm:text-lg leading-5 rounded-full font-medium text-gray-600 hover:text-cc-green"
+                      >
+                        평판 요청 문구 복사하기
+                        <ChevronRightIcon className="self-center flex-shrink-0 mr-1.5 h-5 w-5" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-2 sm:grid-cols-6 text-md sm:text-lg text-gray-500">
+                  <p className="mt-2 sm:col-span-2 flex sm:inline-flex items-center">
+                    <InformationCircleIcon
+                      className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                    <span>상태</span>
+                    <span className="mx-2 text-cc-green">
+                      {requestReferenceStatusMapper[request.status]}
+                    </span>
+                  </p>
+                  <p className="mt-2 sm:col-span-3 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">
+                    <CalendarIcon
+                      className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                    <span>등록일</span>
+                    <span className="mx-2 text-cc-green">
+                      {new Date(request.createdAt).toLocaleDateString()}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))}
+        {requestList.length === 0 && (
+          <li className="text-gray-500 text-center sm:text-xl py-10">
+            의뢰가 없습니다.
+          </li>
+        )}
+      </ul>
     </div>
   );
 };

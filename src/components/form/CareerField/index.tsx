@@ -469,6 +469,10 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
                           className="text-lg leading-6 font-medium text-gray-900"
                         >
                           경력 인증
+                          <label className="label">
+                            명함이나 경력증명서 등 경력을 증빙할 수 있는 서류를
+                            업로드 해주세요.
+                          </label>
                         </Dialog.Title>
                         <div className="mt-2">
                           <input

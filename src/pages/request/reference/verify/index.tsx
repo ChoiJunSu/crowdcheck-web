@@ -38,9 +38,13 @@ const RequestReferenceVerifyPage = () => {
   return (
     <div>
       <div className="sm:mx-auto sm:w-full sm:max-w-md bg-white">
-        <h2 className="text-xl sm:text-2xl leading-6 font-bold text-gray-900">
-          지원자 정보 검증이 필요합니다.
-        </h2>
+        <h3 className="text-xl sm:text-2xl leading-6 font-bold text-gray-900">
+          지원자 정보 검증
+        </h3>
+        <label className="label">
+          지원자의 전화번호를 아시는지 확인이 필요합니다.
+        </label>
+
         <form
           onSubmit={handleSubmit(handleVerify)}
           noValidate={true}

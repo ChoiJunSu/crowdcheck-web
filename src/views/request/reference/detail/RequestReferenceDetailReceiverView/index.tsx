@@ -3,16 +3,10 @@ import { useCallback, useEffect, useState } from "react";
 import RequestApi from "@api/RequestApi";
 import {
   IRequestReferenceDetailReceiver,
+  requestReferenceStatusMapper,
   TReceiverStatus,
 } from "@api/RequestApi/type";
 import PageHeader from "@components/base/PageHeader";
-
-const requestStatusMapper = {
-  registered: "동의 대기 중",
-  agreed: "답변 대기 중",
-  closed: "답변 선정 중",
-  rewarded: "종료됨",
-};
 
 const RequestReferenceDetailReceiverView = () => {
   const navigate = useNavigate();
@@ -59,9 +53,7 @@ const RequestReferenceDetailReceiverView = () => {
   return (
     <div className="mx-auto sm:max-w-4xl">
       {request?.corporateName && request?.candidateName && (
-        <PageHeader
-          title={`${request.corporateName}님의 ${request.candidateName}님에 대한 의뢰`}
-        />
+        <PageHeader title={`${request.candidateName}님에 대한 의뢰`} />
       )}
       <div className="bg-white overflow-hidden">
         <div>
@@ -69,7 +61,8 @@ const RequestReferenceDetailReceiverView = () => {
             <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
               <dt className="text-gray-500">의뢰 상태</dt>
               <dd className="text-gray-900 col-span-3">
-                {request?.status && requestStatusMapper[request?.status]}
+                {request?.status &&
+                  requestReferenceStatusMapper[request?.status]}
               </dd>
             </div>
             <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
@@ -79,32 +72,32 @@ const RequestReferenceDetailReceiverView = () => {
                   new Date(request.createdAt).toLocaleDateString()}
               </dd>
             </div>
-            <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
-              <dt className="text-gray-500">마감일</dt>
-              <dd className="text-gray-900 col-span-3">
-                {request?.deadline
-                  ? new Date(request.deadline).toLocaleDateString()
-                  : "없음"}
-              </dd>
-            </div>
-            <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
-              <dt className="text-gray-500">선정 답변</dt>
-              <dd className="text-gray-900 col-span-3">
-                {request?.rewardNum} 명
-              </dd>
-            </div>
-            <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
-              <dt className="text-gray-500">현재 답변</dt>
-              <dd className="text-gray-900 col-span-3">
-                {request?.receiverCount} 명
-              </dd>
-            </div>
-            <div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">
-              <dt className="text-gray-500">선정 보상금</dt>
-              <dd className="text-gray-900 col-span-3">
-                {request?.rewardAmount.toLocaleString()} 원
-              </dd>
-            </div>
+            {/*<div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">*/}
+            {/*  <dt className="text-gray-500">마감일</dt>*/}
+            {/*  <dd className="text-gray-900 col-span-3">*/}
+            {/*    {request?.deadline*/}
+            {/*      ? new Date(request.deadline).toLocaleDateString()*/}
+            {/*      : "없음"}*/}
+            {/*  </dd>*/}
+            {/*</div>*/}
+            {/*<div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">*/}
+            {/*  <dt className="text-gray-500">선정 답변</dt>*/}
+            {/*  <dd className="text-gray-900 col-span-3">*/}
+            {/*    {request?.rewardNum} 명*/}
+            {/*  </dd>*/}
+            {/*</div>*/}
+            {/*<div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">*/}
+            {/*  <dt className="text-gray-500">현재 답변</dt>*/}
+            {/*  <dd className="text-gray-900 col-span-3">*/}
+            {/*    {request?.receiverCount} 명*/}
+            {/*  </dd>*/}
+            {/*</div>*/}
+            {/*<div className="py-4 sm:py-6 grid grid-cols-4 gap-4 items-center text-md sm:text-lg font-medium">*/}
+            {/*  <dt className="text-gray-500">선정 보상금</dt>*/}
+            {/*  <dd className="text-gray-900 col-span-3">*/}
+            {/*    {request?.rewardAmount.toLocaleString()} 원*/}
+            {/*  </dd>*/}
+            {/*</div>*/}
             <div className="py-4 sm:py-6 sm:grid sm:grid-cols-4 sm:gap-4 items-center text-md sm:text-lg font-medium">
               <dt className="text-gray-500">질문</dt>
               <dd className="my-1 p-2 text-gray-900 sm:mt-0 sm:col-span-3 border border-gray-200 rounded-md">
