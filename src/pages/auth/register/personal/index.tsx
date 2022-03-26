@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterPersonalRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
@@ -9,6 +9,8 @@ import CareerField from "@components/form/CareerField";
 import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
 import PhoneField from "@components/form/PhoneField";
 import SpecialtyField from "@components/form/SpecialtyField";
+import PrivacyPage from "@pages/privacy";
+import PolicyField from "@components/form/PolicyField";
 
 const AuthRegisterPersonalPage = () => {
   const navigate = useNavigate();
@@ -174,8 +176,17 @@ const AuthRegisterPersonalPage = () => {
               </label>
             </div>
 
-            <div className="mt-4">
+            <div className="my-4 sm:my-8">
               <CareerField />
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <div>
+              <h3 className="h3">정책 동의</h3>
+            </div>
+            <div className="mt-4">
+              <PolicyField />
             </div>
           </div>
 

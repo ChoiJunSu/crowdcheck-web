@@ -33,7 +33,7 @@ const IndexPublicReferenceView = () => {
                 기업 회원에 대해 자세히 알아보기
               </Link>
             </div>
-            <Link to={"/auth/register/corporate"} className="button mt-2">
+            <Link to={"/auth/register/corporate"} className="button mt-6">
               기업 회원으로 가입하기
             </Link>
           </div>
@@ -50,12 +50,12 @@ const IndexPublicReferenceView = () => {
                 <p>
                   함께 일했던 동료에 대해 알려주세요. <br />
                   등록하신 경력을 기반으로 요청드리며 <br />
-                  완벽한 익명으로 전달됩니다.
+                  철저한 익명으로 전달됩니다.
                 </p>
               </div>
             </div>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <div className="flex justify-end">
               <Link
                 to={"/guide/referee"}
@@ -72,7 +72,7 @@ const IndexPublicReferenceView = () => {
                 지원자에 대해 자세히 알아보기
               </Link>
             </div>
-            <Link to={"/auth/register/personal"} className="button mt-2">
+            <Link to={"/auth/register/personal"} className="button mt-6">
               개인 회원으로 가입하기
             </Link>
           </div>

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
 import { IAuthRegisterOauthRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
@@ -8,6 +8,7 @@ import ErrorMessage from "@components/form/ErrorMessage";
 import CareerField from "@components/form/CareerField";
 import { IRegisterPersonalFormData } from "@pages/auth/register/personal/type";
 import PhoneField from "@components/form/PhoneField";
+import PolicyField from "@components/form/PolicyField";
 
 const AuthRegisterOauthPersonalPage = () => {
   const navigate = useNavigate();
@@ -103,9 +104,18 @@ const AuthRegisterOauthPersonalPage = () => {
                   해당 지원자와 함께 일했던 경력은 필수적으로 입력해주세요.
                 </label>
               </div>
-              <div className="mt-4">
+              <div className="my-4 sm:my-8">
                 <CareerField />
               </div>
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <div>
+              <h3 className="h3">정책 동의</h3>
+            </div>
+            <div className="mt-4">
+              <PolicyField />
             </div>
           </div>
 

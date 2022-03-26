@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
 import loginAtom from "@atoms/loginAtom";
@@ -13,6 +13,7 @@ import { IAuthTokenPayload } from "@atoms/loginAtom/type";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 import ErrorMessage from "@components/form/ErrorMessage";
 import PhoneField from "@components/form/PhoneField";
+import PolicyField from "@components/form/PolicyField";
 
 const AuthLoginCandidateView = () => {
   const navigate = useNavigate();
@@ -51,15 +52,13 @@ const AuthLoginCandidateView = () => {
   }, []);
 
   return (
-    <div className="sm:mx-auto sm:w-full sm:max-w-md bg-white">
-      <h2 className="text-xl sm:text-2xl leading-6 font-bold text-gray-900">
-        지원자 로그인
-      </h2>
+    <div className="mx-auto sm:w-full sm:max-w-xl bg-white">
+      <h2 className="h2">지원자 로그인</h2>
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(handleCandidateAuth)}
           noValidate={true}
-          className="mt-10 space-y-6 mx-auto"
+          className="mt-6 sm:mt-10 space-y-6 mx-auto"
         >
           <div className="sm:w-2/3">
             <label htmlFor="name" className="label">
@@ -81,7 +80,11 @@ const AuthLoginCandidateView = () => {
             <PhoneField />
           </div>
 
-          <button type="submit" className="button sm:w-2/3">
+          <div>
+            <PolicyField />
+          </div>
+
+          <button type="submit" className="button">
             로그인
           </button>
         </form>

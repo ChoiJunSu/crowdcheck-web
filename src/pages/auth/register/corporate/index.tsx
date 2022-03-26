@@ -5,11 +5,12 @@ import { IAuthRegisterCorporateRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/form/ErrorMessage";
 import { IRegisterCorporateFormData } from "@pages/auth/register/corporate/type";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PhoneField from "@components/form/PhoneField";
 import { Dialog, Transition } from "@headlessui/react";
 import { ICorporate } from "@api/CorporateApi/type";
 import CorporateApi from "@api/CorporateApi";
+import PolicyField from "@components/form/PolicyField";
 
 const AuthRegisterCorporatePage = () => {
   const navigate = useNavigate();
@@ -240,6 +241,15 @@ const AuthRegisterCorporatePage = () => {
                     <ErrorMessage message={errors?.passwordConfirm?.message} />
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="pt-8">
+              <div>
+                <h3 className="h3">정책 동의</h3>
+              </div>
+              <div className="mt-4">
+                <PolicyField />
               </div>
             </div>
 

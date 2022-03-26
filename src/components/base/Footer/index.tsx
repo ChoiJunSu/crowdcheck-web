@@ -1,9 +1,21 @@
 const navItems = [
-  { name: "이용약관" },
-  { name: "개인정보처리방침" },
+  {
+    name: "이용약관",
+    onClick: () => {
+      location.href = "/terms";
+    },
+  },
+  {
+    name: "개인정보처리방침",
+    onClick: () => {
+      location.href = "/privacy";
+    },
+  },
   {
     name: "문의하기",
-    onClick: () => (location.href = "mailto:dev.crowdcheck@gmail.com"),
+    onClick: () => {
+      location.href = "mailto:dev.crowdcheck@gmail.com";
+    },
   },
 ];
 
@@ -28,7 +40,7 @@ const Footer = () => {
             {navItems.map((item, index) => (
               <div key={index}>
                 <button
-                  className="text-sm text-gray-400"
+                  className="text-sm text-gray-400 hover:text-cc-green"
                   onClick={item.onClick}
                 >
                   {item.name}

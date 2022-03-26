@@ -58,7 +58,7 @@ const Header = () => {
           {isLoggedIn && type ? (
             <HeaderMenu type={type} />
           ) : (
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-4 sm:space-x-6">
               <Link
                 to="/guide"
                 className="text-sm sm:text-lg font-medium text-gray-500 hover:text-cc-green"
