@@ -9,18 +9,12 @@ import {
   IAuthTokenRenewResponse,
   IAuthRegisterPersonalRequest,
   IAuthRegisterPersonalResponse,
-  IAuthLoginCandidateRequest,
-  IAuthLoginCandidateResponse,
-  IAuthRegisterOauthRequest,
-  IAuthRegisterOauthResponse,
+  IAuthRegisterOauthPersonalRequest,
+  IAuthRegisterOauthPersonalResponse,
   IAuthPhoneSendRequest,
   IAuthPhoneSendResponse,
   IAuthPhoneVerifyRequest,
   IAuthPhoneVerifyResponse,
-  IAuthRegisterExpertRequest,
-  IAuthRegisterExpertResponse,
-  IAuthWithdrawRequest,
-  IAuthWithdrawResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
@@ -40,15 +34,6 @@ class AuthApi {
     })) as IAuthLoginOauthResponse;
   }
 
-  static async loginCandidate(
-    data: IAuthLoginCandidateRequest
-  ): Promise<IAuthLoginCandidateResponse> {
-    return (await ApiClient.post({
-      url: "/auth/login/candidate",
-      data,
-    })) as IAuthLoginCandidateResponse;
-  }
-
   static async tokenRenew(): Promise<IAuthTokenRenewResponse> {
     return (await ApiClient.get({
       url: "/auth/token/renew",
@@ -65,12 +50,12 @@ class AuthApi {
   }
 
   static async registerOauthPersonal(
-    data: IAuthRegisterOauthRequest
-  ): Promise<IAuthRegisterOauthResponse> {
+    data: IAuthRegisterOauthPersonalRequest
+  ): Promise<IAuthRegisterOauthPersonalResponse> {
     return (await ApiClient.post({
       url: "/auth/register/oauth/personal",
       data,
-    })) as IAuthRegisterOauthResponse;
+    })) as IAuthRegisterOauthPersonalResponse;
   }
 
   static async registerCorporate(
@@ -80,15 +65,6 @@ class AuthApi {
       url: "/auth/register/corporate",
       data: data.formData,
     })) as IAuthRegisterCorporateResponse;
-  }
-
-  static async registerExpert(
-    data: IAuthRegisterExpertRequest
-  ): Promise<IAuthRegisterExpertResponse> {
-    return (await ApiClient.post({
-      url: "/auth/register/expert",
-      data: data.formData,
-    })) as IAuthRegisterExpertResponse;
   }
 
   static async phoneSend(
@@ -107,15 +83,6 @@ class AuthApi {
       url: "/auth/phone/verify",
       data,
     })) as IAuthPhoneVerifyResponse;
-  }
-
-  static async withdraw(
-    params: IAuthWithdrawRequest
-  ): Promise<IAuthWithdrawResponse> {
-    return (await ApiClient.get({
-      url: "/auth/withdraw",
-      params,
-    })) as IAuthWithdrawResponse;
   }
 }
 

@@ -4,44 +4,24 @@ import {
   IUserCareerVerifyResponse,
   IUserEditCorporateRequest,
   IUserEditCorporateResponse,
-  IUserEditExpertRequest,
-  IUserEditExpertResponse,
   IUserEditPersonalRequest,
   IUserEditPersonalResponse,
-  IUserGetCorporateRequest,
-  IUserGetCorporateResponse,
-  IUserGetExpertRequest,
-  IUserGetExpertResponse,
-  IUserGetPersonalRequest,
-  IUserGetPersonalResponse,
+  IUserGetEditCorporateResponse,
+  IUserGetEditPersonalResponse,
+  IUserWithdrawResponse,
 } from "@api/UserApi/type";
 
 class UserApi {
-  static async getPersonal(
-    params: IUserGetPersonalRequest
-  ): Promise<IUserGetPersonalResponse> {
+  static async getEditPersonal(): Promise<IUserGetEditPersonalResponse> {
     return (await ApiClient.get({
-      url: "/user/get/personal",
-      params,
-    })) as IUserGetPersonalResponse;
+      url: "/user/edit/personal",
+    })) as IUserGetEditPersonalResponse;
   }
 
-  static async getCorporate(
-    params: IUserGetCorporateRequest
-  ): Promise<IUserGetCorporateResponse> {
+  static async getEditCorporate(): Promise<IUserGetEditCorporateResponse> {
     return (await ApiClient.get({
-      url: "/user/get/corporate",
-      params,
-    })) as IUserGetCorporateResponse;
-  }
-
-  static async getExpert(
-    params: IUserGetExpertRequest
-  ): Promise<IUserGetExpertResponse> {
-    return (await ApiClient.get({
-      url: "/user/get/expert",
-      params,
-    })) as IUserGetExpertResponse;
+      url: "/user/edit/corporate",
+    })) as IUserGetEditCorporateResponse;
   }
 
   static async editPersonal(
@@ -62,15 +42,6 @@ class UserApi {
     })) as IUserEditCorporateResponse;
   }
 
-  static async editExpert(
-    data: IUserEditExpertRequest
-  ): Promise<IUserEditExpertResponse> {
-    return (await ApiClient.post({
-      url: "/user/edit/expert",
-      data,
-    })) as IUserEditExpertResponse;
-  }
-
   static async careerVerify(
     data: IUserCareerVerifyRequest
   ): Promise<IUserCareerVerifyResponse> {
@@ -78,6 +49,12 @@ class UserApi {
       url: "/user/career/verify",
       data: data.formData,
     })) as IUserCareerVerifyResponse;
+  }
+
+  static async withdraw(): Promise<IUserWithdrawResponse> {
+    return (await ApiClient.get({
+      url: "/user/withdraw",
+    })) as IUserWithdrawResponse;
   }
 }
 

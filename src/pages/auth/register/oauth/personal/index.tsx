@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import AuthApi from "@api/AuthApi";
-import { IAuthRegisterOauthRequest } from "@api/AuthApi/type";
+import { IAuthRegisterOauthPersonalRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/form/ErrorMessage";
 import CareerField from "@components/form/CareerField";
@@ -44,7 +44,7 @@ const AuthRegisterOauthPersonalPage = () => {
         {
           ...data,
           registerToken,
-        } as IAuthRegisterOauthRequest
+        } as IAuthRegisterOauthPersonalRequest
       );
       if (registerOauthPersonalResponse.ok) {
         alert("회원가입이 완료되었습니다. 로그인 해주세요.");

@@ -7,10 +7,9 @@ import { IUserEditPersonalFormData } from "@views/user/edit/UserEditPersonalView
 import UserApi from "@api/UserApi";
 import { IUserEditPersonalRequest } from "@api/UserApi/type";
 import CareerField from "@components/form/CareerField";
-import { ICareer } from "@api/AuthApi/type";
+import { ICareer } from "@api/UserApi/type";
 import { useSetRecoilState } from "recoil";
 import loginAtom from "@atoms/loginAtom";
-import AuthApi from "@api/AuthApi";
 import { LOCAL_AUTH_TOKEN } from "@constants/localStorage";
 
 const UserEditPersonalView = () => {
@@ -41,15 +40,15 @@ const UserEditPersonalView = () => {
 
   useEffect(() => {
     (async () => {
-      const getPersonalResponse = await UserApi.getPersonal({});
-      if (!getPersonalResponse.ok) {
-        alert(getPersonalResponse.error);
+      const getEditPersonalResponse = await UserApi.getEditPersonal();
+      if (!getEditPersonalResponse.ok) {
+        alert(getEditPersonalResponse.error);
         return;
       }
       const {
         user: { email, name, phone },
         careers,
-      } = getPersonalResponse;
+      } = getEditPersonalResponse;
       setValue("email", email);
       setValue("name", name);
       setValue("phone", phone);
@@ -82,7 +81,7 @@ const UserEditPersonalView = () => {
 
   const handleWithdraw = useCallback(async () => {
     if (!confirm("정말로 탈퇴하시겠습니까?")) return;
-    const authWithdrawResponse = await AuthApi.withdraw({});
+    const authWithdrawResponse = await UserApi.withdraw();
     if (!authWithdrawResponse.ok) {
       alert(authWithdrawResponse.error);
       return;

@@ -1,10 +1,7 @@
-import { TUserType } from "@api/UserApi/type";
+import { ICareer, TUserType } from "@api/UserApi/type";
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
-import { TExpertSpecialty } from "@api/RequestApi/type";
 
 export type TOauthProvider = "google" | "kakao";
-
-export type TCareerStatus = "registered" | "reviewed" | "verified";
 
 export interface IAuthLoginRequest extends IApiRequest {
   email: string;
@@ -28,30 +25,10 @@ export interface IAuthLoginOauthResponse extends IApiResponse {
   registerToken: string;
 }
 
-export interface IAuthLoginCandidateRequest extends IApiRequest {
-  name: string;
-  phone: string;
-  code: string;
-}
-
-export interface IAuthLoginCandidateResponse extends IApiResponse {
-  authToken: string;
-}
-
 export interface IAuthTokenRenewRequest extends IApiRequest {}
 
 export interface IAuthTokenRenewResponse extends IApiResponse {
   authToken: string;
-}
-
-export interface ICareer {
-  id: number;
-  corporateId: number;
-  corporateName: string;
-  department: string | null;
-  startAt: string;
-  endAt: string | null;
-  verifiedAt: Date | null;
 }
 
 export interface IAuthRegisterPersonalRequest extends IApiRequest {
@@ -64,26 +41,20 @@ export interface IAuthRegisterPersonalRequest extends IApiRequest {
 
 export interface IAuthRegisterPersonalResponse extends IApiResponse {}
 
-export interface IAuthRegisterOauthRequest extends IApiRequest {
+export interface IAuthRegisterOauthPersonalRequest extends IApiRequest {
   name: string;
   phone: string;
   careers: Array<ICareer>;
   registerToken: string;
 }
 
-export interface IAuthRegisterOauthResponse extends IApiResponse {}
+export interface IAuthRegisterOauthPersonalResponse extends IApiResponse {}
 
 export interface IAuthRegisterCorporateRequest extends IApiRequest {
   formData: FormData;
 }
 
 export interface IAuthRegisterCorporateResponse extends IApiResponse {}
-
-export interface IAuthRegisterExpertRequest extends IApiRequest {
-  formData: FormData;
-}
-
-export interface IAuthRegisterExpertResponse extends IApiResponse {}
 
 export interface IAuthPhoneSendRequest extends IApiRequest {
   phone: string;
@@ -97,7 +68,3 @@ export interface IAuthPhoneVerifyRequest extends IApiRequest {
 }
 
 export interface IAuthPhoneVerifyResponse extends IApiResponse {}
-
-export interface IAuthWithdrawRequest extends IApiRequest {}
-
-export interface IAuthWithdrawResponse extends IApiResponse {}

@@ -28,14 +28,14 @@ const UserEditCorporateView = () => {
 
   useEffect(() => {
     (async () => {
-      const userGetCorporate = await UserApi.getCorporate({});
-      if (!userGetCorporate.ok) {
-        alert(userGetCorporate.error);
+      const userGetEditCorporate = await UserApi.getEditCorporate();
+      if (!userGetEditCorporate.ok) {
+        alert(userGetEditCorporate.error);
         return;
       }
       const {
         user: { email, name, phone },
-      } = userGetCorporate;
+      } = userGetEditCorporate;
       setValue("email", email);
       setValue("name", name);
       setValue("phone", phone);
@@ -67,7 +67,7 @@ const UserEditCorporateView = () => {
 
   const handleWithdraw = useCallback(async () => {
     if (!confirm("정말로 탈퇴하시겠습니까?")) return;
-    const authWithdrawResponse = await AuthApi.withdraw({});
+    const authWithdrawResponse = await UserApi.withdraw();
     if (!authWithdrawResponse.ok) {
       alert(authWithdrawResponse.error);
       return;

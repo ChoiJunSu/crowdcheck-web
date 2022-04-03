@@ -12,15 +12,3 @@ export interface ICorporateSearchRequest extends IApiRequest {
 export interface ICorporateSearchResponse extends IApiResponse {
   corporates: Array<ICorporate>;
 }
-
-export interface ICorporateAddRequest extends IApiRequest {
-  name: string;
-}
-
-export interface ICorporateAddResponse extends IApiResponse {}
-
-export interface ICorporateVerifyRequest extends IApiRequest {
-  formData: FormData;
-}
-
-export interface ICorporateVerifyResponse extends IApiResponse {}

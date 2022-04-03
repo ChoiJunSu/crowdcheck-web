@@ -5,7 +5,7 @@ import { IAuthRegisterCorporateRequest } from "@api/AuthApi/type";
 import Loading from "@components/base/Loading";
 import ErrorMessage from "@components/form/ErrorMessage";
 import { IRegisterCorporateFormData } from "@pages/auth/register/corporate/type";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PhoneField from "@components/form/PhoneField";
 import { Dialog, Transition } from "@headlessui/react";
 import { ICorporate } from "@api/CorporateApi/type";

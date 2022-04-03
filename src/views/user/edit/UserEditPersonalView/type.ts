@@ -1,4 +1,4 @@
-import { ICareer } from "@api/AuthApi/type";
+import { ICareer } from "@api/UserApi/type";
 
 export interface IUserEditPersonalFormData {
   name: string;

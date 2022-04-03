@@ -1,8 +1,6 @@
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
-import { ICareer } from "@api/AuthApi/type";
-import { TExpertSpecialty } from "@api/RequestApi/type";
 
-export type TUserType = "personal" | "corporate" | "candidate" | "expert";
+export type TUserType = "personal" | "corporate";
 
 export interface IUser {
   email: string;
@@ -10,24 +8,27 @@ export interface IUser {
   phone: string;
 }
 
-export interface IUserGetPersonalRequest extends IApiRequest {}
+export interface ICareer {
+  id: number;
+  corporateId: number;
+  corporateName: string;
+  department: string | null;
+  startAt: string;
+  endAt: string | null;
+  verifiedAt: string | null;
+}
 
-export interface IUserGetPersonalResponse extends IApiResponse {
+export interface IUserGetEditPersonalRequest extends IApiRequest {}
+
+export interface IUserGetEditPersonalResponse extends IApiResponse {
   user: IUser;
   careers: Array<ICareer>;
 }
 
-export interface IUserGetCorporateRequest extends IApiRequest {}
+export interface IUserGetEditCorporateRequest extends IApiRequest {}
 
-export interface IUserGetCorporateResponse extends IApiResponse {
+export interface IUserGetEditCorporateResponse extends IApiResponse {
   user: IUser;
-}
-
-export interface IUserGetExpertRequest extends IApiRequest {}
-
-export interface IUserGetExpertResponse extends IApiResponse {
-  user: IUser;
-  specialty: TExpertSpecialty;
 }
 
 export interface IUserEditPersonalRequest extends IApiRequest {
@@ -43,14 +44,12 @@ export interface IUserEditCorporateRequest extends IApiRequest {
 
 export interface IUserEditCorporateResponse extends IApiResponse {}
 
-export interface IUserEditExpertRequest extends IApiRequest {
-  password: string | null;
-}
-
-export interface IUserEditExpertResponse extends IApiResponse {}
-
 export interface IUserCareerVerifyRequest extends IApiRequest {
   formData: FormData;
 }
 
 export interface IUserCareerVerifyResponse extends IApiResponse {}
+
+export interface IUserWithdrawRequest extends IApiRequest {}
+
+export interface IUserWithdrawResponse extends IApiResponse {}

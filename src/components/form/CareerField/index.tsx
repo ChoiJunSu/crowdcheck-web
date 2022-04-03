@@ -34,37 +34,28 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
   const [searchCorporateWord, setSearchCorporateWord] = useState<string>("");
   const addCorporateRef = useRef<HTMLInputElement>(null);
   const [careerStatusList, setCareerStatusList] = useState<
-    Array<{ verifiedAt: Date | null; careerId: number }>
+    Array<{ verifiedAt: string | null; careerId: number }>
   >([]);
 
   useEffect(() => {
     if (!mode || !careers || careers.length === 0) return;
     const newCareerStatusList: Array<{
-      verifiedAt: Date | null;
+      verifiedAt: string | null;
       careerId: number;
     }> = [];
-    careers.forEach(
-      (
-        {
-          id,
-          corporateId,
-          corporateName,
-          department,
-          startAt,
-          endAt,
-          verifiedAt,
-        },
-        index
-      ) => {
-        handleAppendCareer();
-        setValue(`agrees.${index}.corporateId`, corporateId);
-        setValue(`careers.${index}.corporateName`, corporateName);
-        setValue(`careers.${index}.department`, department);
-        setValue(`careers.${index}.startAt`, startAt.substring(0, 10));
-        if (endAt) setValue(`careers.${index}.endAt`, endAt.substring(0, 10));
-        newCareerStatusList.push({ verifiedAt, careerId: id });
-      }
-    );
+    careers.forEach((career, index) => {
+      handleAppendCareer();
+      setValue(`agrees.${index}.career`, career);
+      setValue(`careers.${index}.corporateName`, career.corporateName);
+      setValue(`careers.${index}.department`, career.department);
+      setValue(`careers.${index}.startAt`, career.startAt.substring(0, 10));
+      if (career.endAt)
+        setValue(`careers.${index}.endAt`, career.endAt.substring(0, 10));
+      newCareerStatusList.push({
+        verifiedAt: career.verifiedAt,
+        careerId: career.id,
+      });
+    });
     setCareerStatusList(newCareerStatusList);
     handleRemoveCareer(careers.length);
   }, [careers]);
@@ -168,7 +159,7 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
       return;
     }
     const newCareerStatusList = [...careerStatusList];
-    newCareerStatusList[careerFocusIndex].verifiedAt = new Date();
+    newCareerStatusList[careerFocusIndex].verifiedAt = new Date().toString();
     setCareerStatusList(newCareerStatusList);
     alert("저장되었습니다. 증빙자료 검토 후 인증이 완료됩니다.");
     setModalMode(null);
@@ -303,6 +294,19 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
               errors.careers?.[index]?.startAt?.message
             }
           />
+          {mode === "candidate" && (
+            <div>
+              <label htmlFor="name" className="label">
+                평판 조회에 동의하지 않는 경력이 있는 경우 사유를 입력해주세요.
+              </label>
+              <textarea
+                {...register(`agrees.${index}.disagreeReason`)}
+                rows={2}
+                placeholder="예시: 재직 중인 회사입니다."
+                className="input"
+              />
+            </div>
+          )}
         </div>
       ))}
 

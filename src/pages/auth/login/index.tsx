@@ -17,7 +17,6 @@ import { IAuthLoginFormData } from "@pages/auth/login/type";
 
 const tabs = [
   { name: "개인 회원", type: "personal" },
-  // { name: "전문가 회원", type: "expert" },
   { name: "기업 회원", type: "corporate" },
 ];
 
@@ -138,12 +137,6 @@ const AuthLoginPage = () => {
               >
                 이메일로 가입하기
               </Link>
-              <Link
-                to="/auth/login/candidate"
-                className="flex justify-end font-medium text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
-              >
-                지원자로 로그인하기
-              </Link>
             </div>
           )}
 
@@ -155,15 +148,6 @@ const AuthLoginPage = () => {
               기업 회원으로 가입하기
             </Link>
           )}
-
-          {type === "expert" && (
-            <Link
-              to="/auth/register/expert"
-              className="font-medium text-sm sm:text-lg text-gray-400 hover:text-gray-500 underline"
-            >
-              전문가 회원으로 가입하기
-            </Link>
-          )}
         </div>
 
         <button type="submit" className="button">
@@ -171,7 +155,7 @@ const AuthLoginPage = () => {
         </button>
       </form>
 
-      {(type === "personal" || type === "expert") && (
+      {type === "personal" && (
         <div>
           <div className="mt-6">
             <div className="relative">

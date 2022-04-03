@@ -1,9 +1,7 @@
 import { Popover, Transition } from "@headlessui/react";
 import {
   BookOpenIcon,
-  ChevronDownIcon,
   ClipboardIcon,
-  DocumentSearchIcon,
   MenuIcon,
   PencilAltIcon,
   UserIcon,
@@ -21,14 +19,14 @@ export const menuItems = {
   personal: [
     {
       icon: ClipboardIcon,
-      text: "내 의뢰",
-      to: "/request/reference/list",
+      text: "평판 조회 요청",
+      to: "/request/list?mode=candidate",
     },
-    // {
-    //   icon: ClipboardIcon,
-    //   text: "이력서 의뢰 목록",
-    //   to: "/request/resume/list",
-    // },
+    {
+      icon: ClipboardIcon,
+      text: "평판 작성 의뢰",
+      to: "/request/list?mode=receiver",
+    },
     {
       icon: UserIcon,
       text: "정보 수정",
@@ -44,51 +42,12 @@ export const menuItems = {
     {
       icon: ClipboardIcon,
       text: "내 의뢰",
-      to: "/request/reference/list",
+      to: "/request/list",
     },
     {
       icon: PencilAltIcon,
       text: "의뢰 등록",
-      to: "/request/reference/register",
-    },
-    // {
-    //   icon: ClipboardIcon,
-    //   text: "내 의뢰",
-    //   to: "/request/resume/list",
-    // },
-    // {
-    //   icon: PencilAltIcon,
-    //   text: "의뢰 등록",
-    //   to: "/request/resume/register",
-    // },
-    {
-      icon: UserIcon,
-      text: "정보 수정",
-      to: "/user/edit",
-    },
-    {
-      icon: BookOpenIcon,
-      text: "가이드",
-      to: "/guide",
-    },
-  ],
-  candidate: [
-    {
-      icon: ClipboardIcon,
-      text: "내 의뢰",
-      to: "/request/reference/list",
-    },
-  ],
-  expert: [
-    {
-      icon: ClipboardIcon,
-      text: "내 의뢰",
-      to: "/request/resume/list",
-    },
-    {
-      icon: DocumentSearchIcon,
-      text: "의뢰 탐색",
-      to: "/request/resume/explore",
+      to: "/request/register",
     },
     {
       icon: UserIcon,

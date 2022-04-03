@@ -1,7 +1,6 @@
 import { useRecoilValue } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import IndexPublicView from "@views/index/IndexPublicView";
-import IndexView from "@views/index/IndexView";
 import { useNavigate } from "react-router-dom";
 import { menuItems } from "@components/base/Header/menu";
 import { useEffect } from "react";

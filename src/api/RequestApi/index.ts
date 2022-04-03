@@ -1,259 +1,93 @@
 import ApiClient from "@api/ApiClient";
 import {
-  IRequestReferenceGetCandidateRequest,
-  IRequestReferenceGetCandidateResponse,
-  IRequestReferenceListCandidateRequest,
-  IRequestReferenceListCandidateResponse,
-  IRequestReferenceAgreeRequest,
-  IRequestReferenceAgreeResponse,
-  IRequestReferenceListReceiverRequest,
-  IRequestReferenceListReceiverResponse,
-  IRequestReferenceVerifyRequest,
-  IRequestReferenceVerifyResponse,
-  IRequestReferenceDetailReceiverRequest,
-  IRequestReferenceDetailReceiverResponse,
-  IRequestReferenceAnswerRequest,
-  IRequestReferenceAnswerResponse,
-  IRequestReferenceListCorporateRequest,
-  IRequestReferenceListCorporateResponse,
-  IRequestReferenceDetailCorporateRequest,
-  IRequestReferenceDetailCorporateResponse,
-  IRequestReferenceRejectRequest,
-  IRequestReferenceRejectResponse,
-  IRequestReferenceGetAgreeCorporateRequest,
-  IRequestReferenceGetAgreeCorporateResponse,
-  IRequestReferenceRegisterRequest,
-  IRequestReferenceRegisterResponse,
-  IRequestResumeRegisterRequest,
-  IRequestResumeRegisterResponse,
-  IRequestResumeListCorporateRequest,
-  IRequestResumeListCorporateResponse,
-  IRequestResumeListExpertRequest,
-  IRequestResumeListExpertResponse,
-  IRequestResumeExploreRequest,
-  IRequestResumeExploreResponse,
-  IRequestResumeDetailExpertRequest,
-  IRequestResumeDetailExpertResponse,
-  IRequestResumeGetAnswerExpertRequest,
-  IRequestResumeGetAnswerExpertResponse,
-  IRequestResumeAnswerRequest,
-  IRequestResumeAnswerResponse,
-  IRequestResumeDetailCorporateRequest,
-  IRequestResumeDetailCorporateResponse,
-  IRequestResumeCloseRequest,
-  IRequestResumeCloseResponse,
-  IRequestResumeRewardRequest,
-  IRequestResumeRewardResponse,
-  IRequestReferenceCloseRequest,
-  IRequestReferenceCloseResponse,
-  IRequestReferenceRewardRequest,
-  IRequestReferenceRewardResponse,
+  IRequestListCandidateResponse,
+  IRequestAgreeRequest,
+  IRequestAgreeResponse,
+  IRequestListReceiverResponse,
+  IRequestListCorporateResponse,
+  IRequestDetailCorporateRequest,
+  IRequestDetailCorporateResponse,
+  IRequestGetAgreeCorporateRequest,
+  IRequestGetAgreeCorporateResponse,
+  IRequestRegisterRequest,
+  IRequestRegisterResponse,
+  IRequestCloseRequest,
+  IRequestCloseResponse,
+  IRequestGetAgreeCandidateRequest,
+  IRequestGetAgreeCandidateResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
-  static async referenceRegister(
-    data: IRequestReferenceRegisterRequest
-  ): Promise<IRequestReferenceRegisterResponse> {
+  static async register(
+    data: IRequestRegisterRequest
+  ): Promise<IRequestRegisterResponse> {
     return (await ApiClient.post({
-      url: "/request/reference/register",
+      url: "/request/register",
       data,
-    })) as IRequestReferenceRegisterResponse;
+    })) as IRequestRegisterResponse;
   }
 
-  static async referenceDetailReceiver(
-    params: IRequestReferenceDetailReceiverRequest
-  ): Promise<IRequestReferenceDetailReceiverResponse> {
+  static async listCorporate(): Promise<IRequestListCorporateResponse> {
     return (await ApiClient.get({
-      url: "/request/reference/detail/receiver",
+      url: "/request/list/corporate",
+    })) as IRequestListCorporateResponse;
+  }
+
+  static async listReceiver(): Promise<IRequestListReceiverResponse> {
+    return (await ApiClient.get({
+      url: "/request/list/receiver",
+    })) as IRequestListReceiverResponse;
+  }
+
+  static async listCandidate(): Promise<IRequestListCandidateResponse> {
+    return (await ApiClient.get({
+      url: "/request/list/candidate",
+    })) as IRequestListCandidateResponse;
+  }
+
+  static async detailCorporate(
+    params: IRequestDetailCorporateRequest
+  ): Promise<IRequestDetailCorporateResponse> {
+    return (await ApiClient.get({
+      url: "/request/detail/corporate",
       params,
-    })) as IRequestReferenceDetailReceiverResponse;
+    })) as IRequestDetailCorporateResponse;
   }
 
-  static async referenceDetailCorporate(
-    params: IRequestReferenceDetailCorporateRequest
-  ): Promise<IRequestReferenceDetailCorporateResponse> {
+  static async getAgreeCorporate(
+    params: IRequestGetAgreeCorporateRequest
+  ): Promise<IRequestGetAgreeCorporateResponse> {
     return (await ApiClient.get({
-      url: "/request/reference/detail/corporate",
+      url: "/request/agree/corporate",
       params,
-    })) as IRequestReferenceDetailCorporateResponse;
+    })) as IRequestGetAgreeCorporateResponse;
   }
 
-  static async referenceGetAgreeCorporate(
-    params: IRequestReferenceGetAgreeCorporateRequest
-  ): Promise<IRequestReferenceGetAgreeCorporateResponse> {
+  static async getAgreeCandidate(
+    params: IRequestGetAgreeCandidateRequest
+  ): Promise<IRequestGetAgreeCandidateResponse> {
     return (await ApiClient.get({
-      url: "/request/reference/get/agree/corporate",
+      url: "/request/agree/candidate",
       params,
-    })) as IRequestReferenceGetAgreeCorporateResponse;
+    })) as IRequestGetAgreeCandidateResponse;
   }
 
-  static async referenceGetCandidate(
-    params: IRequestReferenceGetCandidateRequest
-  ): Promise<IRequestReferenceGetCandidateResponse> {
-    return (await ApiClient.get({
-      url: "/request/reference/get/candidate",
-      params,
-    })) as IRequestReferenceGetCandidateResponse;
-  }
-
-  static async referenceListReceiver({}: IRequestReferenceListReceiverRequest): Promise<IRequestReferenceListReceiverResponse> {
-    return (await ApiClient.get({
-      url: "/request/reference/list/receiver",
-    })) as IRequestReferenceListReceiverResponse;
-  }
-
-  static async referenceListCorporate({}: IRequestReferenceListCorporateRequest): Promise<IRequestReferenceListCorporateResponse> {
-    return (await ApiClient.get({
-      url: "/request/reference/list/corporate",
-    })) as IRequestReferenceListCorporateResponse;
-  }
-
-  static async referenceListCandidate({}: IRequestReferenceListCandidateRequest): Promise<IRequestReferenceListCandidateResponse> {
-    return (await ApiClient.get({
-      url: "/request/reference/list/candidate",
-    })) as IRequestReferenceListCandidateResponse;
-  }
-
-  static async referenceAgree(
-    data: IRequestReferenceAgreeRequest
-  ): Promise<IRequestReferenceAgreeResponse> {
+  static async agree(
+    data: IRequestAgreeRequest
+  ): Promise<IRequestAgreeResponse> {
     return (await ApiClient.post({
-      url: "/request/reference/agree",
+      url: "/request/agree",
       data,
-    })) as IRequestReferenceAgreeResponse;
+    })) as IRequestAgreeResponse;
   }
 
-  static async referenceVerify(
-    data: IRequestReferenceVerifyRequest
-  ): Promise<IRequestReferenceVerifyResponse> {
-    return (await ApiClient.post({
-      url: "/request/reference/verify",
-      data,
-    })) as IRequestReferenceVerifyResponse;
-  }
-
-  static async referenceAnswer(
-    data: IRequestReferenceAnswerRequest
-  ): Promise<IRequestReferenceAnswerResponse> {
-    return (await ApiClient.post({
-      url: "/request/reference/answer",
-      data,
-    })) as IRequestReferenceAnswerResponse;
-  }
-
-  static async referenceReject(
-    params: IRequestReferenceRejectRequest
-  ): Promise<IRequestReferenceRejectResponse> {
+  static async close(
+    params: IRequestCloseRequest
+  ): Promise<IRequestCloseResponse> {
     return (await ApiClient.get({
-      url: "/request/reference/reject",
+      url: "/request/close",
       params,
-    })) as IRequestReferenceRejectResponse;
-  }
-
-  static async referenceClose(
-    params: IRequestReferenceCloseRequest
-  ): Promise<IRequestReferenceCloseResponse> {
-    return (await ApiClient.get({
-      url: "/request/reference/close",
-      params,
-    })) as IRequestReferenceCloseResponse;
-  }
-
-  static async referenceReward(
-    data: IRequestReferenceRewardRequest
-  ): Promise<IRequestReferenceRewardResponse> {
-    return (await ApiClient.post({
-      url: "/request/reference/reward",
-      data,
-    })) as IRequestReferenceRewardResponse;
-  }
-
-  /*
-    resume
-   */
-
-  static async resumeRegister(
-    data: IRequestResumeRegisterRequest
-  ): Promise<IRequestResumeRegisterResponse> {
-    return (await ApiClient.post({
-      url: "/request/resume/register",
-      data: data.formData,
-    })) as IRequestResumeRegisterResponse;
-  }
-
-  static async resumeListCorporate({}: IRequestResumeListCorporateRequest): Promise<IRequestResumeListCorporateResponse> {
-    return (await ApiClient.get({
-      url: "/request/resume/list/corporate",
-    })) as IRequestResumeListCorporateResponse;
-  }
-
-  static async resumeListExpert({}: IRequestResumeListExpertRequest): Promise<IRequestResumeListExpertResponse> {
-    return (await ApiClient.get({
-      url: "/request/resume/list/expert",
-    })) as IRequestResumeListExpertResponse;
-  }
-
-  static async resumeExplore(
-    params: IRequestResumeExploreRequest
-  ): Promise<IRequestResumeExploreResponse> {
-    return (await ApiClient.get({
-      url: "/request/resume/explore",
-      params,
-    })) as IRequestResumeExploreResponse;
-  }
-
-  static async resumeDetailCorporate(
-    params: IRequestResumeDetailCorporateRequest
-  ): Promise<IRequestResumeDetailCorporateResponse> {
-    return (await ApiClient.get({
-      url: "/request/resume/detail/corporate",
-      params,
-    })) as IRequestResumeDetailCorporateResponse;
-  }
-
-  static async resumeDetailExpert(
-    params: IRequestResumeDetailExpertRequest
-  ): Promise<IRequestResumeDetailExpertResponse> {
-    return (await ApiClient.get({
-      url: "/request/resume/detail/expert",
-      params,
-    })) as IRequestResumeDetailExpertResponse;
-  }
-
-  static async resumeGetAnswerExpert(
-    params: IRequestResumeGetAnswerExpertRequest
-  ): Promise<IRequestResumeGetAnswerExpertResponse> {
-    return (await ApiClient.get({
-      url: "/request/resume/get/answer/expert",
-      params,
-    })) as IRequestResumeGetAnswerExpertResponse;
-  }
-
-  static async resumeAnswer(
-    data: IRequestResumeAnswerRequest
-  ): Promise<IRequestResumeAnswerResponse> {
-    return (await ApiClient.post({
-      url: "/request/resume/answer",
-      data,
-    })) as IRequestResumeAnswerResponse;
-  }
-
-  static async resumeClose(
-    params: IRequestResumeCloseRequest
-  ): Promise<IRequestResumeCloseResponse> {
-    return (await ApiClient.get({
-      url: "/request/resume/close",
-      params,
-    })) as IRequestResumeCloseResponse;
-  }
-
-  static async resumeReward(
-    data: IRequestResumeRewardRequest
-  ): Promise<IRequestResumeRewardResponse> {
-    return (await ApiClient.post({
-      url: "/request/resume/reward",
-      data,
-    })) as IRequestResumeRewardResponse;
+    })) as IRequestCloseResponse;
   }
 }
 
