@@ -1,19 +1,16 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   IRequestAgree,
   IRequestGetAgreeCorporateRequest,
-  requestStatusMapper,
 } from "@api/RequestApi/type";
 import RequestApi from "@api/RequestApi";
 import { Disclosure } from "@headlessui/react";
 import {
+  CalendarIcon,
   CheckCircleIcon,
   ChevronDownIcon,
-  OfficeBuildingIcon,
-  UsersIcon,
 } from "@heroicons/react/outline";
-import RangeSlider from "@components/form/RangeSlider";
 import PageHeader from "@components/base/PageHeader";
 
 const RequestAgreeCorporateView = () => {
@@ -44,7 +41,7 @@ const RequestAgreeCorporateView = () => {
   }, []);
 
   return (
-    <div className="sm:max-w-2xl mx-auto">
+    <div className="sm:max-w-4xl mx-auto">
       {candidateName && (
         <PageHeader title={`${candidateName}님의 평판 조회 동의 현황`} />
       )}
@@ -55,48 +52,68 @@ const RequestAgreeCorporateView = () => {
               {({ open }) => (
                 <>
                   <dt className="text-lg sm:text-xl font-medium group">
-                    <Disclosure.Button className="text-left w-full flex justify-between items-start">
-                      <div
-                        className={`${
-                          open ? "text-cc-green" : "text-gray-900"
-                        }`}
-                      >
-                        <p className="sm:col-span-1 flex sm:inline-flex items-center">
-                          <OfficeBuildingIcon
-                            className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
-                            aria-hidden="true"
-                          />
-                          <span>기업 이름</span>
-                          <span className="mx-2 text-cc-green">
-                            {career.corporateName}
-                          </span>
-                        </p>
-                        <p className="sm:col-span-1 flex sm:inline-flex items-center">
-                          <CheckCircleIcon
-                            className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
-                            aria-hidden="true"
-                          />
-                          <span>동의 여부</span>
-                          <span className="mx-2 text-cc-green">
-                            {agreed ? "동의" : "비동의"}
-                          </span>
-                        </p>
-                      </div>
-                      {disagreeReason && (
-                        <div className="ml-6 h-7 flex flex-row gap-4 items-center group-hover:text-cc-green">
-                          <span>비동의 사유</span>
-                          <ChevronDownIcon
-                            className={`${
-                              open
-                                ? "-rotate-180 text-cc-green"
-                                : "rotate-0 text-gray-500"
-                            } h-6 w-6 transform group-hover:text-cc-green`}
-                            aria-hidden="true"
-                          />
+                    <Disclosure.Button className="text-left w-full">
+                      <div className="block">
+                        <div className="px-4 sm:px-6">
+                          <div className="flex items-center justify-between">
+                            <p className="text-xl sm:text-2xl font-medium text-gray-900 truncate">
+                              {career.corporateName}
+                            </p>
+
+                            {!agreed && disagreeReason && (
+                              <div className="ml-6 h-7 flex flex-row gap-4 items-center group-hover:text-cc-green">
+                                <span>비동의 사유</span>
+                                <ChevronDownIcon
+                                  className={`${
+                                    open
+                                      ? "-rotate-180 text-cc-green"
+                                      : "rotate-0 text-gray-500"
+                                  } h-6 w-6 transform group-hover:text-cc-green`}
+                                  aria-hidden="true"
+                                />
+                              </div>
+                            )}
+                          </div>
+
+                          <div className="mt-2 sm:grid-cols-6 text-md sm:text-lg text-gray-500">
+                            <p className="mt-2 sm:col-span-2 flex sm:inline-flex items-center sm:mt-0">
+                              <CheckCircleIcon
+                                className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
+                                aria-hidden="true"
+                              />
+                              <span>동의 여부</span>
+                              <span className="mx-2 text-cc-green">
+                                {agreed ? "동의" : "비동의"}
+                              </span>
+                            </p>
+                            <p className="mt-2 sm:col-span-3 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">
+                              <CalendarIcon
+                                className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
+                                aria-hidden="true"
+                              />
+                              <span>입사일</span>
+                              <span className="mx-2 text-cc-green">
+                                {new Date(career.startAt).toLocaleDateString()}
+                              </span>
+                            </p>
+                            <p className="mt-2 sm:col-span-3 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">
+                              <CalendarIcon
+                                className="flex-shrink-0 mr-1 h-5 w-5 text-gray-400"
+                                aria-hidden="true"
+                              />
+                              <span>퇴사일</span>
+                              <span className="mx-2 text-cc-green">
+                                {career.endAt
+                                  ? new Date(career.endAt).toLocaleDateString()
+                                  : "재직 중"}
+                              </span>
+                            </p>
+                          </div>
                         </div>
-                      )}
+                      </div>
                     </Disclosure.Button>
                   </dt>
+
                   {disagreeReason && (
                     <Disclosure.Panel
                       as="dd"

@@ -28,9 +28,11 @@ const Footer = () => {
             <p className="text-sm text-gray-400">
               (주)크라우드체크 | 대표 최준수
               <br />
+              서울시 구로구 디지털로 273 309호
+              <br />
               사업자등록번호: 597-86-02466
               <br />
-              서울시 서대문구 연세로 50 공학원 212B호
+              문의: 070-4283-0275
               <br />
               <br />
               &copy; 2022 CrowdCheck Inc. All rights reserved.

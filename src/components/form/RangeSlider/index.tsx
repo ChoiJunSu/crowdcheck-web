@@ -35,7 +35,7 @@ const RangeSlider = ({ name, min, max, step, value }: IRangeSliderProps) => {
           step={step}
           className="appearance-none w-full h-2 bg-gray-300 rounded outline-none slider-thumb"
         />
-        <ul className="flex justify-between w-full px-[10px]">
+        <ul className="flex justify-between w-full">
           {[...Array(max - min + 1).keys()].map((index) => (
             <li key={index} className="flex justify-center relative">
               <span>{min + index * step}</span>

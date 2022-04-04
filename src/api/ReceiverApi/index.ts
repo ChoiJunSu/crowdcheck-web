@@ -4,6 +4,8 @@ import {
   IReceiverAnswerResponse,
   IReceiverGetAnswerRequest,
   IReceiverGetAnswerResponse,
+  IReceiverGetVerifyRequest,
+  IReceiverGetVerifyResponse,
   IReceiverRejectRequest,
   IReceiverRejectResponse,
   IReceiverVerifyRequest,
@@ -11,6 +13,15 @@ import {
 } from "@api/ReceiverApi/type";
 
 class ReceiverApi {
+  static async getVerify(
+    params: IReceiverGetVerifyRequest
+  ): Promise<IReceiverGetVerifyResponse> {
+    return (await ApiClient.get({
+      url: "/receiver/verify",
+      params,
+    })) as IReceiverGetVerifyResponse;
+  }
+
   static async verify(
     data: IReceiverVerifyRequest
   ): Promise<IReceiverVerifyResponse> {

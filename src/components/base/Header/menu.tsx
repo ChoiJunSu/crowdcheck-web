@@ -19,6 +19,11 @@ export const menuItems = {
   personal: [
     {
       icon: ClipboardIcon,
+      text: "내가 받은 평판",
+      to: "/reference/list",
+    },
+    {
+      icon: ClipboardIcon,
       text: "평판 조회 요청",
       to: "/request/list?mode=candidate",
     },

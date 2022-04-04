@@ -1,6 +1,16 @@
 import { IApiRequest, IApiResponse } from "@api/BaseApi/type";
 import { IReferenceDetail, TReferenceType } from "@api/ReferenceApi/type";
 import { IRequestReceiver } from "@api/RequestApi/type";
+import { ICareer } from "@api/UserApi/type";
+
+export interface IReceiverGetVerifyRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IReceiverGetVerifyResponse extends IApiResponse {
+  candidateName: string;
+  career: ICareer;
+}
 
 export interface IReceiverVerifyRequest extends IApiRequest {
   requestId: number;

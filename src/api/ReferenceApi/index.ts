@@ -1,17 +1,24 @@
 import ApiClient from "@api/ApiClient";
 import {
-  IReferenceListCandidateRequest,
   IReferenceListCandidateResponse,
+  IReferenceRemoveRequest,
+  IReferenceRemoveResponse,
 } from "@api/ReferenceApi/type";
 
 class ReferenceApi {
-  static async listCandidate(
-    params: IReferenceListCandidateRequest
-  ): Promise<IReferenceListCandidateResponse> {
+  static async listCandidate(): Promise<IReferenceListCandidateResponse> {
     return (await ApiClient.get({
       url: "/reference/list/candidate",
-      params,
     })) as IReferenceListCandidateResponse;
+  }
+
+  static async remove(
+    params: IReferenceRemoveRequest
+  ): Promise<IReferenceRemoveResponse> {
+    return (await ApiClient.get({
+      url: "/reference/remove",
+      params,
+    })) as IReferenceRemoveResponse;
   }
 }
 

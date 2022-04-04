@@ -17,21 +17,19 @@ const questions: Array<{ question: string; isNumeric: boolean }> = [
     isNumeric: false,
   },
   {
-    question: "업무 관련 능력은 어떤가요?",
+    question: "업무 능력은 어떤가요?",
     isNumeric: true,
   },
   {
     question: "구성원들과의 대인관계는 어땠나요?",
     isNumeric: true,
   },
-  { question: "어떤 성격을 가졌나요?", isNumeric: true },
-  { question: "얼마나 성실한가요?", isNumeric: true },
   {
-    question: "업무 능력 또는 인성에 있어서 어떤 부분이 강점인가요?",
+    question: "성격 또는 인성에 있어서 어떤 부분이 강점인가요?",
     isNumeric: false,
   },
   {
-    question: "업무 능력 또는 인성에 있어서 어떤 부분이 약점인가요?",
+    question: "성격 또는 인성에 있어서 어떤 부분이 약점인가요?",
     isNumeric: false,
   },
   { question: "이직 사유를 아시나요?", isNumeric: false },
@@ -100,9 +98,9 @@ const RequestAnswerPage = () => {
         )}
 
         <div className="mt-4">
-          <label className="label my-4">
-            지원자에게 직접 평판 작성 요청을 받으셨나요?
-          </label>
+          <h3 className="h3 my-4">
+            {request?.candidateName}님께 직접 평판 작성 요청을 받으셨나요?
+          </h3>
           <input {...register("type")} hidden />
           <div className="mt-1">
             <span className="relative z-0 inline-flex shadow-sm rounded-md">
@@ -115,7 +113,7 @@ const RequestAnswerPage = () => {
                     : "bg-white text-gray-900 hover:bg-gray-50"
                 }`}
               >
-                지원자의 요청을 받아 작성합니다
+                직접 요청을 받아 작성합니다
               </button>
               <button
                 type="button"
@@ -126,7 +124,7 @@ const RequestAnswerPage = () => {
                     : "bg-white text-gray-900 hover:bg-gray-50"
                 }`}
               >
-                지원자의 요청을 받지 않고 작성합니다
+                요청을 받지 않고 작성합니다
               </button>
             </span>
             <ErrorMessage message={errors?.type?.message} />
@@ -134,13 +132,16 @@ const RequestAnswerPage = () => {
         </div>
 
         <div className="mt-4">
-          <label className="label my-4">함께 일했을 때 지원자와의 관계</label>
+          <h3 className="h3 my-4">
+            {request?.candidateName}님과 어떤 관계로 일하셨나요?
+          </h3>
           <div className="mt-1">
             <input
               type="text"
               {...register("relationship", {
                 required: "지원자와의 관계를 입력해주세요.",
               })}
+              placeholder="예시: 사수, 동료"
               className="input"
             />
             <ErrorMessage message={errors?.relationship?.message} />
@@ -149,13 +150,14 @@ const RequestAnswerPage = () => {
 
         {questions.map(({ question, isNumeric }, index) => (
           <div key={index} className="mt-4">
-            <label className="label my-4">{question}</label>
+            <h3 className="h3 my-4">{question}</h3>
             <input
               {...register(`details.${index}.question`, { value: question })}
               hidden
             />
             {isNumeric && (
               <div className="mt-2">
+                <label className="label">점수로 표현해주세요.</label>
                 <RangeSlider
                   name={`details.${index}.score`}
                   min={1}
@@ -168,6 +170,7 @@ const RequestAnswerPage = () => {
               </div>
             )}
             <div>
+              <label className="label">답변을 입력해주세요.</label>
               <textarea
                 {...register(`details.${index}.answer`, {
                   required: "답변을 입력해주세요.",
