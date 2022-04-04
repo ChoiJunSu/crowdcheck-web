@@ -50,7 +50,7 @@ const RequestListCandidateView = () => {
                             `평판 작성을 부탁드립니다.\n다음 주소로 방문하여 가이드를 확인해주세요.\nhttps://crowdcheck.io/guide/referee`
                           );
                           alert(
-                            "클립보드에 복사되었습니다. 평판 제공자에게 전달해주세요."
+                            "클립보드에 복사되었습니다. 평판 작성자에게 전달해주세요."
                           );
                         }}
                         className="sm:px-2 inline-flex text-md sm:text-lg leading-5 rounded-full font-medium text-gray-600 hover:text-cc-green"

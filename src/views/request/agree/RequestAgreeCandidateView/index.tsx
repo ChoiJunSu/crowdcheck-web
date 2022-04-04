@@ -51,7 +51,7 @@ const RequestAgreeCandidateView = () => {
       return;
     }
     alert(
-      "평판 조회 동의가 완료되었습니다. 평판 제공자에게 평판 요청 링크를 전달해주세요."
+      "평판 조회 동의가 완료되었습니다. 평판 작성자에게 평판 요청 링크를 전달해주세요."
     );
     navigate("/request/list?mode=candidate");
   }, []);
