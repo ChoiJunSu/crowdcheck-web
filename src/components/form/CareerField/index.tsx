@@ -13,6 +13,7 @@ import { ICareerFieldProps } from "@components/form/CareerField/type";
 import ErrorMessage from "@components/form/ErrorMessage";
 import UserApi from "@api/UserApi";
 import { Transition, Dialog } from "@headlessui/react";
+import PolicyField from "@components/form/PolicyField";
 
 const CareerField = ({ mode, careers }: ICareerFieldProps) => {
   const {
@@ -297,7 +298,8 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
           {mode === "candidate" && (
             <div>
               <label htmlFor="name" className="label">
-                평판 조회에 동의하지 않는 경력이 있는 경우 사유를 입력해주세요.
+                위 경력에 대한 평판 조회에 동의하지 않는 경우 사유를
+                입력해주세요.
               </label>
               <textarea
                 {...register(`agrees.${index}.disagreeReason`)}
@@ -484,6 +486,15 @@ const CareerField = ({ mode, careers }: ICareerFieldProps) => {
                             onChange={handleUploadCertificate}
                             className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cc-green focus:border-cc-green sm:text-sm"
                           />
+                        </div>
+
+                        <div className="pt-8">
+                          <div>
+                            <h3 className="h3">정책 동의</h3>
+                          </div>
+                          <div className="mt-4">
+                            <PolicyField mode="careerVerify" />
+                          </div>
                         </div>
                       </div>
                     </div>

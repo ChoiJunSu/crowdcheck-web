@@ -61,7 +61,7 @@ const IndexPublicView = () => {
                 to={"/guide/referee"}
                 className="font-medium text-md sm:text-lg text-gray-500 hover:text-cc-green underline"
               >
-                평판 작성자에 대해 자세히 알아보기
+                평판 제공자에 대해 자세히 알아보기
               </Link>
             </div>
             <div className="flex justify-end">

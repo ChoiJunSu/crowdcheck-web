@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ErrorMessage from "@components/form/ErrorMessage";
@@ -6,6 +6,7 @@ import ReceiverApi from "@api/ReceiverApi";
 import PageHeader from "@components/base/PageHeader";
 import { ICareer } from "@api/UserApi/type";
 import UserApi from "@api/UserApi";
+import PolicyField from "@components/form/PolicyField";
 
 const RequestVerifyPage = () => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const RequestVerifyPage = () => {
     navigate(-1);
   }
 
+  const methods = useForm();
   const {
     register,
     getValues,
@@ -25,7 +27,7 @@ const RequestVerifyPage = () => {
     clearErrors,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = methods;
   const [candidateName, setCandidateName] = useState<string>("");
   const [career, setCareer] = useState<ICareer | null>(null);
 
@@ -98,49 +100,60 @@ const RequestVerifyPage = () => {
         <PageHeader title="지원자 정보 검증" />
         <h3 className="h3">답변 전 검증이 필요합니다.</h3>
 
-        <form
-          onSubmit={handleSubmit(handleVerify)}
-          noValidate={true}
-          className="mt-10 space-y-6"
-        >
-          <div>
-            <label htmlFor="name" className="label">
-              {candidateName}님의 전화번호를 입력해주세요.
-            </label>
-            <div className="mt-1">
-              <input
-                type="text"
-                {...register("candidatePhone", {
-                  required: "전화번호를 입력하세요.",
-                })}
-                className="input"
-              />
-              <ErrorMessage message={errors.candidatePhone?.message} />
-            </div>
-          </div>
-
-          {!career?.verifiedAt && (
+        <FormProvider {...methods}>
+          <form
+            onSubmit={handleSubmit(handleVerify)}
+            noValidate={true}
+            className="mt-10 space-y-6"
+          >
             <div>
-              <label htmlFor="certificate" className="label">
-                {career?.corporateName} 재직을 증빙할 수 있는 자료를 업로드
-                해주세요. <br />
-                (명함, 경력증명서 등)
+              <label htmlFor="name" className="label">
+                {candidateName}님의 전화번호를 입력해주세요.
               </label>
               <div className="mt-1">
                 <input
-                  type="file"
-                  onChange={handleUploadCertificate}
-                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cc-green focus:border-cc-green sm:text-sm"
+                  type="text"
+                  {...register("candidatePhone", {
+                    required: "전화번호를 입력하세요.",
+                  })}
+                  className="input"
                 />
-                <ErrorMessage message={errors?.certificate?.message} />
+                <ErrorMessage message={errors.candidatePhone?.message} />
               </div>
             </div>
-          )}
 
-          <button type="submit" className="button">
-            검증하기
-          </button>
-        </form>
+            {!career?.verifiedAt && (
+              <div>
+                <label htmlFor="certificate" className="label">
+                  {career?.corporateName} 재직을 증빙할 수 있는 자료를 업로드
+                  해주세요. <br />
+                  (명함, 경력증명서 등)
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="file"
+                    onChange={handleUploadCertificate}
+                    className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-cc-green focus:border-cc-green sm:text-sm"
+                  />
+                  <ErrorMessage message={errors?.certificate?.message} />
+                </div>
+
+                <div className="pt-8">
+                  <div>
+                    <h3 className="h3">정책 동의</h3>
+                  </div>
+                  <div className="mt-4">
+                    <PolicyField mode="careerVerify" />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <button type="submit" className="button">
+              검증하기
+            </button>
+          </form>
+        </FormProvider>
       </div>
     </div>
   );

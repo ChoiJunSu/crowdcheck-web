@@ -10,6 +10,7 @@ import PageHeader from "@components/base/PageHeader";
 import RangeSlider from "@components/form/RangeSlider";
 import ErrorMessage from "@components/form/ErrorMessage";
 import { TReferenceType } from "@api/ReferenceApi/type";
+import PolicyField from "@components/form/PolicyField";
 
 const questions: Array<{ question: string; isNumeric: boolean }> = [
   {
@@ -184,6 +185,15 @@ const RequestAnswerPage = () => {
             </div>
           </div>
         ))}
+
+        <div className="pt-8">
+          <div>
+            <h3 className="h3">정책 동의</h3>
+          </div>
+          <div className="mt-4">
+            <PolicyField mode="answer" />
+          </div>
+        </div>
 
         <div className="mt-8 pt-8 border-t border-gray-300">
           <button type="submit" className="button">

@@ -9,6 +9,7 @@ import {
   IRequestGetAgreeCandidateResponse,
 } from "@api/RequestApi/type";
 import { ICareer } from "@api/UserApi/type";
+import PolicyField from "@components/form/PolicyField";
 
 const RequestAgreeCandidateView = () => {
   const navigate = useNavigate();
@@ -77,6 +78,15 @@ const RequestAgreeCandidateView = () => {
             </div>
             <div className="mt-4">
               <CareerField mode="candidate" careers={careers} />
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <div>
+              <h3 className="h3">정책 동의</h3>
+            </div>
+            <div className="mt-4">
+              <PolicyField mode="agree" />
             </div>
           </div>
 

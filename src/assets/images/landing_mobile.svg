@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="435" height="1098" viewBox="0 0 435 1098">
+<svg xmlns="http://www.w3.org/2000/svg" width="419" height="1098" viewBox="0 0 419 1098">
   <g id="그룹_18566" data-name="그룹 18566" transform="translate(-1304 -1122)">
     <text id="간편하고_정확한_온라인_평판_조회" data-name="간편하고 정확한
 온라인 평판 조회" transform="translate(1510 1150)" fill="#191919" font-size="30" font-family="Pretendard Variable" font-weight="700" letter-spacing="-0.025em"><tspan x="-91.622" y="0">간편하고 정확한</tspan><tspan x="-94.707" y="50">온라인 평판 조회</tspan></text>
     <text id="기업_회원" data-name="기업 회원" transform="translate(1333 1301)" fill="#0f172a" font-size="30" font-family="Pretendard Variable" font-weight="600"><tspan x="0" y="0">기업 회원</tspan></text>
     <text id="지원자" transform="translate(1645 1301)" fill="#0f172a" font-size="30" font-family="Pretendard Variable" font-weight="600"><tspan x="0" y="0">지원자</tspan></text>
-    <text id="개인_회원" data-name="개인 회원" transform="translate(1628 1876)" fill="#0f172a" font-size="30" font-family="Pretendard Variable" font-weight="600"><tspan x="0" y="0">개인 회원</tspan></text>
+    <text id="평판_제공자" data-name="평판 제공자" transform="translate(1586 1883)" fill="#0f172a" font-size="30" font-family="Pretendard Variable" font-weight="600"><tspan x="0" y="0">평판 제공자</tspan></text>
     <rect id="사각형_23896" data-name="사각형 23896" width="2" height="902" transform="translate(1314 1318)" fill="#999"/>
     <rect id="사각형_23897" data-name="사각형 23897" width="2" height="477" transform="translate(1709 1318)" fill="#999"/>
     <rect id="사각형_23898" data-name="사각형 23898" width="2" height="325" transform="translate(1710 1895)" fill="#999"/>
@@ -28,7 +28,7 @@
     <circle id="타원_74" data-name="타원 74" cx="10" cy="10" r="10" transform="translate(1700 1674)" fill="#2aa090"/>
     <circle id="타원_65" data-name="타원 65" cx="10" cy="10" r="10" transform="translate(1700 1953)" fill="#2aa090"/>
     <path id="패스_7702" data-name="패스 7702" d="M19,21V5a2,2,0,0,0-2-2H7A2,2,0,0,0,5,5V21m14,0h2m-2,0H14M5,21H3m2,0h5M9,7h1M9,11h1m4-4h1m-1,4h1M10,21V16a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1v5m-4,0h4" transform="translate(1302 1279)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="패스_7705" data-name="패스 7705" d="M12,4.354a4,4,0,1,1,0,5.292M15,21H3V20a6,6,0,0,1,12,0Zm0,0h6V20a6,6,0,0,0-9-5.2M13,7A4,4,0,1,1,9,3,4,4,0,0,1,13,7Z" transform="translate(1597 1854)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="패스_7705" data-name="패스 7705" d="M12,4.354a4,4,0,1,1,0,5.292M15,21H3V20a6,6,0,0,1,12,0Zm0,0h6V20a6,6,0,0,0-9-5.2M13,7A4,4,0,1,1,9,3,4,4,0,0,1,13,7Z" transform="translate(1555 1861)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
     <path id="패스_7704" data-name="패스 7704" d="M19.143,8.143A5.143,5.143,0,1,1,14,3,5.143,5.143,0,0,1,19.143,8.143Zm-5.143,9a9,9,0,0,0-9,9H23a9,9,0,0,0-9-9Z" transform="translate(1612 1275.929)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
   </g>
 </svg>

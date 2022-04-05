@@ -115,7 +115,7 @@ const AuthRegisterOauthPersonalPage = () => {
               <h3 className="h3">정책 동의</h3>
             </div>
             <div className="mt-4">
-              <PolicyField />
+              <PolicyField mode="authRegister" />
             </div>
           </div>
 

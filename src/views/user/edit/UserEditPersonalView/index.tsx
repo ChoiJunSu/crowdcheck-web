@@ -185,7 +185,6 @@ const UserEditPersonalView = () => {
                     <input
                       type="password"
                       {...register("password", {
-                        required: "비밀번호를 입력해주세요.",
                         minLength: {
                           value: 8,
                           message: "8자 이상 입력해주세요.",
@@ -206,7 +205,6 @@ const UserEditPersonalView = () => {
                     <input
                       type="password"
                       {...register("passwordConfirm", {
-                        required: "비밀번호 확인을 입력해주세요.",
                         minLength: {
                           value: 8,
                           message: "8자 이상 입력해주세요.",

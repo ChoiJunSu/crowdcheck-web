@@ -8,6 +8,7 @@ import ErrorMessage from "@components/form/ErrorMessage";
 import { useRecoilValue } from "recoil";
 import loginAtom from "@atoms/loginAtom";
 import { IRequestRegisterFormData } from "@pages/request/register/type";
+import PolicyField from "@components/form/PolicyField";
 
 const RequestRegisterPage = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const RequestRegisterPage = () => {
   return isLoading ? (
     <Loading />
   ) : (
-    <div className="sm:max-w-lg mx-auto">
+    <div className="sm:max-w-xl mx-auto">
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(handleRequestRegister)} className="form">
           <div>
@@ -90,6 +91,15 @@ const RequestRegisterPage = () => {
                 />
                 <ErrorMessage message={errors.candidatePhone?.message} />
               </div>
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <div>
+              <h3 className="h3">정책 동의</h3>
+            </div>
+            <div className="mt-4">
+              <PolicyField mode="requestRegister" />
             </div>
           </div>
 
