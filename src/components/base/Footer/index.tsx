@@ -32,7 +32,7 @@ const Footer = () => {
               <br />
               사업자등록번호: 597-86-02466
               <br />
-              문의: 070-4283-0275
+              전화번호: 070-4283-0275
               <br />
               <br />
               &copy; 2022 CrowdCheck Inc. All rights reserved.
