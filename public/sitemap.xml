@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://crowdcheck.io</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/guide</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/auth/login</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/guide/corporate</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/auth/register/corporate</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/guide/referee</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/guide/candidate</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/auth/register/personal</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/privacy</loc><priority>0.5</priority></url>
+<url><loc>https://crowdcheck.io/terms</loc><priority>0.5</priority></url>
+</urlset>
