@@ -1,7 +1,9 @@
 import { Popover, Transition } from "@headlessui/react";
 import {
   BookOpenIcon,
+  ClipboardCheckIcon,
   ClipboardIcon,
+  ClipboardListIcon,
   MenuIcon,
   PencilAltIcon,
   UserIcon,
@@ -18,17 +20,17 @@ import { ReactComponent as HeaderLogo } from "@assets/images/logo.svg";
 export const menuItems = {
   personal: [
     {
-      icon: ClipboardIcon,
+      icon: PencilAltIcon,
       text: "평판 작성 요청",
       to: "/request/list?mode=receiver",
     },
     {
-      icon: ClipboardIcon,
+      icon: ClipboardCheckIcon,
       text: "평판 조회 요청",
       to: "/request/list?mode=candidate",
     },
     {
-      icon: ClipboardIcon,
+      icon: ClipboardListIcon,
       text: "내 평판",
       to: "/reference/list",
     },
@@ -45,7 +47,7 @@ export const menuItems = {
   ],
   corporate: [
     {
-      icon: ClipboardIcon,
+      icon: ClipboardListIcon,
       text: "내 의뢰",
       to: "/request/list",
     },
