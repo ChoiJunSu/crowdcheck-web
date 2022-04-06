@@ -54,6 +54,13 @@ const RequestListReceiverView = () => {
                       </Link>
                     </div>
                   )}
+                  {request.receiverStatus === "answered" && (
+                    <div className="ml-2 flex-shrink-0 flex">
+                      <span className="px-2 inline-flex text-md sm:text-lg leading-5 rounded-full font-medium text-gray-600">
+                        답변 완료
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="mt-2 sm:grid-cols-6 text-md sm:text-lg text-gray-500">
                   <p className="sm:col-span-1 flex sm:inline-flex items-center">

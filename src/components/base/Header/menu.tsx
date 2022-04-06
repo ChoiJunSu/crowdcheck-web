@@ -76,7 +76,7 @@ const HeaderMenu = ({ type }: IHeaderMenuProps) => {
   const [current, setCurrent] = useState("");
 
   useEffect(() => {
-    setCurrent(location.pathname);
+    setCurrent(location.pathname + location.search);
   }, [location]);
 
   const handleLogout = useCallback(() => {

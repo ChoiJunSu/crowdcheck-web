@@ -82,7 +82,8 @@ export interface IRequestDetailCorporateRequest extends IApiRequest {
 
 export interface IRequestDetailCorporateResponse extends IApiResponse {
   request: IRequestCorporate;
-  references: Array<IReferenceCorporate>;
+  nominationReferences: Array<IReferenceCorporate>;
+  blindReferences: Array<IReferenceCorporate>;
 }
 
 export interface IRequestGetAgreeCorporateRequest extends IApiRequest {

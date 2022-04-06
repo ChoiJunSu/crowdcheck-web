@@ -16,7 +16,10 @@ const RequestDetailPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const requestId = searchParams.get("requestId");
   const [request, setRequest] = useState<IRequestCorporate | null>(null);
-  const [referenceList, setReferenceList] = useState<
+  const [nominationReferenceList, setNominationReferenceList] = useState<
+    Array<IReferenceCorporate>
+  >([]);
+  const [blindReferenceList, setBlindReferenceList] = useState<
     Array<IReferenceCorporate>
   >([]);
   if (type !== "corporate" || !requestId) {
@@ -33,7 +36,10 @@ const RequestDetailPage = () => {
       navigate(-1);
     }
     setRequest(requestDetailCorporateResponse.request);
-    setReferenceList(requestDetailCorporateResponse.references);
+    setNominationReferenceList(
+      requestDetailCorporateResponse.nominationReferences
+    );
+    setBlindReferenceList(requestDetailCorporateResponse.blindReferences);
   }, []);
 
   useEffect(() => {
@@ -89,11 +95,14 @@ const RequestDetailPage = () => {
 
           <div className="py-4 sm:py-6">
             <h3 className="text-xl sm:text-2xl leading-6 font-medium text-gray-900">
-              답변 목록
+              지원자가 직접 요청한 평판
+              <span className="ml-2 text-cc-green">
+                {nominationReferenceList.length}건
+              </span>
             </h3>
           </div>
 
-          {referenceList.map((reference, index) => (
+          {nominationReferenceList.map((reference, index) => (
             <Disclosure as="div" key={index} className="py-4 sm:py-6">
               {({ open }) => (
                 <>
@@ -184,7 +193,113 @@ const RequestDetailPage = () => {
             </Disclosure>
           ))}
 
-          {referenceList.length === 0 && (
+          {nominationReferenceList.length === 0 && (
+            <p className="text-gray-500 text-center sm:text-xl py-4">
+              등록된 답변이 없습니다.
+            </p>
+          )}
+
+          <div className="py-4 sm:py-6">
+            <h3 className="text-xl sm:text-2xl leading-6 font-medium text-gray-900">
+              블라인드 평판
+              <span className="ml-2 text-cc-green">
+                {blindReferenceList.length}건
+              </span>
+            </h3>
+          </div>
+
+          {blindReferenceList.map((reference, index) => (
+            <Disclosure as="div" key={index} className="py-4 sm:py-6">
+              {({ open }) => (
+                <>
+                  <dt className="text-lg sm:text-xl font-medium group">
+                    <Disclosure.Button className="text-left w-full flex justify-between items-start">
+                      <span
+                        className={`${
+                          open ? "text-cc-green" : "text-gray-900"
+                        } group-hover:text-cc-green`}
+                      >
+                        {reference.corporateName}에서 함께 일한 분의 답변
+                      </span>
+                      <span className="ml-6 h-7 flex items-center">
+                        <ChevronDownIcon
+                          className={`${
+                            open
+                              ? "-rotate-180 text-cc-green"
+                              : "rotate-0 text-gray-500"
+                          } h-6 w-6 transform group-hover:text-cc-green`}
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </Disclosure.Button>
+                  </dt>
+                  <Disclosure.Panel as="dd" className="mt-2 py-4 rounded-md">
+                    <>
+                      <div className="items-center text-md sm:text-lg font-medium">
+                        <div className="my-1 p-2 text-gray-900 border border-gray-200 rounded-md">
+                          <div className="my-1 p-2 text-gray-900 sm:mt-0">
+                            <div
+                              key={index}
+                              className="py-4 sm:py-6 items-center text-md sm:text-lg font-medium"
+                            >
+                              <label className="text-gray-500">
+                                지원자와의 관계
+                              </label>
+                              <div className="my-2 p-2 text-gray-900 border border-gray-200 rounded-md">
+                                <div className="my-1 p-2 text-gray-900 sm:mt-0">
+                                  {reference.relationship}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {reference.details.map((detail, index) => (
+                            <div
+                              key={index}
+                              className="px-2 py-4 sm:py-6 items-center text-md sm:text-lg font-medium"
+                            >
+                              <label className="text-gray-500">
+                                {detail.question
+                                  .split("\n")
+                                  .map((line, index) => (
+                                    <span key={index}>
+                                      {line}
+                                      <br />
+                                    </span>
+                                  ))}
+                              </label>
+                              <div className="my-2 p-2 text-gray-900 border border-gray-200 rounded-md">
+                                {detail.score && (
+                                  <RangeSlider
+                                    name="workExperience"
+                                    min={1}
+                                    max={10}
+                                    step={1}
+                                    value={detail.score}
+                                  />
+                                )}
+                                <div className="my-1 p-2 text-gray-900 sm:mt-0">
+                                  {detail.answer
+                                    .split("\n")
+                                    .map((line, index) => (
+                                      <span key={index}>
+                                        {line}
+                                        <br />
+                                      </span>
+                                    ))}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  </Disclosure.Panel>
+                </>
+              )}
+            </Disclosure>
+          ))}
+
+          {blindReferenceList.length === 0 && (
             <p className="text-gray-500 text-center sm:text-xl py-4">
               등록된 답변이 없습니다.
             </p>
