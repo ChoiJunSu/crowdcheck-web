@@ -15,6 +15,8 @@ import {
   IRequestCloseResponse,
   IRequestGetAgreeCandidateRequest,
   IRequestGetAgreeCandidateResponse,
+  IRequestPayRequest,
+  IRequestPayResponse,
 } from "@api/RequestApi/type";
 
 class RequestApi {
@@ -79,6 +81,13 @@ class RequestApi {
       url: "/request/agree",
       data,
     })) as IRequestAgreeResponse;
+  }
+
+  static async pay(params: IRequestPayRequest): Promise<IRequestPayResponse> {
+    return (await ApiClient.get({
+      url: "/request/pay",
+      params,
+    })) as IRequestPayResponse;
   }
 
   static async close(

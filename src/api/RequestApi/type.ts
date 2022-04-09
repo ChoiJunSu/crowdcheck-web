@@ -12,17 +12,11 @@ export const requestStatusMapper = {
   closed: "종료됨",
 };
 
-export const receiverStatusMapper = {
-  received: "답변 중",
-  verified: "답변 중",
-  rejected: "거절됨",
-  answered: "답변 완료",
-};
-
 export interface IRequestCorporate {
   id: number;
   candidateName: string;
   deadline: string;
+  paidAt: Date | null;
   referenceCount: number;
   status: TRequestStatus;
   createdAt: string;
@@ -110,6 +104,12 @@ export interface IRequestAgreeRequest extends IApiRequest {
 }
 
 export interface IRequestAgreeResponse extends IApiResponse {}
+
+export interface IRequestPayRequest extends IApiRequest {
+  requestId: number;
+}
+
+export interface IRequestPayResponse extends IApiResponse {}
 
 export interface IRequestCloseRequest extends IApiRequest {
   requestId: number;

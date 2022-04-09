@@ -7,7 +7,7 @@ import { IReferenceCorporate } from "@api/ReferenceApi/type";
 import RequestApi from "@api/RequestApi";
 import PageHeader from "@components/base/PageHeader";
 import { Disclosure } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/outline";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import RangeSlider from "@components/form/RangeSlider";
 
 const RequestDetailPage = () => {
@@ -47,6 +47,17 @@ const RequestDetailPage = () => {
       await updateRequest();
     })();
   }, [requestId]);
+
+  const handleRequestPay = useCallback(async () => {
+    const payResponse = await RequestApi.pay({
+      requestId: parseInt(requestId!),
+    });
+    if (!payResponse.ok) {
+      alert(payResponse.error);
+      return;
+    }
+    await updateRequest();
+  }, []);
 
   return (
     <div className="mx-auto sm:max-w-4xl">
@@ -199,14 +210,28 @@ const RequestDetailPage = () => {
             </p>
           )}
 
-          <div className="py-4 sm:py-6">
-            <h3 className="text-xl sm:text-2xl leading-6 font-medium text-gray-900">
-              블라인드 평판
-              <span className="ml-2 text-cc-green">
-                {blindReferenceList.length}건
-              </span>
-            </h3>
-          </div>
+          {request && (
+            <div className="py-4 sm:py-6 flex justify-between">
+              <h3 className="text-xl sm:text-2xl leading-6 font-medium text-gray-900">
+                블라인드 평판
+                <span className="ml-2 text-cc-green">
+                  {request.referenceCount - nominationReferenceList.length}건
+                </span>
+              </h3>
+              {request.referenceCount - nominationReferenceList.length !== 0 &&
+                !request?.paidAt && (
+                  <div className="ml-2 flex-shrink-0 flex">
+                    <button
+                      onClick={handleRequestPay}
+                      className="px-2 inline-flex text-md sm:text-lg leading-5 rounded-full font-medium text-gray-600 hover:text-cc-green"
+                    >
+                      답변 보기
+                      <ChevronRightIcon className="self-center flex-shrink-0 mr-1.5 h-5 w-5" />
+                    </button>
+                  </div>
+                )}
+            </div>
+          )}
 
           {blindReferenceList.map((reference, index) => (
             <Disclosure as="div" key={index} className="py-4 sm:py-6">
@@ -299,7 +324,7 @@ const RequestDetailPage = () => {
             </Disclosure>
           ))}
 
-          {blindReferenceList.length === 0 && (
+          {request?.paidAt && blindReferenceList.length === 0 && (
             <p className="text-gray-500 text-center sm:text-xl py-4">
               등록된 답변이 없습니다.
             </p>
