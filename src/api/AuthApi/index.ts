@@ -15,6 +15,10 @@ import {
   IAuthPhoneSendResponse,
   IAuthPhoneVerifyRequest,
   IAuthPhoneVerifyResponse,
+  IAuthEmailSendRequest,
+  IAuthEmailSendResponse,
+  IAuthPasswordResetRequest,
+  IAuthPasswordResetResponse,
 } from "@api/AuthApi/type";
 
 class AuthApi {
@@ -83,6 +87,24 @@ class AuthApi {
       url: "/auth/phone/verify",
       data,
     })) as IAuthPhoneVerifyResponse;
+  }
+
+  static async emailSend(
+    data: IAuthEmailSendRequest
+  ): Promise<IAuthEmailSendResponse> {
+    return (await ApiClient.post({
+      url: "/auth/email/send",
+      data,
+    })) as IAuthEmailSendResponse;
+  }
+
+  static async passwordReset(
+    data: IAuthPasswordResetRequest
+  ): Promise<IAuthPasswordResetResponse> {
+    return (await ApiClient.post({
+      url: "/auth/password/reset",
+      data,
+    })) as IAuthPasswordResetResponse;
   }
 }
 

@@ -68,3 +68,16 @@ export interface IAuthPhoneVerifyRequest extends IApiRequest {
 }
 
 export interface IAuthPhoneVerifyResponse extends IApiResponse {}
+
+export interface IAuthEmailSendRequest extends IApiRequest {
+  email: string;
+}
+
+export interface IAuthEmailSendResponse extends IApiResponse {}
+
+export interface IAuthPasswordResetRequest extends IApiRequest {
+  resetToken: string;
+  password: string;
+}
+
+export interface IAuthPasswordResetResponse extends IApiResponse {}

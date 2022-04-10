@@ -137,16 +137,30 @@ const AuthLoginPage = () => {
               >
                 이메일로 가입하기
               </Link>
+              <Link
+                to="/auth/password/reset"
+                className="mt-2 block font-medium text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
+              >
+                비밀번호 찾기
+              </Link>
             </div>
           )}
 
           {type === "corporate" && (
-            <Link
-              to="/auth/register/corporate"
-              className="font-medium text-sm sm:text-lg text-gray-400 hover:text-gray-500 underline"
-            >
-              기업 회원으로 가입하기
-            </Link>
+            <div className="text-right">
+              <Link
+                to="/auth/register/corporate"
+                className="font-medium text-sm sm:text-lg text-gray-400 hover:text-gray-500 underline"
+              >
+                기업 회원으로 가입하기
+              </Link>
+              <Link
+                to="/auth/password/reset"
+                className="mt-2 block font-medium text-md sm:text-lg text-gray-400 hover:text-gray-500 underline"
+              >
+                비밀번호 찾기
+              </Link>
+            </div>
           )}
         </div>
 
