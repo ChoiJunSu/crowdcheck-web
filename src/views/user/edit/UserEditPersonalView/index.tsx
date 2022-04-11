@@ -37,6 +37,7 @@ const UserEditPersonalView = () => {
     formState: { errors },
   } = methods;
   const setLoginState = useSetRecoilState(loginAtom);
+  const [recommendCode, setRecommendCode] = useState<string>("");
 
   useEffect(() => {
     (async () => {
@@ -46,12 +47,13 @@ const UserEditPersonalView = () => {
         return;
       }
       const {
-        user: { email, name, phone },
+        user: { email, name, phone, recommendCode },
         careers,
       } = getEditPersonalResponse;
       setValue("email", email);
       setValue("name", name);
       setValue("phone", phone);
+      if (recommendCode) setRecommendCode(recommendCode);
       setCareers(careers);
     })();
   }, []);
@@ -224,6 +226,38 @@ const UserEditPersonalView = () => {
               </div>
               <div className="mt-4">
                 <CareerField mode="edit" careers={careers} />
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <div>
+              <h3 className="h3">내 추천 코드</h3>
+            </div>
+
+            <div className="my-4">
+              <label htmlFor="passwordConfirm" className="label">
+                새로 가입하시는 분께 아래 코드를 복사하여 전달해주세요.
+              </label>
+              <div className="mt-1 sm:w-2/3 flex">
+                <input
+                  type="text"
+                  value={recommendCode}
+                  disabled={true}
+                  className="input"
+                />
+                <div className="sm:ml-2 w-1/3 inline-flex justify-end sm:justify-start">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(recommendCode);
+                      alert("클립보드에 복사되었습니다.");
+                    }}
+                    className="whitespace-nowrap inline-flex items-center justify-center px-2 py-2 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-medium text-white bg-cc-green hover:bg-cc-green-dark"
+                  >
+                    복사하기
+                  </button>
+                </div>
               </div>
             </div>
           </div>

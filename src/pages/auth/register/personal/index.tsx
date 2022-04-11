@@ -181,6 +181,26 @@ const AuthRegisterPersonalPage = () => {
 
           <div className="pt-8">
             <div>
+              <h3 className="h3">추천인 정보 (선택)</h3>
+            </div>
+
+            <div className="my-4">
+              <label htmlFor="passwordConfirm" className="label">
+                추천인이 계시다면 해당 사용자의 추천인 코드를 입력해주세요.
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  {...register("recommenderCode")}
+                  className="input"
+                />
+                <ErrorMessage message={errors?.recommenderCode?.message} />
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <div>
               <h3 className="h3">정책 동의</h3>
             </div>
             <div className="mt-4">

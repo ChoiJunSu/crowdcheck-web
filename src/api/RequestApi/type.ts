@@ -12,6 +12,13 @@ export const requestStatusMapper = {
   closed: "종료됨",
 };
 
+export const receiverStatusMapper = {
+  received: "답변 대기",
+  verified: "답변 중",
+  rejected: "거절됨",
+  answered: "답변 완료",
+};
+
 export interface IRequestCorporate {
   id: number;
   candidateName: string;

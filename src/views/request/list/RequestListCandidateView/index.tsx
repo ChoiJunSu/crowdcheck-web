@@ -55,7 +55,7 @@ const RequestListCandidateView = () => {
                         }}
                         className="sm:px-2 inline-flex text-md sm:text-lg leading-5 rounded-full font-medium text-gray-600 hover:text-cc-green"
                       >
-                        평판 요청 문구 복사하기
+                        평판 작성 가이드 복사하기
                         <ChevronRightIcon className="self-center flex-shrink-0 mr-1.5 h-5 w-5" />
                       </button>
                     </div>

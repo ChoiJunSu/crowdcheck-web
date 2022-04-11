@@ -6,6 +6,7 @@ export interface IUser {
   email: string;
   name: string;
   phone: string;
+  recommendCode?: string | null;
 }
 
 export interface ICareer {

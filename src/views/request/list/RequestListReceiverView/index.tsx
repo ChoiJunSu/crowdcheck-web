@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import RequestApi from "@api/RequestApi";
-import { IRequestReceiver, requestStatusMapper } from "@api/RequestApi/type";
+import {
+  IRequestReceiver,
+  receiverStatusMapper,
+  requestStatusMapper,
+} from "@api/RequestApi/type";
 import { Link } from "react-router-dom";
 import {
   CalendarIcon,
@@ -55,10 +59,22 @@ const RequestListReceiverView = () => {
                     </div>
                   )}
                   {request.receiverStatus === "answered" && (
-                    <div className="ml-2 flex-shrink-0 flex">
-                      <span className="px-2 inline-flex text-md sm:text-lg leading-5 rounded-full font-medium text-gray-600">
-                        답변 완료
-                      </span>
+                    <div className="mt-1 sm:mt-0 sm:ml-2 flex-shrink-0 flex">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            `평판 작성을 부탁드립니다.\n다음 주소로 방문하여 가이드를 확인해주세요.\nhttps://crowdcheck.io/guide/referee`
+                          );
+                          alert(
+                            "클립보드에 복사되었습니다. 평판 작성자에게 전달해주세요."
+                          );
+                        }}
+                        className="sm:px-2 inline-flex text-md sm:text-lg leading-5 rounded-full font-medium text-gray-600 hover:text-cc-green"
+                      >
+                        평판 작성 가이드 복사하기
+                        <ChevronRightIcon className="self-center flex-shrink-0 mr-1.5 h-5 w-5" />
+                      </button>
                     </div>
                   )}
                 </div>
@@ -80,7 +96,7 @@ const RequestListReceiverView = () => {
                     />
                     <span>상태</span>
                     <span className="mx-2 text-cc-green">
-                      {requestStatusMapper[request.status]}
+                      {receiverStatusMapper[request.receiverStatus]}
                     </span>
                   </p>
                   <p className="mt-2 sm:col-span-3 flex sm:inline-flex items-center sm:mt-0 sm:ml-6">

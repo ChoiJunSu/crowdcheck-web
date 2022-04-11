@@ -37,6 +37,7 @@ export interface IAuthRegisterPersonalRequest extends IApiRequest {
   email: string;
   password: string;
   careers: Array<ICareer>;
+  recommenderCode?: string;
 }
 
 export interface IAuthRegisterPersonalResponse extends IApiResponse {}
@@ -45,6 +46,7 @@ export interface IAuthRegisterOauthPersonalRequest extends IApiRequest {
   name: string;
   phone: string;
   careers: Array<ICareer>;
+  recommenderCode?: string;
   registerToken: string;
 }
 

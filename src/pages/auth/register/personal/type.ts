@@ -8,4 +8,5 @@ export interface IRegisterPersonalFormData {
   password: string;
   passwordConfirm: string;
   careers: Array<ICareer>;
+  recommenderCode?: string;
 }
