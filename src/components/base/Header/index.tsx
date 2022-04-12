@@ -48,11 +48,11 @@ const Header = () => {
 
   return (
     <Popover className="block bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center border-b-2 border-gray-100 py-6">
+      <div className="w-full">
+        <div className="flex justify-between items-center py-6">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link to="/">
-              <HeaderLogo className="h-6 w-auto sm:h-7" />
+              <HeaderLogo className="h-6 w-auto sm:h-8" />
             </Link>
           </div>
           {isLoggedIn && type ? (
@@ -61,13 +61,13 @@ const Header = () => {
             <div className="flex items-center space-x-4 sm:space-x-6">
               <Link
                 to="/guide"
-                className="text-sm sm:text-lg font-medium text-gray-500 hover:text-cc-green"
+                className="text-sm sm:text-lg lg:text-xl font-medium text-gray-500 hover:text-cc-green"
               >
                 가이드
               </Link>
               <Link
                 to="/auth/login"
-                className="whitespace-nowrap inline-flex items-center justify-center px-2 md:px-4 py-1 md:py-2 border border-transparent rounded-md shadow-sm text-sm sm:text-lg font-medium text-white bg-cc-green hover:bg-cc-green-dark"
+                className="whitespace-nowrap inline-flex items-center justify-center px-2 md:px-4 py-1 md:py-2 border border-transparent rounded-md shadow-sm text-sm sm:text-lg lg:text-xl font-medium text-white bg-cc-green hover:bg-cc-green-dark"
               >
                 로그인
               </Link>
