@@ -7,8 +7,8 @@ const IndexPublicView = () => {
   return (
     <div className="mx-auto px-2">
       <div className="mt-4 sm:mt-10 flex flex-col lg:flex-row gap-4 justify-center">
-        <h1 className="h1">부담 없이 시작하는</h1>
-        <h1 className="h1 text-cc-green">지원자 평판 조회</h1>
+        <h1 className="h1">간편하고 정확한</h1>
+        <h1 className="h1 text-cc-green">온라인 평판 조회</h1>
       </div>
 
       <div className="sm:mt-20">
