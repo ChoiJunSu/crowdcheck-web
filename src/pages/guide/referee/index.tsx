@@ -40,6 +40,16 @@ const GuideRefereePage = () => {
             수 없습니다.
           </p>
         </div>
+
+        <div className="rounded-md p-6 sm:p-10 bg-gray-100">
+          <h2 className="h2">5. 다른 동료에게 평판 작성 요청 (선택)</h2>
+          <p className="mt-2 sm:text-xl text-gray-900">
+            답변을 작성하신 후에는 지원자를 아는 다른 동료들에게도 알려주세요.{" "}
+            <br />
+            다른 동료가 내 추천인 코드를 입력하여 가입한 후 평판 작성을 완료하면
+            보상이 지급됩니다.
+          </p>
+        </div>
       </div>
     </div>
   );
