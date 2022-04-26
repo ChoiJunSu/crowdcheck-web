@@ -1,17 +1,32 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "@components/base/Header";
 import Footer from "@components/base/Footer";
 import Loading from "@components/base/Loading";
+import ReactGA from "react-ga";
 
 const App = () => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  const [gaInitialized, setGaInitialized] = useState<boolean>(false);
 
   const Page = lazy(() => {
     return import(`./pages${pathname}`).catch((error) => {
       return import("./pages/error");
     });
   });
+
+  // Google Analytics
+  useEffect(() => {
+    if (!window.location.href.includes("localhost"))
+      ReactGA.initialize(
+        process.env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID as string
+      );
+    setGaInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (gaInitialized) ReactGA.pageview(pathname + search);
+  }, [gaInitialized, pathname, search]);
 
   return (
     <Routes>
